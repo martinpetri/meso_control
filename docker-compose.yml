@@ -1,0 +1,50 @@
+version: '3'
+ 
+services:
+  database:
+    image: postgres
+    container_name: database
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - '5432:5432'
+    environment:
+      - "POSTGRES_HOST_AUTH_METHOD=trust"
+    restart: unless-stopped
+    # healthcheck:
+    #   test: ["CMD", "pg_isready", "-p", "5432", "-U", "postgres", "-d", "value_store_production"]
+  redis:
+    image: redis:6.2.6-alpine
+    command: redis-server
+    volumes:
+      - redis:/data
+    restart: unless-stopped
+  web:
+    build:
+      context: .    
+      dockerfile: ./docker/web/Dockerfile
+    depends_on:
+      - app    
+    ports:      
+      - 80:80
+    restart: unless-stopped
+  app:
+    build:
+      context: .
+      dockerfile: ./docker/app/Dockerfile
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+
+    # volumes:
+    #   - .:/project # Only mount this volume if running Rails in development mode.
+    ports:
+      - "3000:3000"
+    depends_on:
+      - database
+      - redis
+    environment:
+      - DATABASE_HOST=database
+    restart: unless-stopped
+
+volumes:
+  pgdata:
+  redis:
