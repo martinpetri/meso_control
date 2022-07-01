@@ -1,14 +1,13 @@
 #!/usr/bin/env python3
 from ast import Return
 import rclpy
-import time
 import json
 from rclpy.logging import get_logger
 from rclpy.node import Node
 from datetime import datetime
 
-from awi_interfaces.msg import AWIFloatValue, AWIStringValue
-from awi_interfaces.srv import ActuatorControl, Modbus
+from awi_interfaces.msg import AWIStringValue
+from awi_interfaces.srv import Modbus
 from functools import partial
 
 CONST_OPEN = 1
@@ -33,8 +32,8 @@ class SmallControlNode(Node):
         self.next_status_ = 'A'
 
         self.name_ = self.get_parameter("name").value
-        self.temp_setpoint_ = self.get_parameter("temp_setpoint").value    
-        self.temp_hysteresis_ = self.get_parameter("temp_hysteresis").value
+        self.temp_setpoint_ = float(self.get_parameter("temp_setpoint").value)
+        self.temp_hysteresis_ = float(self.get_parameter("temp_hysteresis").value)
         self.temp_check_interval_ = self.get_parameter("temp_check_interval").value
         self.tank_switch_interval_ = self.get_parameter("tank_switch_interval").value
         self.flush_duration_ = self.get_parameter("flush_duration").value
@@ -42,15 +41,18 @@ class SmallControlNode(Node):
         self.modbus_service_name_ = self.get_parameter("modbus_service_name").value
 
         self.json_obj_modbus_status_ = json.loads('{}')
+        self.json_obj_target_status_ = json.loads('{"v1":0, "v2":0, "v3":0, "v4":0, "v5":0, "v6":0, "v7":0, "p1":0}')
 
         self.timer_check_system_stopped_ =  self.create_timer(1, self.check_system_stopped)
-        self.timer_check_tank_started_ =  self.create_timer(1, self.check_tank_started)
+        self.timer_check_tank_prepared_ =  self.create_timer(1, self.check_tank_prepared)
+        self.timer_check_pump_started_ =  self.create_timer(1, self.check_pump_started)
         self.timer_check_flushing_started_ =  self.create_timer(1, self.check_flushing_started)
         self.timer_switch_tank_ = self.create_timer(self.tank_switch_interval_, self.switch_tank)
         self.timer_control_temp_ = self.create_timer(self.temp_check_interval_, self.control_temp)
         self.timer_stop_flushing_ = self.create_timer(self.flush_duration_, self.stop_flushing)
-        
-        self.timer_check_tank_started_.cancel()
+
+        self.timer_check_tank_prepared_.cancel()
+        self.timer_check_pump_started_.cancel()
         self.timer_check_flushing_started_.cancel()
         self.timer_switch_tank_.cancel()
         self.timer_control_temp_.cancel()
@@ -66,8 +68,10 @@ class SmallControlNode(Node):
 
         self.counter = 0
     
-    def control_temp(temp):
-        a = 1
+    def control_temp(self):
+        set_point = int(float(f'{self.temp_setpoint_:.2f}')*100)
+        self.log("temp_setpoint:" +  str(set_point))
+        self.set_control_value('temp_setpoint', set_point)
 
     def check_system_stopped(self):
         self.counter += 1
@@ -80,36 +84,51 @@ class SmallControlNode(Node):
             self.counter = 0
             if (self.next_status_ == 'A' or self.next_status_ == 'B'):
                 self.start_tank(self.next_status_)
-                self.timer_check_tank_started_.reset()
+                self.timer_check_tank_prepared_.reset()
 
             if self.next_status_ == 'flush':
                 self.start_flushing()
                 self.timer_check_flushing_started_.reset()
         else:
-            self.log("Waiting for system to stop...")
+            self.log("Waiting for system to be stopped")
             if self.counter >= 5:
                 self.stop_system()
     
-    def check_tank_started(self):
+    def check_tank_prepared(self):
         self.counter += 1
         
         if not self.tank_started(self.next_status_):
             if self.counter >= 5:
-                self.log("Waiting for tank " + self.next_status_ + " to start")
+                self.log("Waiting for tank " + self.next_status_ + " to be prepared")
                 self.counter = 0
                 self.start_tank(self.next_status_)
         else:
-            self.timer_check_tank_started_.cancel()
-            self.log("Tank " + self.next_status_ + " started")
+            self.log("Tank " + self.next_status_ + " prepared")
+            self.log_status()
+            self.start_pump()
+            self.timer_check_tank_prepared_.cancel()
+            self.timer_check_pump_started_.reset()
+    
+    def check_pump_started(self):
+        self.counter += 1
+        
+        if not self.pump_started():
+            if self.counter >= 5:
+                self.log("Waiting for pump to be started")
+                self.counter = 0
+                self.start_pump()
+        else:
+            self.timer_check_pump_started_.cancel()
+            self.log("Pump started")
             self.log_status()
             self.timer_control_temp_.reset()
             self.timer_switch_tank_.reset()
-    
+        
     def check_flushing_started(self):
         self.counter += 1
         if not self.flushing_started():
             if self.counter >= 5:
-                self.log("Waiting for flushing to start")
+                self.log("Waiting for flushing to be started")
                 self.counter = 0
                 self.start_flushing()
         else:
@@ -128,6 +147,9 @@ class SmallControlNode(Node):
         if tank == 'B':
             self.set_control_value('v3', CONST_OPEN)
             self.set_control_value('v4', CONST_OPEN)
+    
+    def start_pump(self):
+        self.set_control_value('p1', CONST_ON)
 
     def switch_tank(self):
         self.timer_control_temp_.cancel()
@@ -166,11 +188,17 @@ class SmallControlNode(Node):
                 if (self.json_obj_modbus_status_['v1'] == CONST_OPEN and self.json_obj_modbus_status_['v2'] == CONST_OPEN): return True
             elif tank == 'B':
                 if (self.json_obj_modbus_status_['v3'] == CONST_OPEN and self.json_obj_modbus_status_['v4'] == CONST_OPEN): return True
-            else:
-                return False
+            else: return False
         except:
             return False
     
+    def pump_started(self):
+        try:
+            if self.json_obj_modbus_status_['p1'] == CONST_ON: return True
+            else: return False
+        except:
+            return False
+
     def flushing_started(self):
         try:
             if (self.json_obj_modbus_status_['v5'] == CONST_OPEN and self.json_obj_modbus_status_['v6'] == CONST_OPEN): return True
@@ -179,7 +207,7 @@ class SmallControlNode(Node):
             return False
     
     def log_status(self):
-        self.log(str(self.json_obj_modbus_status_))
+        self.log('STATUS: ' + str(self.json_obj_modbus_status_))
 
     def stop_system(self):
         try:
@@ -190,7 +218,6 @@ class SmallControlNode(Node):
             self.set_control_value('v4', CONST_CLOSED)
             self.set_control_value('v5', CONST_CLOSED)
             self.set_control_value('v6', CONST_CLOSED)
-            self.log('Waiting for system to stop: ')
             self.counter = 0
             self.timer_check_system_stopped_.reset()
         except:
@@ -225,7 +252,7 @@ class SmallControlNode(Node):
     
     def callback_modbus_subscription(self, msg):
         self.json_obj_modbus_status_ = json.loads(msg.data)        
-            
+
 
 def main(args=None):
     rclpy.init(args=args)

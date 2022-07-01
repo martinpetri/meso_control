@@ -20,6 +20,7 @@ rosidl_generate_interfaces(${PROJECT_NAME}
   "msg/AWIStringValue.msg"
   "srv/ActuatorControl.srv"
   "srv/Modbus.srv"
+  "srv/Json.srv"
 )
 
 ament_package()

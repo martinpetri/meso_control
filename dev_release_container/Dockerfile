@@ -11,7 +11,7 @@ FROM althack/ros2:foxy-dev
 #    && apt-get clean -y \
 #    && rm -rf /var/lib/apt/lists/*
 # ENV DEBIAN_FRONTEND=dialog
-RUN pip3 install pymodbus
+RUN pip3 install requests pymodbus
 
 # Set up auto-source of workspace for ros user
 ARG WORKSPACE

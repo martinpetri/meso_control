@@ -5,7 +5,7 @@ from launch_ros.actions import Node
 
 TOPIC_MODBUS_VALUES = "/meso/json_modbus_values"
 MODBUS_SERVICE_NAME = "/meso/modbus_tcp_node"
-JSON_MODBUS_REGISTERS = '{"v1":"32000", "v2":"32000", "v3":"32000", "v4":"32000", "v5":"32000", "v6":"32000", "p1":"32000"}'
+JSON_MODBUS_REGISTERS = '{"v1":"32000", "v2":"32001", "v3":"32002", "v4":"32003", "v5":"32004", "v6":"32005", "p1":"32007"}'
 
 def generate_launch_description():
     return LaunchDescription([
