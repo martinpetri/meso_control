@@ -4,12 +4,6 @@ services:
   ros:
     build:
       context: .
-      dockerfile: ./dev_release_container/Dockerfile
-    #command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
-    volumes:
-      - ros_workspaces:/workspaces
-
-    # environment:
-    #   - DATABASE_HOST=database
-volumes:
-  ros_workspaces:
+      dockerfile: ./docker/Dockerfile
+    command: bash -c "cd /workspaces/meso_control && source /opt/ros/foxy/setup.bash && colcon build && source ./install/setup.bash && ros2 launch launch/small.py"
+    tty: true
