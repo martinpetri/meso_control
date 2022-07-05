@@ -8,10 +8,17 @@ RUN apt-get update \
 
 RUN pip3 install requests pymodbus
 RUN mkdir -p /workspaces
+
 WORKDIR /workspaces
 RUN git clone https://github.com/martinpetri/meso_control.git
+
 WORKDIR /workspaces/meso_control
-#RUN bin/bash source /opt/ros/foxy/setup.bash
-#RUN colcon build
-#RUN ./install/setup.sh
-# export PATH=$PATH:/workspaces/meso_control/install/meso_control_pkg/lib/meso_control_pkg && ros2 launch launch/small.py"
+
+RUN /bin/bash -c 'cd /workspaces/meso_control \
+                    && source /opt/ros/foxy/setup.bash \
+                    && colcon build'
+
+ENTRYPOINT /bin/bash -c 'cd /workspaces/meso_control \
+                    && source /opt/ros/foxy/setup.bash \
+                    && source ./install/setup.bash \
+                    && ros2 launch launch/small.py'
