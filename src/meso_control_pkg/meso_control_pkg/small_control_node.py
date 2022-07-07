@@ -5,6 +5,7 @@ import json
 from rclpy.logging import get_logger
 from rclpy.node import Node
 from datetime import datetime
+import logging
 
 from awi_interfaces.msg import AWIStringValue
 from awi_interfaces.srv import Modbus
@@ -27,7 +28,7 @@ class SmallControlNode(Node):
         self.declare_parameter("flush_duration", 10)
         self.declare_parameter("topic_modbus_values", "json_modbus_values")
         self.declare_parameter("modbus_service_name", "modbus_tcp_node")
-        
+
         self.last_tank_ = 'A'
         self.next_status_ = 'A'
 
@@ -42,7 +43,7 @@ class SmallControlNode(Node):
 
         self.json_obj_modbus_status_ = json.loads('{}')
         self.json_obj_target_status_ = json.loads('{"v1":0, "v2":0, "v3":0, "v4":0, "v5":0, "v6":0, "v7":0, "p1":0}')
-
+        
         self.timer_check_system_stopped_ =  self.create_timer(1, self.check_system_stopped)
         self.timer_check_tank_prepared_ =  self.create_timer(1, self.check_tank_prepared)
         self.timer_check_pump_started_ =  self.create_timer(1, self.check_pump_started)
@@ -67,7 +68,7 @@ class SmallControlNode(Node):
         self.log("Node " + self.name_ + " has been started")
 
         self.counter = 0
-    
+
     def control_temp(self):
         set_point = int(float(f'{self.temp_setpoint_:.2f}')*100)
         self.log("temp_setpoint:" +  str(set_point))
@@ -228,7 +229,9 @@ class SmallControlNode(Node):
         if include_datetime:
             now = datetime.now()
             msg = now.strftime("%d/%m/%Y %H:%M:%S") + ' - ' + msg
+
         self.get_logger().info(msg)
+        logging.info(msg)
 
     def set_control_value(self, json_modbus_key_name, new_status):
         service_name = self.modbus_service_name_

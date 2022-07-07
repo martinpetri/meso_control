@@ -4,14 +4,14 @@ import time
 from rclpy.logging import get_logger
 from rclpy.node import Node
 from awi_interfaces.msg import AWIFloatValue
-
+import logging
 
 class TestNode(Node):
     def __init__(self):
         super().__init__("test_node")
 
-        self.test_subscriber_ = self.create_subscription(AWIFloatValue, "/meso/v1_status", self.callback_test_subscription, 10)
-        
+        logging.basicConfig(filename='log/meso_control.log', level=logging.DEBUG)
+        logging.info("log test")
         self.get_logger().info("Test node started")
 
     def callback_test_subscription(self, msg):
