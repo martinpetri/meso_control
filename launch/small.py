@@ -35,8 +35,8 @@ def generate_launch_description():
                         {"temp_setpoint_B": 18.0},
                         {"temp_hysteresis_B": 0.1},
                         {"temp_check_interval":30},
-                        {"tank_switch_interval": 180},
-                        {"flush_duration": 30},
+                        {"tank_switch_interval": 1800},
+                        {"flush_duration": 20},
                         {"modbus_service_name": MODBUS_SERVICE_NAME},
                         {"topic_modbus_values": TOPIC_MODBUS_VALUES}
                 ]                  

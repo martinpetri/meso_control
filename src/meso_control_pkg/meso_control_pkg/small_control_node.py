@@ -75,11 +75,12 @@ class SmallControlNode(Node):
 
     def control_temp(self):
 
+        # If SPS is rebooted while temp_control the system needs to be prepared again
         if not (self.tank_started(self.last_tank_) and self.pump_started()):
             self.timer_control_temp_.cancel()
-            self.timer_switch_tank_.cancel()
             self.timer_check_tank_prepared_.reset()
 
+        # Normal temp control routine
         if self.last_tank_ == 'A':
             temperature = int(float(f'{self.temp_setpoint_A_:.2f}')*100)
             hysteresis = int(float(f'{self.temp_hysteresis_A_:.2f}')*100)
