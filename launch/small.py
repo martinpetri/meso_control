@@ -5,8 +5,16 @@ from launch_ros.actions import Node
 
 TOPIC_MODBUS_VALUES = "/meso/json_modbus_values"
 MODBUS_SERVICE_NAME = "/meso/modbus_tcp_node"
-JSON_MODBUS_WRITE_REGISTERS = '{"v1":32000, "v2":32001, "v3":32002, "v4":32003, "v5":32004, "v6":32005, "v7":32006, "p1":32007, "temp_setpoint": 32008}'
-JSON_MODBUS_FEEDBACK_REGISTERS = '{"v1":1, "v2":2, "v3":3, "v4":4, "v5":32004, "v6":32005, "v7":32006, "p1":32007, "temp_setpoint": 32008}'
+
+JSON_MODBUS_WRITE_REGISTERS =   '{      "heartbeat": 32016, \
+                                        "temp_control_A": 32017, "temp_setpoint_A": 32008, "temp_hysteresis_A": 32010, \
+                                        "temp_control_B": 32018, "temp_setpoint_B": 32009, "temp_hysteresis_B": 32011, \
+                                        "v1":32000, "v2":32001, "v3":32002, "v4":32003, "v5":32004, "v6":32005, "v7":32006, "p1":32007 }'
+
+JSON_MODBUS_FEEDBACK_REGISTERS = '{     "temp_control_A": 32017, "temp_setpoint_A": 32008, "temp_hysteresis_A": 32010, \
+                                        "temp_control_B": 32018, "temp_setpoint_B": 32009, "temp_hysteresis_B": 32011, \
+                                        "v1":1, "v2":2, "v3":3, "v4":4, "v5":32004, "v6":32005, "v7":32006,  "p1":32007, \
+                                        "mps_temp": 7, "mps_ph": 8, "mps_cond": 9, "mps_o2": 10 }'
 
 def generate_launch_description():
     return LaunchDescription([
@@ -19,14 +27,15 @@ def generate_launch_description():
                 arguments=[('--ros-args --log-level info')],
                 parameters=[
                         {"name":"small_control"},
-                        {"temp_setpoint": 12.0},
-                        {"temp_hysteresis": 1},
-                        {"temp_check_interval": 2},
-                        {"tank_switch_interval": 15},
-                        {"flush_duration": 5},
+                        {"temp_setpoint_A": 25.0},
+                        {"temp_hysteresis_A": 0.1},
+                        {"temp_setpoint_B": 25.0},
+                        {"temp_hysteresis_B": 0.1},
+                        {"temp_check_interval":30},
+                        {"tank_switch_interval": 1800},
+                        {"flush_duration": 60},
                         {"modbus_service_name": MODBUS_SERVICE_NAME},
-                        {"topic_modbus_values": TOPIC_MODBUS_VALUES},
-                        {"json_modbus_write_registers": JSON_MODBUS_WRITE_REGISTERS}
+                        {"topic_modbus_values": TOPIC_MODBUS_VALUES}
                 ]                  
         ),
         Node(

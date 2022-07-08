@@ -21,9 +21,11 @@ class SmallControlNode(Node):
         super().__init__("small_control_node")
 
         self.declare_parameter("name", "control_node")
-        self.declare_parameter("temp_setpoint", 12)
-        self.declare_parameter("temp_hysteresis", 1.0)
-        self.declare_parameter("temp_check_interval", 2)
+        self.declare_parameter("temp_setpoint_A", 12)
+        self.declare_parameter("temp_hysteresis_A", 0.1)
+        self.declare_parameter("temp_setpoint_B", 12)
+        self.declare_parameter("temp_hysteresis_B", 0.1)
+        self.declare_parameter("temp_check_interval", 5)
         self.declare_parameter("tank_switch_interval", 30)
         self.declare_parameter("flush_duration", 10)
         self.declare_parameter("topic_modbus_values", "json_modbus_values")
@@ -33,8 +35,10 @@ class SmallControlNode(Node):
         self.next_status_ = 'A'
 
         self.name_ = self.get_parameter("name").value
-        self.temp_setpoint_ = float(self.get_parameter("temp_setpoint").value)
-        self.temp_hysteresis_ = float(self.get_parameter("temp_hysteresis").value)
+        self.temp_setpoint_A_ = float(self.get_parameter("temp_setpoint_A").value)
+        self.temp_hysteresis_A_ = float(self.get_parameter("temp_hysteresis_A").value)
+        self.temp_setpoint_B_ = float(self.get_parameter("temp_setpoint_B").value)
+        self.temp_hysteresis_B_ = float(self.get_parameter("temp_hysteresis_B").value)
         self.temp_check_interval_ = self.get_parameter("temp_check_interval").value
         self.tank_switch_interval_ = self.get_parameter("tank_switch_interval").value
         self.flush_duration_ = self.get_parameter("flush_duration").value
@@ -70,10 +74,22 @@ class SmallControlNode(Node):
         self.counter = 0
 
     def control_temp(self):
-        set_point = int(float(f'{self.temp_setpoint_:.2f}')*100)
-        self.log("temp_setpoint:" +  str(set_point))
-        self.set_control_value('temp_setpoint', set_point)
+        if self.last_tank_ == 'A':
+            temperature = int(float(f'{self.temp_setpoint_A_:.2f}')*100)
+            hysteresis = int(float(f'{self.temp_hysteresis_A_:.2f}')*100)
+            self.set_control_value('temp_setpoint_A', temperature)
+            self.set_control_value('temp_hysteresis_A', hysteresis)
+            self.set_control_value('temp_control_A', CONST_ON)
+            self.log("temp_setpoint_A:" +  str(temperature))
 
+        if self.last_tank_ == 'B':
+            temperature = int(float(f'{self.temp_setpoint_B_:.2f}')*100)
+            hysteresis = int(float(f'{self.temp_hysteresis_B_:.2f}')*100)
+            self.set_control_value('temp_setpoint_B', temperature)
+            self.set_control_value('temp_hysteresis_B', hysteresis)
+            self.set_control_value('temp_control_B', CONST_ON)
+            self.log("temp_setpoint_B:" +  str(temperature))
+        
     def check_system_stopped(self):
         self.counter += 1
         if self.system_stopped():
@@ -137,8 +153,7 @@ class SmallControlNode(Node):
             self.log("Flushing started")
             self.log_status()
             self.timer_stop_flushing_.reset()
-            
-            
+   
     def start_tank(self, tank):
         self.last_tank_ = tank
         if tank == 'A':
@@ -176,6 +191,8 @@ class SmallControlNode(Node):
                 self.json_obj_modbus_status_['v4'] == CONST_CLOSED and
                 self.json_obj_modbus_status_['v5'] == CONST_CLOSED and
                 self.json_obj_modbus_status_['v6'] == CONST_CLOSED and
+                self.json_obj_modbus_status_['temp_control_A'] == CONST_OFF and
+                self.json_obj_modbus_status_['temp_control_B'] == CONST_OFF and
                 self.json_obj_modbus_status_['p1'] == CONST_OFF):
                 return True
             else:
@@ -219,6 +236,8 @@ class SmallControlNode(Node):
             self.set_control_value('v4', CONST_CLOSED)
             self.set_control_value('v5', CONST_CLOSED)
             self.set_control_value('v6', CONST_CLOSED)
+            self.set_control_value('temp_control_A', CONST_OFF)
+            self.set_control_value('temp_control_B', CONST_OFF)
             self.counter = 0
             self.timer_check_system_stopped_.reset()
         except:
@@ -254,7 +273,7 @@ class SmallControlNode(Node):
             self.get_logger().error("Service call failed %r" % (e,))
     
     def callback_modbus_subscription(self, msg):
-        self.json_obj_modbus_status_ = json.loads(msg.data)        
+        self.json_obj_modbus_status_ = json.loads(msg.data)
 
 
 def main(args=None):

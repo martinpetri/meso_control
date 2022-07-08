@@ -17,6 +17,7 @@ class ModbusTcpNode(Node):
         super().__init__("modbus_tcp_node")
         
         self.declare_parameter("name", "modbus_tcp_node")
+        self.declare_parameter("heartbeat_interval", 5)
         self.declare_parameter("publish_interval", 1)
         self.declare_parameter("topic_name", "json_modbus_values")
         self.declare_parameter("read_modbus_interval", 1)
@@ -27,6 +28,7 @@ class ModbusTcpNode(Node):
         self.declare_parameter("json_modbus_feedback_registers", '{"v1":"1", "v2":"2"}')
         
         self.name_ = self.get_parameter("name").value
+        self.heartbeat_interval_ = self.get_parameter("heartbeat_interval").value
         self.publish_interval_ = self.get_parameter("publish_interval").value
         self.topic_name_ =  self.get_parameter("topic_name").value
         self.read_modbus_interval_ = self.get_parameter("read_modbus_interval").value
@@ -44,6 +46,7 @@ class ModbusTcpNode(Node):
         self.service_register_ = self.create_service(Modbus, self.modbus_service_name_, self.callback_service)
         self.modbus_client_ = ModbusTcpClient(host=self.modbus_host_ip_ ,port=self.modbus_host_port_)
 
+        self.timer_heartbeat_ = self.create_timer(self.heartbeat_interval_, self.heartbeat) 
         self.timer_publish_ = self.create_timer(self.publish_interval_, self.publish_status)     
         self.timer_read_modbus_ = self.create_timer(self.read_modbus_interval_, self.read_modbus)
         self.timer_prepare_modbus_ = self.create_timer(1, self.prepare_modbus_connection)
@@ -53,6 +56,10 @@ class ModbusTcpNode(Node):
                 
         self.log("ModbusTcp node started")
     
+    def heartbeat(self):
+        register = self.get_register('heartbeat')
+        self.write_modbus(register, 1)
+        self.log('heartbeat: ' + str(register))
 
     def callback_service(self, request, response):
         
@@ -94,7 +101,6 @@ class ModbusTcpNode(Node):
                     self.timer_read_modbus_.cancel()
                     self.timer_prepare_modbus_.reset()
                     break
-
             self.json_data_modbus_values_ = json.dumps(data)
         except:
             self.log("Can't read from modbus")
