@@ -21,7 +21,7 @@ class ModbusTcpNode(Node):
         self.declare_parameter("publish_interval", 1)
         self.declare_parameter("topic_name", "json_modbus_values")
         self.declare_parameter("read_modbus_interval", 1)
-        self.declare_parameter("modbus_host_ip", '192.168.178.51')
+        self.declare_parameter("modbus_host_ip", '192.168.177.25')
         self.declare_parameter("modbus_host_port", '502')
         self.declare_parameter("modbus_service_name", 'modbus_tcp_node')
         self.declare_parameter("json_modbus_write_registers", '{"v1":"32000", "v2":"32001"}')
@@ -59,7 +59,7 @@ class ModbusTcpNode(Node):
     def heartbeat(self):
         register = self.get_register('heartbeat')
         self.write_modbus(register, 1)
-        self.log('heartbeat: ' + str(register))
+        #self.log('heartbeat: ' + str(register))
 
     def callback_service(self, request, response):
         

@@ -1,0 +1,584 @@
+1657544753.8758810 [INFO] [launch]: All log files can be found below /root/.ros/log/2022-07-11-13-05-53-867004-d5658e7e9c83-9
+1657544753.8767414 [INFO] [launch]: Default logging verbosity is set to INFO
+1657544754.0456443 [INFO] [small_control_node-1]: process started with pid [45]
+1657544754.0467107 [INFO] [modbus_tcp_node-2]: process started with pid [47]
+1657544755.0070939 [modbus_tcp_node-2] [INFO] [1657544755.006340278] [meso.modbus_tcp_node]: 11/07/2022 13:05:54 - {"temp_control_A": 32017, "temp_setpoint_A": 32008, "temp_hysteresis_A": 32010, "temp_control_B": 32018, "temp_setpoint_B": 32009, "temp_hysteresis_B": 32011, "v1": 1, "v2": 2, "v3": 3, "v4": 4, "v5": 32004, "v6": 32005, "v7": 32006, "p1": 32007, "mps_temp": 7, "mps_ph": 8, "mps_cond": 9, "mps_o2": 10, "status": 12, "status_timer": 13, "last_tank": 18, "cooler_tank_A": 14, "heater_tank_A": 15, "cooler_tank_B": 16, "heater_tank_B": 17}
+1657544755.0160372 [modbus_tcp_node-2] [INFO] [1657544755.015235400] [meso.modbus_tcp_node]: 11/07/2022 13:05:55 - ModbusTcp node started
+1657544755.1421454 [small_control_node-1] [INFO] [1657544755.141394668] [meso.small_control_node]: 11/07/2022 13:05:55 - Node small_control has been started
+1657544756.0288172 [modbus_tcp_node-2] [INFO] [1657544756.014998023] [meso.modbus_tcp_node]: 11/07/2022 13:05:56 - Preparing modbus connection
+1657544756.0435922 [modbus_tcp_node-2] [INFO] [1657544756.042975863] [meso.modbus_tcp_node]: 11/07/2022 13:05:56 - Modbus tcp connected
+1657544756.0953879 [small_control_node-1] [INFO] [1657544756.094783841] [meso.small_control_node]: 11/07/2022 13:05:56 - Waiting for system to be stopped
+1657544757.0958130 [small_control_node-1] [INFO] [1657544757.095162415] [meso.small_control_node]: 11/07/2022 13:05:57 - Waiting for system to be stopped
+1657544758.0959041 [small_control_node-1] [INFO] [1657544758.095240130] [meso.small_control_node]: 11/07/2022 13:05:58 - Waiting for system to be stopped
+1657544759.0955930 [small_control_node-1] [INFO] [1657544759.094962357] [meso.small_control_node]: 11/07/2022 13:05:59 - Waiting for system to be stopped
+1657544760.0188799 [modbus_tcp_node-2] [INFO] [1657544760.018290652] [meso.modbus_tcp_node]: 11/07/2022 13:06:00 - heartbeat: 32016
+1657544760.0954647 [small_control_node-1] [INFO] [1657544760.094752502] [meso.small_control_node]: 11/07/2022 13:06:00 - Waiting for system to be stopped
+1657544761.1225159 [small_control_node-1] [INFO] [1657544761.121902165] [meso.small_control_node]: 11/07/2022 13:06:01 - Waiting for system to be stopped
+1657544762.1249380 [small_control_node-1] [INFO] [1657544762.123954596] [meso.small_control_node]: 11/07/2022 13:06:02 - Waiting for system to be stopped
+1657544763.1248870 [small_control_node-1] [INFO] [1657544763.123895992] [meso.small_control_node]: 11/07/2022 13:06:03 - Waiting for system to be stopped
+1657544764.1257424 [small_control_node-1] [INFO] [1657544764.124486432] [meso.small_control_node]: 11/07/2022 13:06:04 - Waiting for system to be stopped
+1657544765.0230615 [modbus_tcp_node-2] [INFO] [1657544765.021233621] [meso.modbus_tcp_node]: 11/07/2022 13:06:05 - heartbeat: 32016
+1657544765.1248586 [small_control_node-1] [INFO] [1657544765.123909185] [meso.small_control_node]: 11/07/2022 13:06:05 - Waiting for system to be stopped
+1657544766.1610091 [small_control_node-1] [INFO] [1657544766.160023852] [meso.small_control_node]: 11/07/2022 13:06:06 - Waiting for system to be stopped
+1657544767.1609528 [small_control_node-1] [INFO] [1657544767.159970733] [meso.small_control_node]: 11/07/2022 13:06:07 - Waiting for system to be stopped
+1657544768.1609669 [small_control_node-1] [INFO] [1657544768.159973346] [meso.small_control_node]: 11/07/2022 13:06:08 - Waiting for system to be stopped
+1657544769.1586030 [small_control_node-1] [INFO] [1657544769.158004129] [meso.small_control_node]: 11/07/2022 13:06:09 - Waiting for system to be stopped
+1657544770.0190289 [modbus_tcp_node-2] [INFO] [1657544770.018441783] [meso.modbus_tcp_node]: 11/07/2022 13:06:10 - heartbeat: 32016
+1657544770.1586099 [small_control_node-1] [INFO] [1657544770.158024855] [meso.small_control_node]: 11/07/2022 13:06:10 - System stopped
+1657544770.1603816 [small_control_node-1] [INFO] [1657544770.159834161] [meso.small_control_node]: 11/07/2022 13:06:10 - STATUS: {'temp_control_A': 0, 'temp_setpoint_A': 1800, 'temp_hysteresis_A': 10, 'temp_control_B': 0, 'temp_setpoint_B': 1800, 'temp_hysteresis_B': 10, 'v1': 0, 'v2': 0, 'v3': 0, 'v4': 0, 'v5': 0, 'v6': 0, 'v7': 0, 'p1': 0, 'mps_temp': 2662, 'mps_ph': 837, 'mps_cond': 0, 'mps_o2': 869, 'status': 3, 'status_timer': 21, 'last_tank': 1, 'cooler_tank_A': 1, 'heater_tank_A': 0, 'cooler_tank_B': 0, 'heater_tank_B': 1}
+1657544775.0229776 [modbus_tcp_node-2] [INFO] [1657544775.021954616] [meso.modbus_tcp_node]: 11/07/2022 13:06:15 - heartbeat: 32016
+1657544775.1689873 [small_control_node-1] [INFO] [1657544775.167929852] [meso.small_control_node]: 11/07/2022 13:06:15 - Waiting for tank A to be prepared
+1657544780.0272658 [modbus_tcp_node-2] [INFO] [1657544780.026116945] [meso.modbus_tcp_node]: 11/07/2022 13:06:20 - heartbeat: 32016
+1657544780.1691117 [small_control_node-1] [INFO] [1657544780.168030586] [meso.small_control_node]: 11/07/2022 13:06:20 - Waiting for tank A to be prepared
+1657544781.1689332 [small_control_node-1] [INFO] [1657544781.167948964] [meso.small_control_node]: 11/07/2022 13:06:21 - Tank A prepared
+1657544781.1724489 [small_control_node-1] [INFO] [1657544781.171543982] [meso.small_control_node]: 11/07/2022 13:06:21 - STATUS: {'temp_control_A': 0, 'temp_setpoint_A': 1800, 'temp_hysteresis_A': 10, 'temp_control_B': 0, 'temp_setpoint_B': 1800, 'temp_hysteresis_B': 10, 'v1': 1, 'v2': 1, 'v3': 0, 'v4': 0, 'v5': 0, 'v6': 0, 'v7': 0, 'p1': 0, 'mps_temp': 2675, 'mps_ph': 832, 'mps_cond': 0, 'mps_o2': 873, 'status': 3, 'status_timer': 10, 'last_tank': 1, 'cooler_tank_A': 1, 'heater_tank_A': 0, 'cooler_tank_B': 0, 'heater_tank_B': 1}
+1657544783.1808798 [small_control_node-1] [INFO] [1657544783.179773338] [meso.small_control_node]: 11/07/2022 13:06:23 - Pump started
+1657544783.1847813 [small_control_node-1] [INFO] [1657544783.183832687] [meso.small_control_node]: 11/07/2022 13:06:23 - STATUS: {'temp_control_A': 0, 'temp_setpoint_A': 1800, 'temp_hysteresis_A': 10, 'temp_control_B': 0, 'temp_setpoint_B': 1800, 'temp_hysteresis_B': 10, 'v1': 1, 'v2': 1, 'v3': 0, 'v4': 0, 'v5': 0, 'v6': 0, 'v7': 0, 'p1': 1, 'mps_temp': 2675, 'mps_ph': 832, 'mps_cond': 0, 'mps_o2': 872, 'status': 3, 'status_timer': 8, 'last_tank': 1, 'cooler_tank_A': 1, 'heater_tank_A': 0, 'cooler_tank_B': 0, 'heater_tank_B': 1}
+1657544785.0227795 [modbus_tcp_node-2] [INFO] [1657544785.021646618] [meso.modbus_tcp_node]: 11/07/2022 13:06:25 - heartbeat: 32016
+1657544790.0189409 [modbus_tcp_node-2] [INFO] [1657544790.018353642] [meso.modbus_tcp_node]: 11/07/2022 13:06:30 - heartbeat: 32016
+1657544795.0233800 [modbus_tcp_node-2] [INFO] [1657544795.022241394] [meso.modbus_tcp_node]: 11/07/2022 13:06:35 - heartbeat: 32016
+1657544800.0190418 [modbus_tcp_node-2] [INFO] [1657544800.018468103] [meso.modbus_tcp_node]: 11/07/2022 13:06:40 - heartbeat: 32016
+1657544805.0230918 [modbus_tcp_node-2] [INFO] [1657544805.021940839] [meso.modbus_tcp_node]: 11/07/2022 13:06:45 - heartbeat: 32016
+1657544810.0231800 [modbus_tcp_node-2] [INFO] [1657544810.022030142] [meso.modbus_tcp_node]: 11/07/2022 13:06:50 - heartbeat: 32016
+1657544813.2015257 [small_control_node-1] [INFO] [1657544813.200349126] [meso.small_control_node]: 11/07/2022 13:06:53 - temp_setpoint_A:1800
+1657544815.0234051 [modbus_tcp_node-2] [INFO] [1657544815.022270329] [meso.modbus_tcp_node]: 11/07/2022 13:06:55 - heartbeat: 32016
+1657544820.0193515 [modbus_tcp_node-2] [INFO] [1657544820.018797479] [meso.modbus_tcp_node]: 11/07/2022 13:07:00 - heartbeat: 32016
+1657544825.0250242 [modbus_tcp_node-2] [INFO] [1657544825.023863007] [meso.modbus_tcp_node]: 11/07/2022 13:07:05 - heartbeat: 32016
+1657544830.0249987 [modbus_tcp_node-2] [INFO] [1657544830.023697861] [meso.modbus_tcp_node]: 11/07/2022 13:07:10 - heartbeat: 32016
+1657544835.0281720 [modbus_tcp_node-2] [INFO] [1657544835.026858643] [meso.modbus_tcp_node]: 11/07/2022 13:07:15 - heartbeat: 32016
+1657544840.0257130 [modbus_tcp_node-2] [INFO] [1657544840.024328500] [meso.modbus_tcp_node]: 11/07/2022 13:07:20 - heartbeat: 32016
+1657544843.2019904 [small_control_node-1] [INFO] [1657544843.200828313] [meso.small_control_node]: 11/07/2022 13:07:23 - temp_setpoint_A:1800
+1657544845.0235336 [modbus_tcp_node-2] [INFO] [1657544845.022330508] [meso.modbus_tcp_node]: 11/07/2022 13:07:25 - heartbeat: 32016
+1657544850.0188425 [modbus_tcp_node-2] [INFO] [1657544850.018266056] [meso.modbus_tcp_node]: 11/07/2022 13:07:30 - heartbeat: 32016
+1657544855.0236456 [modbus_tcp_node-2] [INFO] [1657544855.022511306] [meso.modbus_tcp_node]: 11/07/2022 13:07:35 - heartbeat: 32016
+1657544860.0230258 [modbus_tcp_node-2] [INFO] [1657544860.021883356] [meso.modbus_tcp_node]: 11/07/2022 13:07:40 - heartbeat: 32016
+1657544865.0229642 [modbus_tcp_node-2] [INFO] [1657544865.021817990] [meso.modbus_tcp_node]: 11/07/2022 13:07:45 - heartbeat: 32016
+1657544870.0238326 [modbus_tcp_node-2] [INFO] [1657544870.022734744] [meso.modbus_tcp_node]: 11/07/2022 13:07:50 - heartbeat: 32016
+1657544873.2003803 [small_control_node-1] [INFO] [1657544873.199397897] [meso.small_control_node]: 11/07/2022 13:07:53 - temp_setpoint_A:1800
+1657544875.0238283 [modbus_tcp_node-2] [INFO] [1657544875.022672761] [meso.modbus_tcp_node]: 11/07/2022 13:07:55 - heartbeat: 32016
+1657544880.0190270 [modbus_tcp_node-2] [INFO] [1657544880.018434840] [meso.modbus_tcp_node]: 11/07/2022 13:08:00 - heartbeat: 32016
+1657544885.0231318 [modbus_tcp_node-2] [INFO] [1657544885.021976356] [meso.modbus_tcp_node]: 11/07/2022 13:08:05 - heartbeat: 32016
+1657544890.0234420 [modbus_tcp_node-2] [INFO] [1657544890.022240449] [meso.modbus_tcp_node]: 11/07/2022 13:08:10 - heartbeat: 32016
+1657544895.0230713 [modbus_tcp_node-2] [INFO] [1657544895.021936977] [meso.modbus_tcp_node]: 11/07/2022 13:08:15 - heartbeat: 32016
+1657544900.0231981 [modbus_tcp_node-2] [INFO] [1657544900.022036989] [meso.modbus_tcp_node]: 11/07/2022 13:08:20 - heartbeat: 32016
+1657544903.1997244 [small_control_node-1] [INFO] [1657544903.198706816] [meso.small_control_node]: 11/07/2022 13:08:23 - temp_setpoint_A:1800
+1657544905.0234056 [modbus_tcp_node-2] [INFO] [1657544905.022274231] [meso.modbus_tcp_node]: 11/07/2022 13:08:25 - heartbeat: 32016
+1657544910.0187199 [modbus_tcp_node-2] [INFO] [1657544910.018136120] [meso.modbus_tcp_node]: 11/07/2022 13:08:30 - heartbeat: 32016
+1657544915.0233727 [modbus_tcp_node-2] [INFO] [1657544915.022210674] [meso.modbus_tcp_node]: 11/07/2022 13:08:35 - heartbeat: 32016
+1657544920.0237513 [modbus_tcp_node-2] [INFO] [1657544920.022583410] [meso.modbus_tcp_node]: 11/07/2022 13:08:40 - heartbeat: 32016
+1657544925.0229502 [modbus_tcp_node-2] [INFO] [1657544925.021796908] [meso.modbus_tcp_node]: 11/07/2022 13:08:45 - heartbeat: 32016
+1657544930.0229895 [modbus_tcp_node-2] [INFO] [1657544930.021826916] [meso.modbus_tcp_node]: 11/07/2022 13:08:50 - heartbeat: 32016
+1657544933.1981471 [small_control_node-1] [INFO] [1657544933.197171981] [meso.small_control_node]: 11/07/2022 13:08:53 - temp_setpoint_A:1800
+1657544935.0230746 [modbus_tcp_node-2] [INFO] [1657544935.021882738] [meso.modbus_tcp_node]: 11/07/2022 13:08:55 - heartbeat: 32016
+1657544940.0189109 [modbus_tcp_node-2] [INFO] [1657544940.018331267] [meso.modbus_tcp_node]: 11/07/2022 13:09:00 - heartbeat: 32016
+1657544945.0231194 [modbus_tcp_node-2] [INFO] [1657544945.021963714] [meso.modbus_tcp_node]: 11/07/2022 13:09:05 - heartbeat: 32016
+1657544950.0230780 [modbus_tcp_node-2] [INFO] [1657544950.021952836] [meso.modbus_tcp_node]: 11/07/2022 13:09:10 - heartbeat: 32016
+1657544955.0236990 [modbus_tcp_node-2] [INFO] [1657544955.022554624] [meso.modbus_tcp_node]: 11/07/2022 13:09:15 - heartbeat: 32016
+1657544960.0239584 [modbus_tcp_node-2] [INFO] [1657544960.022825123] [meso.modbus_tcp_node]: 11/07/2022 13:09:20 - heartbeat: 32016
+1657544963.1955485 [small_control_node-1] [INFO] [1657544963.194906396] [meso.small_control_node]: 11/07/2022 13:09:23 - temp_setpoint_A:1800
+1657544965.0189233 [modbus_tcp_node-2] [INFO] [1657544965.018338383] [meso.modbus_tcp_node]: 11/07/2022 13:09:25 - heartbeat: 32016
+1657544970.0188606 [modbus_tcp_node-2] [INFO] [1657544970.018271807] [meso.modbus_tcp_node]: 11/07/2022 13:09:30 - heartbeat: 32016
+1657544975.0235267 [modbus_tcp_node-2] [INFO] [1657544975.022378232] [meso.modbus_tcp_node]: 11/07/2022 13:09:35 - heartbeat: 32016
+1657544980.0231516 [modbus_tcp_node-2] [INFO] [1657544980.021995789] [meso.modbus_tcp_node]: 11/07/2022 13:09:40 - heartbeat: 32016
+1657544985.0232482 [modbus_tcp_node-2] [INFO] [1657544985.021907728] [meso.modbus_tcp_node]: 11/07/2022 13:09:45 - heartbeat: 32016
+1657544990.0232375 [modbus_tcp_node-2] [INFO] [1657544990.021908309] [meso.modbus_tcp_node]: 11/07/2022 13:09:50 - heartbeat: 32016
+1657544993.2006605 [small_control_node-1] [INFO] [1657544993.199372692] [meso.small_control_node]: 11/07/2022 13:09:53 - temp_setpoint_A:1800
+1657544995.0232406 [modbus_tcp_node-2] [INFO] [1657544995.022100366] [meso.modbus_tcp_node]: 11/07/2022 13:09:55 - heartbeat: 32016
+1657545000.0190434 [modbus_tcp_node-2] [INFO] [1657545000.018465280] [meso.modbus_tcp_node]: 11/07/2022 13:10:00 - heartbeat: 32016
+1657545005.0228117 [modbus_tcp_node-2] [INFO] [1657545005.021548926] [meso.modbus_tcp_node]: 11/07/2022 13:10:05 - heartbeat: 32016
+1657545010.0232086 [modbus_tcp_node-2] [INFO] [1657545010.022069959] [meso.modbus_tcp_node]: 11/07/2022 13:10:10 - heartbeat: 32016
+1657545015.0232317 [modbus_tcp_node-2] [INFO] [1657545015.022080608] [meso.modbus_tcp_node]: 11/07/2022 13:10:15 - heartbeat: 32016
+1657545020.0233424 [modbus_tcp_node-2] [INFO] [1657545020.021976669] [meso.modbus_tcp_node]: 11/07/2022 13:10:20 - heartbeat: 32016
+1657545023.2022152 [small_control_node-1] [INFO] [1657545023.200365609] [meso.small_control_node]: 11/07/2022 13:10:23 - temp_setpoint_A:1800
+1657545025.0233536 [modbus_tcp_node-2] [INFO] [1657545025.022029528] [meso.modbus_tcp_node]: 11/07/2022 13:10:25 - heartbeat: 32016
+1657545030.0191271 [modbus_tcp_node-2] [INFO] [1657545030.018551084] [meso.modbus_tcp_node]: 11/07/2022 13:10:30 - heartbeat: 32016
+1657545035.0233262 [modbus_tcp_node-2] [INFO] [1657545035.022125394] [meso.modbus_tcp_node]: 11/07/2022 13:10:35 - heartbeat: 32016
+1657545040.0231786 [modbus_tcp_node-2] [INFO] [1657545040.022048643] [meso.modbus_tcp_node]: 11/07/2022 13:10:40 - heartbeat: 32016
+1657545045.0233855 [modbus_tcp_node-2] [INFO] [1657545045.022104494] [meso.modbus_tcp_node]: 11/07/2022 13:10:45 - heartbeat: 32016
+1657545050.0233374 [modbus_tcp_node-2] [INFO] [1657545050.022087706] [meso.modbus_tcp_node]: 11/07/2022 13:10:50 - heartbeat: 32016
+1657545053.2001426 [small_control_node-1] [INFO] [1657545053.198553047] [meso.small_control_node]: 11/07/2022 13:10:53 - temp_setpoint_A:1800
+1657545055.0233879 [modbus_tcp_node-2] [INFO] [1657545055.022112781] [meso.modbus_tcp_node]: 11/07/2022 13:10:55 - heartbeat: 32016
+1657545060.0209033 [modbus_tcp_node-2] [INFO] [1657545060.020119716] [meso.modbus_tcp_node]: 11/07/2022 13:11:00 - heartbeat: 32016
+1657545065.0188839 [modbus_tcp_node-2] [INFO] [1657545065.018307329] [meso.modbus_tcp_node]: 11/07/2022 13:11:05 - heartbeat: 32016
+1657545070.0231907 [modbus_tcp_node-2] [INFO] [1657545070.022035474] [meso.modbus_tcp_node]: 11/07/2022 13:11:10 - heartbeat: 32016
+1657545075.0231643 [modbus_tcp_node-2] [INFO] [1657545075.022006605] [meso.modbus_tcp_node]: 11/07/2022 13:11:15 - heartbeat: 32016
+1657545080.0232911 [modbus_tcp_node-2] [INFO] [1657545080.022071290] [meso.modbus_tcp_node]: 11/07/2022 13:11:20 - heartbeat: 32016
+1657545083.2043452 [small_control_node-1] [INFO] [1657545083.203218419] [meso.small_control_node]: 11/07/2022 13:11:23 - temp_setpoint_A:1800
+1657545085.0230613 [modbus_tcp_node-2] [INFO] [1657545085.021915568] [meso.modbus_tcp_node]: 11/07/2022 13:11:25 - heartbeat: 32016
+1657545090.0231712 [modbus_tcp_node-2] [INFO] [1657545090.021985696] [meso.modbus_tcp_node]: 11/07/2022 13:11:30 - heartbeat: 32016
+1657545095.0191951 [modbus_tcp_node-2] [INFO] [1657545095.018616517] [meso.modbus_tcp_node]: 11/07/2022 13:11:35 - heartbeat: 32016
+1657545100.0231583 [modbus_tcp_node-2] [INFO] [1657545100.021995348] [meso.modbus_tcp_node]: 11/07/2022 13:11:40 - heartbeat: 32016
+1657545105.0234296 [modbus_tcp_node-2] [INFO] [1657545105.022268483] [meso.modbus_tcp_node]: 11/07/2022 13:11:45 - heartbeat: 32016
+1657545110.0243948 [modbus_tcp_node-2] [INFO] [1657545110.023230580] [meso.modbus_tcp_node]: 11/07/2022 13:11:50 - heartbeat: 32016
+1657545113.2105739 [small_control_node-1] [INFO] [1657545113.209364094] [meso.small_control_node]: 11/07/2022 13:11:53 - temp_setpoint_A:1800
+1657545115.0237615 [modbus_tcp_node-2] [INFO] [1657545115.022620528] [meso.modbus_tcp_node]: 11/07/2022 13:11:55 - heartbeat: 32016
+1657545120.0237248 [modbus_tcp_node-2] [INFO] [1657545120.022562589] [meso.modbus_tcp_node]: 11/07/2022 13:12:00 - heartbeat: 32016
+1657545125.0189524 [modbus_tcp_node-2] [INFO] [1657545125.018371892] [meso.modbus_tcp_node]: 11/07/2022 13:12:05 - heartbeat: 32016
+1657545130.0233803 [modbus_tcp_node-2] [INFO] [1657545130.022226534] [meso.modbus_tcp_node]: 11/07/2022 13:12:10 - heartbeat: 32016
+1657545135.0233679 [modbus_tcp_node-2] [INFO] [1657545135.022221325] [meso.modbus_tcp_node]: 11/07/2022 13:12:15 - heartbeat: 32016
+1657545140.0230298 [modbus_tcp_node-2] [INFO] [1657545140.021876889] [meso.modbus_tcp_node]: 11/07/2022 13:12:20 - heartbeat: 32016
+1657545143.2029364 [small_control_node-1] [INFO] [1657545143.201768484] [meso.small_control_node]: 11/07/2022 13:12:23 - temp_setpoint_A:1800
+1657545145.0230198 [modbus_tcp_node-2] [INFO] [1657545145.021906054] [meso.modbus_tcp_node]: 11/07/2022 13:12:25 - heartbeat: 32016
+1657545150.0231400 [modbus_tcp_node-2] [INFO] [1657545150.021989657] [meso.modbus_tcp_node]: 11/07/2022 13:12:30 - heartbeat: 32016
+1657545155.0189972 [modbus_tcp_node-2] [INFO] [1657545155.018405264] [meso.modbus_tcp_node]: 11/07/2022 13:12:35 - heartbeat: 32016
+1657545160.0223851 [modbus_tcp_node-2] [INFO] [1657545160.021334670] [meso.modbus_tcp_node]: 11/07/2022 13:12:40 - heartbeat: 32016
+1657545165.0230162 [modbus_tcp_node-2] [INFO] [1657545165.021872407] [meso.modbus_tcp_node]: 11/07/2022 13:12:45 - heartbeat: 32016
+1657545170.0239944 [modbus_tcp_node-2] [INFO] [1657545170.022843749] [meso.modbus_tcp_node]: 11/07/2022 13:12:50 - heartbeat: 32016
+1657545173.1935070 [small_control_node-1] [INFO] [1657545173.192842606] [meso.small_control_node]: 11/07/2022 13:12:53 - temp_setpoint_A:1800
+1657545175.0190554 [modbus_tcp_node-2] [INFO] [1657545175.018500889] [meso.modbus_tcp_node]: 11/07/2022 13:12:55 - heartbeat: 32016
+1657545180.0238640 [modbus_tcp_node-2] [INFO] [1657545180.022550595] [meso.modbus_tcp_node]: 11/07/2022 13:13:00 - heartbeat: 32016
+1657545185.0191002 [modbus_tcp_node-2] [INFO] [1657545185.018521474] [meso.modbus_tcp_node]: 11/07/2022 13:13:05 - heartbeat: 32016
+1657545190.0231092 [modbus_tcp_node-2] [INFO] [1657545190.021966557] [meso.modbus_tcp_node]: 11/07/2022 13:13:10 - heartbeat: 32016
+1657545195.0237267 [modbus_tcp_node-2] [INFO] [1657545195.022603942] [meso.modbus_tcp_node]: 11/07/2022 13:13:15 - heartbeat: 32016
+1657545200.0238748 [modbus_tcp_node-2] [INFO] [1657545200.022718297] [meso.modbus_tcp_node]: 11/07/2022 13:13:20 - heartbeat: 32016
+1657545203.2115622 [small_control_node-1] [INFO] [1657545203.210467434] [meso.small_control_node]: 11/07/2022 13:13:23 - temp_setpoint_A:1800
+1657545205.0237689 [modbus_tcp_node-2] [INFO] [1657545205.022408919] [meso.modbus_tcp_node]: 11/07/2022 13:13:25 - heartbeat: 32016
+1657545210.0230751 [modbus_tcp_node-2] [INFO] [1657545210.021914417] [meso.modbus_tcp_node]: 11/07/2022 13:13:30 - heartbeat: 32016
+1657545215.0189123 [modbus_tcp_node-2] [INFO] [1657545215.018326334] [meso.modbus_tcp_node]: 11/07/2022 13:13:35 - heartbeat: 32016
+1657545220.0230014 [modbus_tcp_node-2] [INFO] [1657545220.021827463] [meso.modbus_tcp_node]: 11/07/2022 13:13:40 - heartbeat: 32016
+1657545225.0232100 [modbus_tcp_node-2] [INFO] [1657545225.022042661] [meso.modbus_tcp_node]: 11/07/2022 13:13:45 - heartbeat: 32016
+1657545230.0231316 [modbus_tcp_node-2] [INFO] [1657545230.021989055] [meso.modbus_tcp_node]: 11/07/2022 13:13:50 - heartbeat: 32016
+1657545233.2017140 [small_control_node-1] [INFO] [1657545233.200466584] [meso.small_control_node]: 11/07/2022 13:13:53 - temp_setpoint_A:1800
+1657545235.0230937 [modbus_tcp_node-2] [INFO] [1657545235.021912459] [meso.modbus_tcp_node]: 11/07/2022 13:13:55 - heartbeat: 32016
+1657545240.0231886 [modbus_tcp_node-2] [INFO] [1657545240.022085407] [meso.modbus_tcp_node]: 11/07/2022 13:14:00 - heartbeat: 32016
+1657545245.0190527 [modbus_tcp_node-2] [INFO] [1657545245.018471211] [meso.modbus_tcp_node]: 11/07/2022 13:14:05 - heartbeat: 32016
+1657545250.0233009 [modbus_tcp_node-2] [INFO] [1657545250.022123062] [meso.modbus_tcp_node]: 11/07/2022 13:14:10 - heartbeat: 32016
+1657545255.0230105 [modbus_tcp_node-2] [INFO] [1657545255.021860068] [meso.modbus_tcp_node]: 11/07/2022 13:14:15 - heartbeat: 32016
+1657545260.0230215 [modbus_tcp_node-2] [INFO] [1657545260.021864547] [meso.modbus_tcp_node]: 11/07/2022 13:14:20 - heartbeat: 32016
+1657545263.2141051 [small_control_node-1] [INFO] [1657545263.212969688] [meso.small_control_node]: 11/07/2022 13:14:23 - temp_setpoint_A:1800
+1657545265.0237849 [modbus_tcp_node-2] [INFO] [1657545265.022616479] [meso.modbus_tcp_node]: 11/07/2022 13:14:25 - heartbeat: 32016
+1657545270.0239725 [modbus_tcp_node-2] [INFO] [1657545270.022826541] [meso.modbus_tcp_node]: 11/07/2022 13:14:30 - heartbeat: 32016
+1657545275.0188842 [modbus_tcp_node-2] [INFO] [1657545275.018298397] [meso.modbus_tcp_node]: 11/07/2022 13:14:35 - heartbeat: 32016
+1657545280.0229311 [modbus_tcp_node-2] [INFO] [1657545280.021778280] [meso.modbus_tcp_node]: 11/07/2022 13:14:40 - heartbeat: 32016
+1657545285.0235236 [modbus_tcp_node-2] [INFO] [1657545285.022356147] [meso.modbus_tcp_node]: 11/07/2022 13:14:45 - heartbeat: 32016
+1657545290.0235262 [modbus_tcp_node-2] [INFO] [1657545290.022377740] [meso.modbus_tcp_node]: 11/07/2022 13:14:50 - heartbeat: 32016
+1657545293.2076654 [small_control_node-1] [INFO] [1657545293.206467830] [meso.small_control_node]: 11/07/2022 13:14:53 - temp_setpoint_A:1800
+1657545295.0230312 [modbus_tcp_node-2] [INFO] [1657545295.021869949] [meso.modbus_tcp_node]: 11/07/2022 13:14:55 - heartbeat: 32016
+1657545300.0240321 [modbus_tcp_node-2] [INFO] [1657545300.022880201] [meso.modbus_tcp_node]: 11/07/2022 13:15:00 - heartbeat: 32016
+1657545305.0188794 [modbus_tcp_node-2] [INFO] [1657545305.018302518] [meso.modbus_tcp_node]: 11/07/2022 13:15:05 - heartbeat: 32016
+1657545310.0232568 [modbus_tcp_node-2] [INFO] [1657545310.022108251] [meso.modbus_tcp_node]: 11/07/2022 13:15:10 - heartbeat: 32016
+1657545315.0229933 [modbus_tcp_node-2] [INFO] [1657545315.021844650] [meso.modbus_tcp_node]: 11/07/2022 13:15:15 - heartbeat: 32016
+1657545320.0230556 [modbus_tcp_node-2] [INFO] [1657545320.021876920] [meso.modbus_tcp_node]: 11/07/2022 13:15:20 - heartbeat: 32016
+1657545323.2044306 [small_control_node-1] [INFO] [1657545323.202479004] [meso.small_control_node]: 11/07/2022 13:15:23 - temp_setpoint_A:1800
+1657545325.0233715 [modbus_tcp_node-2] [INFO] [1657545325.022233580] [meso.modbus_tcp_node]: 11/07/2022 13:15:25 - heartbeat: 32016
+1657545330.0238678 [modbus_tcp_node-2] [INFO] [1657545330.022731040] [meso.modbus_tcp_node]: 11/07/2022 13:15:30 - heartbeat: 32016
+1657545335.0188549 [modbus_tcp_node-2] [INFO] [1657545335.018270916] [meso.modbus_tcp_node]: 11/07/2022 13:15:35 - heartbeat: 32016
+1657545340.0230308 [modbus_tcp_node-2] [INFO] [1657545340.021906103] [meso.modbus_tcp_node]: 11/07/2022 13:15:40 - heartbeat: 32016
+1657545345.0233526 [modbus_tcp_node-2] [INFO] [1657545345.022182528] [meso.modbus_tcp_node]: 11/07/2022 13:15:45 - heartbeat: 32016
+1657545350.0230370 [modbus_tcp_node-2] [INFO] [1657545350.021877558] [meso.modbus_tcp_node]: 11/07/2022 13:15:50 - heartbeat: 32016
+1657545353.2050219 [small_control_node-1] [INFO] [1657545353.203843465] [meso.small_control_node]: 11/07/2022 13:15:53 - temp_setpoint_A:1800
+1657545355.0229826 [modbus_tcp_node-2] [INFO] [1657545355.021818575] [meso.modbus_tcp_node]: 11/07/2022 13:15:55 - heartbeat: 32016
+1657545360.0236926 [modbus_tcp_node-2] [INFO] [1657545360.022477633] [meso.modbus_tcp_node]: 11/07/2022 13:16:00 - heartbeat: 32016
+1657545365.0189025 [modbus_tcp_node-2] [INFO] [1657545365.018318905] [meso.modbus_tcp_node]: 11/07/2022 13:16:05 - heartbeat: 32016
+1657545370.0229445 [modbus_tcp_node-2] [INFO] [1657545370.021787070] [meso.modbus_tcp_node]: 11/07/2022 13:16:10 - heartbeat: 32016
+1657545375.0224066 [modbus_tcp_node-2] [INFO] [1657545375.021339296] [meso.modbus_tcp_node]: 11/07/2022 13:16:15 - heartbeat: 32016
+1657545380.0230427 [modbus_tcp_node-2] [INFO] [1657545380.021875285] [meso.modbus_tcp_node]: 11/07/2022 13:16:20 - heartbeat: 32016
+1657545383.2004128 [small_control_node-1] [INFO] [1657545383.199421151] [meso.small_control_node]: 11/07/2022 13:16:23 - temp_setpoint_A:1800
+1657545385.0230656 [modbus_tcp_node-2] [INFO] [1657545385.021915160] [meso.modbus_tcp_node]: 11/07/2022 13:16:25 - heartbeat: 32016
+1657545390.0235350 [modbus_tcp_node-2] [INFO] [1657545390.022364081] [meso.modbus_tcp_node]: 11/07/2022 13:16:30 - heartbeat: 32016
+1657545395.0192907 [modbus_tcp_node-2] [INFO] [1657545395.018742863] [meso.modbus_tcp_node]: 11/07/2022 13:16:35 - heartbeat: 32016
+1657545400.0236959 [modbus_tcp_node-2] [INFO] [1657545400.022344804] [meso.modbus_tcp_node]: 11/07/2022 13:16:40 - heartbeat: 32016
+1657545405.0235655 [modbus_tcp_node-2] [INFO] [1657545405.022410658] [meso.modbus_tcp_node]: 11/07/2022 13:16:45 - heartbeat: 32016
+1657545410.0233257 [modbus_tcp_node-2] [INFO] [1657545410.022148641] [meso.modbus_tcp_node]: 11/07/2022 13:16:50 - heartbeat: 32016
+1657545413.2035971 [small_control_node-1] [INFO] [1657545413.202037370] [meso.small_control_node]: 11/07/2022 13:16:53 - temp_setpoint_A:1800
+1657545415.0236921 [modbus_tcp_node-2] [INFO] [1657545415.022352691] [meso.modbus_tcp_node]: 11/07/2022 13:16:55 - heartbeat: 32016
+1657545420.0235248 [modbus_tcp_node-2] [INFO] [1657545420.022396018] [meso.modbus_tcp_node]: 11/07/2022 13:17:00 - heartbeat: 32016
+1657545425.0188959 [modbus_tcp_node-2] [INFO] [1657545425.018350839] [meso.modbus_tcp_node]: 11/07/2022 13:17:05 - heartbeat: 32016
+1657545430.0233300 [modbus_tcp_node-2] [INFO] [1657545430.022165520] [meso.modbus_tcp_node]: 11/07/2022 13:17:10 - heartbeat: 32016
+1657545435.0230987 [modbus_tcp_node-2] [INFO] [1657545435.021927419] [meso.modbus_tcp_node]: 11/07/2022 13:17:15 - heartbeat: 32016
+1657545440.0230992 [modbus_tcp_node-2] [INFO] [1657545440.021928686] [meso.modbus_tcp_node]: 11/07/2022 13:17:20 - heartbeat: 32016
+1657545443.2093868 [small_control_node-1] [INFO] [1657545443.208331144] [meso.small_control_node]: 11/07/2022 13:17:23 - temp_setpoint_A:1800
+1657545445.0231001 [modbus_tcp_node-2] [INFO] [1657545445.021993878] [meso.modbus_tcp_node]: 11/07/2022 13:17:25 - heartbeat: 32016
+1657545450.0233173 [modbus_tcp_node-2] [INFO] [1657545450.022173089] [meso.modbus_tcp_node]: 11/07/2022 13:17:30 - heartbeat: 32016
+1657545455.0191491 [modbus_tcp_node-2] [INFO] [1657545455.018561203] [meso.modbus_tcp_node]: 11/07/2022 13:17:35 - heartbeat: 32016
+1657545460.0230846 [modbus_tcp_node-2] [INFO] [1657545460.021887317] [meso.modbus_tcp_node]: 11/07/2022 13:17:40 - heartbeat: 32016
+1657545465.0231636 [modbus_tcp_node-2] [INFO] [1657545465.022008423] [meso.modbus_tcp_node]: 11/07/2022 13:17:45 - heartbeat: 32016
+1657545470.0231082 [modbus_tcp_node-2] [INFO] [1657545470.021962441] [meso.modbus_tcp_node]: 11/07/2022 13:17:50 - heartbeat: 32016
+1657545473.2127364 [small_control_node-1] [INFO] [1657545473.211649574] [meso.small_control_node]: 11/07/2022 13:17:53 - temp_setpoint_A:1800
+1657545475.0233502 [modbus_tcp_node-2] [INFO] [1657545475.022060257] [meso.modbus_tcp_node]: 11/07/2022 13:17:55 - heartbeat: 32016
+1657545480.0238464 [modbus_tcp_node-2] [INFO] [1657545480.022699905] [meso.modbus_tcp_node]: 11/07/2022 13:18:00 - heartbeat: 32016
+1657545485.0188863 [modbus_tcp_node-2] [INFO] [1657545485.018298804] [meso.modbus_tcp_node]: 11/07/2022 13:18:05 - heartbeat: 32016
+1657545490.0231781 [modbus_tcp_node-2] [INFO] [1657545490.022009492] [meso.modbus_tcp_node]: 11/07/2022 13:18:10 - heartbeat: 32016
+1657545495.0232685 [modbus_tcp_node-2] [INFO] [1657545495.022168197] [meso.modbus_tcp_node]: 11/07/2022 13:18:15 - heartbeat: 32016
+1657545500.0226898 [modbus_tcp_node-2] [INFO] [1657545500.021703690] [meso.modbus_tcp_node]: 11/07/2022 13:18:20 - heartbeat: 32016
+1657545503.2093244 [small_control_node-1] [INFO] [1657545503.208072085] [meso.small_control_node]: 11/07/2022 13:18:23 - temp_setpoint_A:1800
+1657545505.0271401 [modbus_tcp_node-2] [INFO] [1657545505.026015039] [meso.modbus_tcp_node]: 11/07/2022 13:18:25 - heartbeat: 32016
+1657545510.0231173 [modbus_tcp_node-2] [INFO] [1657545510.021965983] [meso.modbus_tcp_node]: 11/07/2022 13:18:30 - heartbeat: 32016
+1657545515.0196245 [modbus_tcp_node-2] [INFO] [1657545515.018922463] [meso.modbus_tcp_node]: 11/07/2022 13:18:35 - heartbeat: 32016
+1657545520.0229466 [modbus_tcp_node-2] [INFO] [1657545520.021783643] [meso.modbus_tcp_node]: 11/07/2022 13:18:40 - heartbeat: 32016
+1657545525.0230732 [modbus_tcp_node-2] [INFO] [1657545525.021904112] [meso.modbus_tcp_node]: 11/07/2022 13:18:45 - heartbeat: 32016
+1657545530.0238702 [modbus_tcp_node-2] [INFO] [1657545530.022715881] [meso.modbus_tcp_node]: 11/07/2022 13:18:50 - heartbeat: 32016
+1657545533.2108853 [small_control_node-1] [INFO] [1657545533.209905012] [meso.small_control_node]: 11/07/2022 13:18:53 - temp_setpoint_A:1800
+1657545535.0235162 [modbus_tcp_node-2] [INFO] [1657545535.021984357] [meso.modbus_tcp_node]: 11/07/2022 13:18:55 - heartbeat: 32016
+1657545540.0235682 [modbus_tcp_node-2] [INFO] [1657545540.021866430] [meso.modbus_tcp_node]: 11/07/2022 13:19:00 - heartbeat: 32016
+1657545545.0232279 [modbus_tcp_node-2] [INFO] [1657545545.021852994] [meso.modbus_tcp_node]: 11/07/2022 13:19:05 - heartbeat: 32016
+1657545550.0188422 [modbus_tcp_node-2] [INFO] [1657545550.018257450] [meso.modbus_tcp_node]: 11/07/2022 13:19:10 - heartbeat: 32016
+1657545555.0239558 [modbus_tcp_node-2] [INFO] [1657545555.022852830] [meso.modbus_tcp_node]: 11/07/2022 13:19:15 - heartbeat: 32016
+1657545560.0231025 [modbus_tcp_node-2] [INFO] [1657545560.021937212] [meso.modbus_tcp_node]: 11/07/2022 13:19:20 - heartbeat: 32016
+1657545563.2046955 [small_control_node-1] [INFO] [1657545563.203172407] [meso.small_control_node]: 11/07/2022 13:19:23 - temp_setpoint_A:1800
+1657545565.0230067 [modbus_tcp_node-2] [INFO] [1657545565.021873562] [meso.modbus_tcp_node]: 11/07/2022 13:19:25 - heartbeat: 32016
+1657545570.0232770 [modbus_tcp_node-2] [INFO] [1657545570.021791757] [meso.modbus_tcp_node]: 11/07/2022 13:19:30 - heartbeat: 32016
+1657545575.0230987 [modbus_tcp_node-2] [INFO] [1657545575.022001037] [meso.modbus_tcp_node]: 11/07/2022 13:19:35 - heartbeat: 32016
+1657545580.0188344 [modbus_tcp_node-2] [INFO] [1657545580.018286937] [meso.modbus_tcp_node]: 11/07/2022 13:19:40 - heartbeat: 32016
+1657545585.0229468 [modbus_tcp_node-2] [INFO] [1657545585.021792197] [meso.modbus_tcp_node]: 11/07/2022 13:19:45 - heartbeat: 32016
+1657545590.0229361 [modbus_tcp_node-2] [INFO] [1657545590.021805093] [meso.modbus_tcp_node]: 11/07/2022 13:19:50 - heartbeat: 32016
+1657545593.2074261 [small_control_node-1] [INFO] [1657545593.206312302] [meso.small_control_node]: 11/07/2022 13:19:53 - temp_setpoint_A:1800
+1657545595.0231194 [modbus_tcp_node-2] [INFO] [1657545595.021887243] [meso.modbus_tcp_node]: 11/07/2022 13:19:55 - heartbeat: 32016
+1657545600.0246840 [modbus_tcp_node-2] [INFO] [1657545600.021884020] [meso.modbus_tcp_node]: 11/07/2022 13:20:00 - heartbeat: 32016
+1657545605.0231557 [modbus_tcp_node-2] [INFO] [1657545605.021987848] [meso.modbus_tcp_node]: 11/07/2022 13:20:05 - heartbeat: 32016
+1657545610.0188086 [modbus_tcp_node-2] [INFO] [1657545610.018263576] [meso.modbus_tcp_node]: 11/07/2022 13:20:10 - heartbeat: 32016
+1657545615.0230455 [modbus_tcp_node-2] [INFO] [1657545615.021897072] [meso.modbus_tcp_node]: 11/07/2022 13:20:15 - heartbeat: 32016
+1657545620.0228374 [modbus_tcp_node-2] [INFO] [1657545620.021695358] [meso.modbus_tcp_node]: 11/07/2022 13:20:20 - heartbeat: 32016
+1657545623.2079401 [small_control_node-1] [INFO] [1657545623.206884520] [meso.small_control_node]: 11/07/2022 13:20:23 - temp_setpoint_A:1800
+1657545625.0222876 [modbus_tcp_node-2] [INFO] [1657545625.021287051] [meso.modbus_tcp_node]: 11/07/2022 13:20:25 - heartbeat: 32016
+1657545630.0221171 [modbus_tcp_node-2] [INFO] [1657545630.021013464] [meso.modbus_tcp_node]: 11/07/2022 13:20:30 - heartbeat: 32016
+1657545635.0216045 [modbus_tcp_node-2] [INFO] [1657545635.020541470] [meso.modbus_tcp_node]: 11/07/2022 13:20:35 - heartbeat: 32016
+1657545640.0192544 [modbus_tcp_node-2] [INFO] [1657545640.018469489] [meso.modbus_tcp_node]: 11/07/2022 13:20:40 - heartbeat: 32016
+1657545645.0221577 [modbus_tcp_node-2] [INFO] [1657545645.020769803] [meso.modbus_tcp_node]: 11/07/2022 13:20:45 - heartbeat: 32016
+1657545650.0224566 [modbus_tcp_node-2] [INFO] [1657545650.021432002] [meso.modbus_tcp_node]: 11/07/2022 13:20:50 - heartbeat: 32016
+1657545653.2109261 [small_control_node-1] [INFO] [1657545653.209420977] [meso.small_control_node]: 11/07/2022 13:20:53 - temp_setpoint_A:1800
+1657545655.0229902 [modbus_tcp_node-2] [INFO] [1657545655.021881314] [meso.modbus_tcp_node]: 11/07/2022 13:20:55 - heartbeat: 32016
+1657545660.0214438 [modbus_tcp_node-2] [INFO] [1657545660.020449272] [meso.modbus_tcp_node]: 11/07/2022 13:21:00 - heartbeat: 32016
+1657545665.0214078 [modbus_tcp_node-2] [INFO] [1657545665.020382276] [meso.modbus_tcp_node]: 11/07/2022 13:21:05 - heartbeat: 32016
+1657545670.0187891 [modbus_tcp_node-2] [INFO] [1657545670.018210169] [meso.modbus_tcp_node]: 11/07/2022 13:21:10 - heartbeat: 32016
+1657545675.0208716 [modbus_tcp_node-2] [INFO] [1657545675.019991456] [meso.modbus_tcp_node]: 11/07/2022 13:21:15 - heartbeat: 32016
+1657545680.0214300 [modbus_tcp_node-2] [INFO] [1657545680.020455942] [meso.modbus_tcp_node]: 11/07/2022 13:21:20 - heartbeat: 32016
+1657545683.2115707 [small_control_node-1] [INFO] [1657545683.209263274] [meso.small_control_node]: 11/07/2022 13:21:23 - temp_setpoint_A:1800
+1657545685.0212286 [modbus_tcp_node-2] [INFO] [1657545685.020292343] [meso.modbus_tcp_node]: 11/07/2022 13:21:25 - heartbeat: 32016
+1657545690.0222924 [modbus_tcp_node-2] [INFO] [1657545690.021372791] [meso.modbus_tcp_node]: 11/07/2022 13:21:30 - heartbeat: 32016
+1657545695.0218639 [modbus_tcp_node-2] [INFO] [1657545695.020905571] [meso.modbus_tcp_node]: 11/07/2022 13:21:35 - heartbeat: 32016
+1657545700.0192976 [modbus_tcp_node-2] [INFO] [1657545700.018725906] [meso.modbus_tcp_node]: 11/07/2022 13:21:40 - heartbeat: 32016
+1657545705.0220752 [modbus_tcp_node-2] [INFO] [1657545705.021143761] [meso.modbus_tcp_node]: 11/07/2022 13:21:45 - heartbeat: 32016
+1657545710.0213027 [modbus_tcp_node-2] [INFO] [1657545710.020409073] [meso.modbus_tcp_node]: 11/07/2022 13:21:50 - heartbeat: 32016
+1657545713.2122507 [small_control_node-1] [INFO] [1657545713.211324221] [meso.small_control_node]: 11/07/2022 13:21:53 - temp_setpoint_A:1800
+1657545715.0210958 [modbus_tcp_node-2] [INFO] [1657545715.020148403] [meso.modbus_tcp_node]: 11/07/2022 13:21:55 - heartbeat: 32016
+1657545720.0215819 [modbus_tcp_node-2] [INFO] [1657545720.020624640] [meso.modbus_tcp_node]: 11/07/2022 13:22:00 - heartbeat: 32016
+1657545725.0213048 [modbus_tcp_node-2] [INFO] [1657545725.020365184] [meso.modbus_tcp_node]: 11/07/2022 13:22:05 - heartbeat: 32016
+1657545730.0189848 [modbus_tcp_node-2] [INFO] [1657545730.018409137] [meso.modbus_tcp_node]: 11/07/2022 13:22:10 - heartbeat: 32016
+1657545735.0224330 [modbus_tcp_node-2] [INFO] [1657545735.021456053] [meso.modbus_tcp_node]: 11/07/2022 13:22:15 - heartbeat: 32016
+1657545740.0237081 [modbus_tcp_node-2] [INFO] [1657545740.022614676] [meso.modbus_tcp_node]: 11/07/2022 13:22:20 - heartbeat: 32016
+1657545743.2063155 [small_control_node-1] [INFO] [1657545743.205304701] [meso.small_control_node]: 11/07/2022 13:22:23 - temp_setpoint_A:1800
+1657545745.0232496 [modbus_tcp_node-2] [INFO] [1657545745.022093523] [meso.modbus_tcp_node]: 11/07/2022 13:22:25 - heartbeat: 32016
+1657545750.0233262 [modbus_tcp_node-2] [INFO] [1657545750.022198483] [meso.modbus_tcp_node]: 11/07/2022 13:22:30 - heartbeat: 32016
+1657545755.0229979 [modbus_tcp_node-2] [INFO] [1657545755.021886676] [meso.modbus_tcp_node]: 11/07/2022 13:22:35 - heartbeat: 32016
+1657545760.0191355 [modbus_tcp_node-2] [INFO] [1657545760.018564365] [meso.modbus_tcp_node]: 11/07/2022 13:22:40 - heartbeat: 32016
+1657545765.0209131 [modbus_tcp_node-2] [INFO] [1657545765.020086112] [meso.modbus_tcp_node]: 11/07/2022 13:22:45 - heartbeat: 32016
+1657545770.0218897 [modbus_tcp_node-2] [INFO] [1657545770.020983575] [meso.modbus_tcp_node]: 11/07/2022 13:22:50 - heartbeat: 32016
+1657545773.2071869 [small_control_node-1] [INFO] [1657545773.206138095] [meso.small_control_node]: 11/07/2022 13:22:53 - temp_setpoint_A:1800
+1657545775.0234928 [modbus_tcp_node-2] [INFO] [1657545775.022399486] [meso.modbus_tcp_node]: 11/07/2022 13:22:55 - heartbeat: 32016
+1657545780.0238998 [modbus_tcp_node-2] [INFO] [1657545780.022790878] [meso.modbus_tcp_node]: 11/07/2022 13:23:00 - heartbeat: 32016
+1657545785.0230892 [modbus_tcp_node-2] [INFO] [1657545785.021944252] [meso.modbus_tcp_node]: 11/07/2022 13:23:05 - heartbeat: 32016
+1657545790.0187435 [modbus_tcp_node-2] [INFO] [1657545790.018195772] [meso.modbus_tcp_node]: 11/07/2022 13:23:10 - heartbeat: 32016
+1657545795.0231719 [modbus_tcp_node-2] [INFO] [1657545795.022042327] [meso.modbus_tcp_node]: 11/07/2022 13:23:15 - heartbeat: 32016
+1657545800.0231469 [modbus_tcp_node-2] [INFO] [1657545800.021993777] [meso.modbus_tcp_node]: 11/07/2022 13:23:20 - heartbeat: 32016
+1657545803.2080779 [small_control_node-1] [INFO] [1657545803.207085894] [meso.small_control_node]: 11/07/2022 13:23:23 - temp_setpoint_A:1800
+1657545805.0226326 [modbus_tcp_node-2] [INFO] [1657545805.021536000] [meso.modbus_tcp_node]: 11/07/2022 13:23:25 - heartbeat: 32016
+1657545810.0237415 [modbus_tcp_node-2] [INFO] [1657545810.022439942] [meso.modbus_tcp_node]: 11/07/2022 13:23:30 - heartbeat: 32016
+1657545815.0236852 [modbus_tcp_node-2] [INFO] [1657545815.022356330] [meso.modbus_tcp_node]: 11/07/2022 13:23:35 - heartbeat: 32016
+1657545820.0190523 [modbus_tcp_node-2] [INFO] [1657545820.018465429] [meso.modbus_tcp_node]: 11/07/2022 13:23:40 - heartbeat: 32016
+1657545825.0230875 [modbus_tcp_node-2] [INFO] [1657545825.021889140] [meso.modbus_tcp_node]: 11/07/2022 13:23:45 - heartbeat: 32016
+1657545830.0230231 [modbus_tcp_node-2] [INFO] [1657545830.021894615] [meso.modbus_tcp_node]: 11/07/2022 13:23:50 - heartbeat: 32016
+1657545833.2063327 [small_control_node-1] [INFO] [1657545833.205332849] [meso.small_control_node]: 11/07/2022 13:23:53 - temp_setpoint_A:1800
+1657545835.0221028 [modbus_tcp_node-2] [INFO] [1657545835.021012608] [meso.modbus_tcp_node]: 11/07/2022 13:23:55 - heartbeat: 32016
+1657545840.0254548 [modbus_tcp_node-2] [INFO] [1657545840.024246503] [meso.modbus_tcp_node]: 11/07/2022 13:24:00 - heartbeat: 32016
+1657545845.0188544 [modbus_tcp_node-2] [INFO] [1657545845.018277547] [meso.modbus_tcp_node]: 11/07/2022 13:24:05 - heartbeat: 32016
+1657545850.0189233 [modbus_tcp_node-2] [INFO] [1657545850.018341234] [meso.modbus_tcp_node]: 11/07/2022 13:24:10 - heartbeat: 32016
+1657545855.0187860 [modbus_tcp_node-2] [INFO] [1657545855.018191917] [meso.modbus_tcp_node]: 11/07/2022 13:24:15 - heartbeat: 32016
+1657545860.0231357 [modbus_tcp_node-2] [INFO] [1657545860.021986485] [meso.modbus_tcp_node]: 11/07/2022 13:24:20 - heartbeat: 32016
+1657545863.2173173 [small_control_node-1] [INFO] [1657545863.215797476] [meso.small_control_node]: 11/07/2022 13:24:23 - temp_setpoint_A:1800
+1657545865.0228047 [modbus_tcp_node-2] [INFO] [1657545865.021671528] [meso.modbus_tcp_node]: 11/07/2022 13:24:25 - heartbeat: 32016
+1657545870.0230005 [modbus_tcp_node-2] [INFO] [1657545870.021898671] [meso.modbus_tcp_node]: 11/07/2022 13:24:30 - heartbeat: 32016
+1657545875.0221281 [modbus_tcp_node-2] [INFO] [1657545875.020962635] [meso.modbus_tcp_node]: 11/07/2022 13:24:35 - heartbeat: 32016
+1657545880.0188859 [modbus_tcp_node-2] [INFO] [1657545880.018313849] [meso.modbus_tcp_node]: 11/07/2022 13:24:40 - heartbeat: 32016
+1657545885.0230386 [modbus_tcp_node-2] [INFO] [1657545885.021889262] [meso.modbus_tcp_node]: 11/07/2022 13:24:45 - heartbeat: 32016
+1657545890.0229342 [modbus_tcp_node-2] [INFO] [1657545890.021802926] [meso.modbus_tcp_node]: 11/07/2022 13:24:50 - heartbeat: 32016
+1657545893.2039835 [small_control_node-1] [INFO] [1657545893.203036031] [meso.small_control_node]: 11/07/2022 13:24:53 - temp_setpoint_A:1800
+1657545895.0229411 [modbus_tcp_node-2] [INFO] [1657545895.021800695] [meso.modbus_tcp_node]: 11/07/2022 13:24:55 - heartbeat: 32016
+1657545900.0229423 [modbus_tcp_node-2] [INFO] [1657545900.021797072] [meso.modbus_tcp_node]: 11/07/2022 13:25:00 - heartbeat: 32016
+1657545905.0231092 [modbus_tcp_node-2] [INFO] [1657545905.021945720] [meso.modbus_tcp_node]: 11/07/2022 13:25:05 - heartbeat: 32016
+1657545910.0190721 [modbus_tcp_node-2] [INFO] [1657545910.018488935] [meso.modbus_tcp_node]: 11/07/2022 13:25:10 - heartbeat: 32016
+1657545915.0228548 [modbus_tcp_node-2] [INFO] [1657545915.021719326] [meso.modbus_tcp_node]: 11/07/2022 13:25:15 - heartbeat: 32016
+1657545920.0230577 [modbus_tcp_node-2] [INFO] [1657545920.021929020] [meso.modbus_tcp_node]: 11/07/2022 13:25:20 - heartbeat: 32016
+1657545923.2112823 [small_control_node-1] [INFO] [1657545923.210337365] [meso.small_control_node]: 11/07/2022 13:25:23 - temp_setpoint_A:1800
+1657545925.0228717 [modbus_tcp_node-2] [INFO] [1657545925.021744121] [meso.modbus_tcp_node]: 11/07/2022 13:25:25 - heartbeat: 32016
+1657545930.0228872 [modbus_tcp_node-2] [INFO] [1657545930.021763902] [meso.modbus_tcp_node]: 11/07/2022 13:25:30 - heartbeat: 32016
+1657545935.0229404 [modbus_tcp_node-2] [INFO] [1657545935.021791180] [meso.modbus_tcp_node]: 11/07/2022 13:25:35 - heartbeat: 32016
+1657545940.0188477 [modbus_tcp_node-2] [INFO] [1657545940.018277636] [meso.modbus_tcp_node]: 11/07/2022 13:25:40 - heartbeat: 32016
+1657545945.0237050 [modbus_tcp_node-2] [INFO] [1657545945.022579261] [meso.modbus_tcp_node]: 11/07/2022 13:25:45 - heartbeat: 32016
+1657545950.0229197 [modbus_tcp_node-2] [INFO] [1657545950.021790614] [meso.modbus_tcp_node]: 11/07/2022 13:25:50 - heartbeat: 32016
+1657545953.2147048 [small_control_node-1] [INFO] [1657545953.213658422] [meso.small_control_node]: 11/07/2022 13:25:53 - temp_setpoint_A:1800
+1657545955.0228219 [modbus_tcp_node-2] [INFO] [1657545955.021690922] [meso.modbus_tcp_node]: 11/07/2022 13:25:55 - heartbeat: 32016
+1657545960.0228744 [modbus_tcp_node-2] [INFO] [1657545960.021732375] [meso.modbus_tcp_node]: 11/07/2022 13:26:00 - heartbeat: 32016
+1657545965.0236473 [modbus_tcp_node-2] [INFO] [1657545965.022513672] [meso.modbus_tcp_node]: 11/07/2022 13:26:05 - heartbeat: 32016
+1657545970.0189033 [modbus_tcp_node-2] [INFO] [1657545970.018319920] [meso.modbus_tcp_node]: 11/07/2022 13:26:10 - heartbeat: 32016
+1657545975.0228782 [modbus_tcp_node-2] [INFO] [1657545975.021705617] [meso.modbus_tcp_node]: 11/07/2022 13:26:15 - heartbeat: 32016
+1657545980.0229475 [modbus_tcp_node-2] [INFO] [1657545980.021813750] [meso.modbus_tcp_node]: 11/07/2022 13:26:20 - heartbeat: 32016
+1657545983.2088001 [small_control_node-1] [INFO] [1657545983.207730610] [meso.small_control_node]: 11/07/2022 13:26:23 - temp_setpoint_A:1800
+1657545985.0220132 [modbus_tcp_node-2] [INFO] [1657545985.020933540] [meso.modbus_tcp_node]: 11/07/2022 13:26:25 - heartbeat: 32016
+1657545990.0231431 [modbus_tcp_node-2] [INFO] [1657545990.022020477] [meso.modbus_tcp_node]: 11/07/2022 13:26:30 - heartbeat: 32016
+1657545995.0192666 [modbus_tcp_node-2] [INFO] [1657545995.018685936] [meso.modbus_tcp_node]: 11/07/2022 13:26:35 - heartbeat: 32016
+1657546000.0238576 [modbus_tcp_node-2] [INFO] [1657546000.022678829] [meso.modbus_tcp_node]: 11/07/2022 13:26:40 - heartbeat: 32016
+1657546005.0193682 [modbus_tcp_node-2] [INFO] [1657546005.018796774] [meso.modbus_tcp_node]: 11/07/2022 13:26:45 - heartbeat: 32016
+1657546010.0234721 [modbus_tcp_node-2] [INFO] [1657546010.022306245] [meso.modbus_tcp_node]: 11/07/2022 13:26:50 - heartbeat: 32016
+1657546013.2081568 [small_control_node-1] [INFO] [1657546013.204704713] [meso.small_control_node]: 11/07/2022 13:26:53 - temp_setpoint_A:1800
+1657546015.0239806 [modbus_tcp_node-2] [INFO] [1657546015.022885502] [meso.modbus_tcp_node]: 11/07/2022 13:26:55 - heartbeat: 32016
+1657546020.0238311 [modbus_tcp_node-2] [INFO] [1657546020.022741711] [meso.modbus_tcp_node]: 11/07/2022 13:27:00 - heartbeat: 32016
+1657546025.0234718 [modbus_tcp_node-2] [INFO] [1657546025.022317682] [meso.modbus_tcp_node]: 11/07/2022 13:27:05 - heartbeat: 32016
+1657546030.0233340 [modbus_tcp_node-2] [INFO] [1657546030.022186763] [meso.modbus_tcp_node]: 11/07/2022 13:27:10 - heartbeat: 32016
+1657546035.0189536 [modbus_tcp_node-2] [INFO] [1657546035.018368785] [meso.modbus_tcp_node]: 11/07/2022 13:27:15 - heartbeat: 32016
+1657546040.0234683 [modbus_tcp_node-2] [INFO] [1657546040.022234777] [meso.modbus_tcp_node]: 11/07/2022 13:27:20 - heartbeat: 32016
+1657546043.2136536 [small_control_node-1] [INFO] [1657546043.212672605] [meso.small_control_node]: 11/07/2022 13:27:23 - temp_setpoint_A:1800
+1657546045.0230546 [modbus_tcp_node-2] [INFO] [1657546045.021960029] [meso.modbus_tcp_node]: 11/07/2022 13:27:25 - heartbeat: 32016
+1657546050.0237134 [modbus_tcp_node-2] [INFO] [1657546050.022577830] [meso.modbus_tcp_node]: 11/07/2022 13:27:30 - heartbeat: 32016
+1657546055.0229554 [modbus_tcp_node-2] [INFO] [1657546055.021799313] [meso.modbus_tcp_node]: 11/07/2022 13:27:35 - heartbeat: 32016
+1657546060.0229626 [modbus_tcp_node-2] [INFO] [1657546060.021804401] [meso.modbus_tcp_node]: 11/07/2022 13:27:40 - heartbeat: 32016
+1657546065.0191605 [modbus_tcp_node-2] [INFO] [1657546065.018588520] [meso.modbus_tcp_node]: 11/07/2022 13:27:45 - heartbeat: 32016
+1657546070.0229433 [modbus_tcp_node-2] [INFO] [1657546070.021797621] [meso.modbus_tcp_node]: 11/07/2022 13:27:50 - heartbeat: 32016
+1657546073.2051976 [small_control_node-1] [INFO] [1657546073.204022387] [meso.small_control_node]: 11/07/2022 13:27:53 - temp_setpoint_A:1800
+1657546075.0235846 [modbus_tcp_node-2] [INFO] [1657546075.022429081] [meso.modbus_tcp_node]: 11/07/2022 13:27:55 - heartbeat: 32016
+1657546080.0235519 [modbus_tcp_node-2] [INFO] [1657546080.022404364] [meso.modbus_tcp_node]: 11/07/2022 13:28:00 - heartbeat: 32016
+1657546085.0233755 [modbus_tcp_node-2] [INFO] [1657546085.022220207] [meso.modbus_tcp_node]: 11/07/2022 13:28:05 - heartbeat: 32016
+1657546090.0230293 [modbus_tcp_node-2] [INFO] [1657546090.021882739] [meso.modbus_tcp_node]: 11/07/2022 13:28:10 - heartbeat: 32016
+1657546095.0188813 [modbus_tcp_node-2] [INFO] [1657546095.018305766] [meso.modbus_tcp_node]: 11/07/2022 13:28:15 - heartbeat: 32016
+1657546100.0232379 [modbus_tcp_node-2] [INFO] [1657546100.022103878] [meso.modbus_tcp_node]: 11/07/2022 13:28:20 - heartbeat: 32016
+1657546103.2140663 [small_control_node-1] [INFO] [1657546103.212946747] [meso.small_control_node]: 11/07/2022 13:28:23 - temp_setpoint_A:1800
+1657546105.0234809 [modbus_tcp_node-2] [INFO] [1657546105.022347544] [meso.modbus_tcp_node]: 11/07/2022 13:28:25 - heartbeat: 32016
+1657546110.0240445 [modbus_tcp_node-2] [INFO] [1657546110.022921155] [meso.modbus_tcp_node]: 11/07/2022 13:28:30 - heartbeat: 32016
+1657546115.0229273 [modbus_tcp_node-2] [INFO] [1657546115.021786637] [meso.modbus_tcp_node]: 11/07/2022 13:28:35 - heartbeat: 32016
+1657546120.0229166 [modbus_tcp_node-2] [INFO] [1657546120.021760297] [meso.modbus_tcp_node]: 11/07/2022 13:28:40 - heartbeat: 32016
+1657546125.0188813 [modbus_tcp_node-2] [INFO] [1657546125.018307234] [meso.modbus_tcp_node]: 11/07/2022 13:28:45 - heartbeat: 32016
+1657546130.0237746 [modbus_tcp_node-2] [INFO] [1657546130.022623640] [meso.modbus_tcp_node]: 11/07/2022 13:28:50 - heartbeat: 32016
+1657546133.2213411 [small_control_node-1] [INFO] [1657546133.220438760] [meso.small_control_node]: 11/07/2022 13:28:53 - temp_setpoint_A:1800
+1657546135.0231001 [modbus_tcp_node-2] [INFO] [1657546135.021956986] [meso.modbus_tcp_node]: 11/07/2022 13:28:55 - heartbeat: 32016
+1657546140.0230918 [modbus_tcp_node-2] [INFO] [1657546140.021886571] [meso.modbus_tcp_node]: 11/07/2022 13:29:00 - heartbeat: 32016
+1657546145.0232158 [modbus_tcp_node-2] [INFO] [1657546145.022053972] [meso.modbus_tcp_node]: 11/07/2022 13:29:05 - heartbeat: 32016
+1657546150.0229886 [modbus_tcp_node-2] [INFO] [1657546150.021863197] [meso.modbus_tcp_node]: 11/07/2022 13:29:10 - heartbeat: 32016
+1657546155.0188231 [modbus_tcp_node-2] [INFO] [1657546155.018250032] [meso.modbus_tcp_node]: 11/07/2022 13:29:15 - heartbeat: 32016
+1657546160.0229259 [modbus_tcp_node-2] [INFO] [1657546160.021821287] [meso.modbus_tcp_node]: 11/07/2022 13:29:20 - heartbeat: 32016
+1657546163.2056694 [small_control_node-1] [INFO] [1657546163.204512306] [meso.small_control_node]: 11/07/2022 13:29:23 - temp_setpoint_A:1800
+1657546165.0231104 [modbus_tcp_node-2] [INFO] [1657546165.022002893] [meso.modbus_tcp_node]: 11/07/2022 13:29:25 - heartbeat: 32016
+1657546170.0229061 [modbus_tcp_node-2] [INFO] [1657546170.021774453] [meso.modbus_tcp_node]: 11/07/2022 13:29:30 - heartbeat: 32016
+1657546175.0228739 [modbus_tcp_node-2] [INFO] [1657546175.021790534] [meso.modbus_tcp_node]: 11/07/2022 13:29:35 - heartbeat: 32016
+1657546180.0229464 [modbus_tcp_node-2] [INFO] [1657546180.021788750] [meso.modbus_tcp_node]: 11/07/2022 13:29:40 - heartbeat: 32016
+1657546185.0188365 [modbus_tcp_node-2] [INFO] [1657546185.018267281] [meso.modbus_tcp_node]: 11/07/2022 13:29:45 - heartbeat: 32016
+1657546190.0228720 [modbus_tcp_node-2] [INFO] [1657546190.021721866] [meso.modbus_tcp_node]: 11/07/2022 13:29:50 - heartbeat: 32016
+1657546193.2262800 [small_control_node-1] [INFO] [1657546193.225148627] [meso.small_control_node]: 11/07/2022 13:29:53 - temp_setpoint_A:1800
+1657546195.0229383 [modbus_tcp_node-2] [INFO] [1657546195.021782006] [meso.modbus_tcp_node]: 11/07/2022 13:29:55 - heartbeat: 32016
+1657546200.0234113 [modbus_tcp_node-2] [INFO] [1657546200.022268907] [meso.modbus_tcp_node]: 11/07/2022 13:30:00 - heartbeat: 32016
+1657546205.0228972 [modbus_tcp_node-2] [INFO] [1657546205.021751749] [meso.modbus_tcp_node]: 11/07/2022 13:30:05 - heartbeat: 32016
+1657546210.0229502 [modbus_tcp_node-2] [INFO] [1657546210.021804241] [meso.modbus_tcp_node]: 11/07/2022 13:30:10 - heartbeat: 32016
+1657546215.0188508 [modbus_tcp_node-2] [INFO] [1657546215.018280048] [meso.modbus_tcp_node]: 11/07/2022 13:30:15 - heartbeat: 32016
+1657546220.0229614 [modbus_tcp_node-2] [INFO] [1657546220.021807872] [meso.modbus_tcp_node]: 11/07/2022 13:30:20 - heartbeat: 32016
+1657546223.2068999 [small_control_node-1] [INFO] [1657546223.205848874] [meso.small_control_node]: 11/07/2022 13:30:23 - temp_setpoint_A:1800
+1657546225.0230017 [modbus_tcp_node-2] [INFO] [1657546225.021862920] [meso.modbus_tcp_node]: 11/07/2022 13:30:25 - heartbeat: 32016
+1657546230.0209994 [modbus_tcp_node-2] [INFO] [1657546230.020453635] [meso.modbus_tcp_node]: 11/07/2022 13:30:30 - heartbeat: 32016
+1657546235.0219736 [modbus_tcp_node-2] [INFO] [1657546235.020946951] [meso.modbus_tcp_node]: 11/07/2022 13:30:35 - heartbeat: 32016
+1657546240.0229623 [modbus_tcp_node-2] [INFO] [1657546240.021806771] [meso.modbus_tcp_node]: 11/07/2022 13:30:40 - heartbeat: 32016
+1657546245.0188434 [modbus_tcp_node-2] [INFO] [1657546245.018269952] [meso.modbus_tcp_node]: 11/07/2022 13:30:45 - heartbeat: 32016
+1657546250.0234864 [modbus_tcp_node-2] [INFO] [1657546250.022360737] [meso.modbus_tcp_node]: 11/07/2022 13:30:50 - heartbeat: 32016
+1657546253.2126582 [small_control_node-1] [INFO] [1657546253.211672776] [meso.small_control_node]: 11/07/2022 13:30:53 - temp_setpoint_A:1800
+1657546255.0230052 [modbus_tcp_node-2] [INFO] [1657546255.021821313] [meso.modbus_tcp_node]: 11/07/2022 13:30:55 - heartbeat: 32016
+1657546260.0228813 [modbus_tcp_node-2] [INFO] [1657546260.021729373] [meso.modbus_tcp_node]: 11/07/2022 13:31:00 - heartbeat: 32016
+1657546265.0232928 [modbus_tcp_node-2] [INFO] [1657546265.022169029] [meso.modbus_tcp_node]: 11/07/2022 13:31:05 - heartbeat: 32016
+1657546270.0231731 [modbus_tcp_node-2] [INFO] [1657546270.022049419] [meso.modbus_tcp_node]: 11/07/2022 13:31:10 - heartbeat: 32016
+1657546275.0188110 [modbus_tcp_node-2] [INFO] [1657546275.018263295] [meso.modbus_tcp_node]: 11/07/2022 13:31:15 - heartbeat: 32016
+1657546280.0228896 [modbus_tcp_node-2] [INFO] [1657546280.021751501] [meso.modbus_tcp_node]: 11/07/2022 13:31:20 - heartbeat: 32016
+1657546283.2240965 [small_control_node-1] [INFO] [1657546283.223087943] [meso.small_control_node]: 11/07/2022 13:31:23 - temp_setpoint_A:1800
+1657546285.0229857 [modbus_tcp_node-2] [INFO] [1657546285.021857412] [meso.modbus_tcp_node]: 11/07/2022 13:31:25 - heartbeat: 32016
+1657546290.0230222 [modbus_tcp_node-2] [INFO] [1657546290.021876925] [meso.modbus_tcp_node]: 11/07/2022 13:31:30 - heartbeat: 32016
+1657546295.0230718 [modbus_tcp_node-2] [INFO] [1657546295.021920427] [meso.modbus_tcp_node]: 11/07/2022 13:31:35 - heartbeat: 32016
+1657546300.0230489 [modbus_tcp_node-2] [INFO] [1657546300.021924289] [meso.modbus_tcp_node]: 11/07/2022 13:31:40 - heartbeat: 32016
+1657546305.0193977 [modbus_tcp_node-2] [INFO] [1657546305.018731504] [meso.modbus_tcp_node]: 11/07/2022 13:31:45 - heartbeat: 32016
+1657546310.0233135 [modbus_tcp_node-2] [INFO] [1657546310.022165388] [meso.modbus_tcp_node]: 11/07/2022 13:31:50 - heartbeat: 32016
+1657546313.2042592 [small_control_node-1] [INFO] [1657546313.203287920] [meso.small_control_node]: 11/07/2022 13:31:53 - temp_setpoint_A:1800
+1657546315.0239944 [modbus_tcp_node-2] [INFO] [1657546315.022843806] [meso.modbus_tcp_node]: 11/07/2022 13:31:55 - heartbeat: 32016
+1657546320.0239282 [modbus_tcp_node-2] [INFO] [1657546320.022814999] [meso.modbus_tcp_node]: 11/07/2022 13:32:00 - heartbeat: 32016
+1657546325.0237749 [modbus_tcp_node-2] [INFO] [1657546325.022402147] [meso.modbus_tcp_node]: 11/07/2022 13:32:05 - heartbeat: 32016
+1657546330.0246656 [modbus_tcp_node-2] [INFO] [1657546330.023529976] [meso.modbus_tcp_node]: 11/07/2022 13:32:10 - heartbeat: 32016
+1657546335.0189133 [modbus_tcp_node-2] [INFO] [1657546335.018339131] [meso.modbus_tcp_node]: 11/07/2022 13:32:15 - heartbeat: 32016
+1657546340.0234222 [modbus_tcp_node-2] [INFO] [1657546340.022121712] [meso.modbus_tcp_node]: 11/07/2022 13:32:20 - heartbeat: 32016
+1657546343.2026143 [small_control_node-1] [INFO] [1657546343.201685740] [meso.small_control_node]: 11/07/2022 13:32:23 - temp_setpoint_A:1800
+1657546345.0233164 [modbus_tcp_node-2] [INFO] [1657546345.022160152] [meso.modbus_tcp_node]: 11/07/2022 13:32:25 - heartbeat: 32016
+1657546350.0229526 [modbus_tcp_node-2] [INFO] [1657546350.021780438] [meso.modbus_tcp_node]: 11/07/2022 13:32:30 - heartbeat: 32016
+1657546355.0230052 [modbus_tcp_node-2] [INFO] [1657546355.021866895] [meso.modbus_tcp_node]: 11/07/2022 13:32:35 - heartbeat: 32016
+1657546360.0230374 [modbus_tcp_node-2] [INFO] [1657546360.021925214] [meso.modbus_tcp_node]: 11/07/2022 13:32:40 - heartbeat: 32016
+1657546365.0190310 [modbus_tcp_node-2] [INFO] [1657546365.018459685] [meso.modbus_tcp_node]: 11/07/2022 13:32:45 - heartbeat: 32016
+1657546370.0230193 [modbus_tcp_node-2] [INFO] [1657546370.021898918] [meso.modbus_tcp_node]: 11/07/2022 13:32:50 - heartbeat: 32016
+1657546373.2140951 [small_control_node-1] [INFO] [1657546373.212992841] [meso.small_control_node]: 11/07/2022 13:32:53 - temp_setpoint_A:1800
+1657546375.0229478 [modbus_tcp_node-2] [INFO] [1657546375.021839155] [meso.modbus_tcp_node]: 11/07/2022 13:32:55 - heartbeat: 32016
+1657546380.0232227 [modbus_tcp_node-2] [INFO] [1657546380.022101121] [meso.modbus_tcp_node]: 11/07/2022 13:33:00 - heartbeat: 32016
+1657546385.0232465 [modbus_tcp_node-2] [INFO] [1657546385.022102432] [meso.modbus_tcp_node]: 11/07/2022 13:33:05 - heartbeat: 32016
+1657546390.0191255 [modbus_tcp_node-2] [INFO] [1657546390.018555323] [meso.modbus_tcp_node]: 11/07/2022 13:33:10 - heartbeat: 32016
+1657546395.0191529 [modbus_tcp_node-2] [INFO] [1657546395.018579728] [meso.modbus_tcp_node]: 11/07/2022 13:33:15 - heartbeat: 32016
+1657546400.0231793 [modbus_tcp_node-2] [INFO] [1657546400.022037704] [meso.modbus_tcp_node]: 11/07/2022 13:33:20 - heartbeat: 32016
+1657546403.2052476 [small_control_node-1] [INFO] [1657546403.204268046] [meso.small_control_node]: 11/07/2022 13:33:23 - temp_setpoint_A:1800
+1657546405.0233667 [modbus_tcp_node-2] [INFO] [1657546405.022243146] [meso.modbus_tcp_node]: 11/07/2022 13:33:25 - heartbeat: 32016
+1657546410.0235336 [modbus_tcp_node-2] [INFO] [1657546410.022399450] [meso.modbus_tcp_node]: 11/07/2022 13:33:30 - heartbeat: 32016
+1657546415.0234728 [modbus_tcp_node-2] [INFO] [1657546415.022282174] [meso.modbus_tcp_node]: 11/07/2022 13:33:35 - heartbeat: 32016
+1657546420.0231838 [modbus_tcp_node-2] [INFO] [1657546420.022032503] [meso.modbus_tcp_node]: 11/07/2022 13:33:40 - heartbeat: 32016
+1657546425.0200551 [modbus_tcp_node-2] [INFO] [1657546425.019387827] [meso.modbus_tcp_node]: 11/07/2022 13:33:45 - heartbeat: 32016
+1657546430.0228798 [modbus_tcp_node-2] [INFO] [1657546430.021778930] [meso.modbus_tcp_node]: 11/07/2022 13:33:50 - heartbeat: 32016
+1657546433.2107239 [small_control_node-1] [INFO] [1657546433.209724262] [meso.small_control_node]: 11/07/2022 13:33:53 - temp_setpoint_A:1800
+1657546435.0229049 [modbus_tcp_node-2] [INFO] [1657546435.021812898] [meso.modbus_tcp_node]: 11/07/2022 13:33:55 - heartbeat: 32016
+1657546440.0230780 [modbus_tcp_node-2] [INFO] [1657546440.021947691] [meso.modbus_tcp_node]: 11/07/2022 13:34:00 - heartbeat: 32016
+1657546445.0230479 [modbus_tcp_node-2] [INFO] [1657546445.021887033] [meso.modbus_tcp_node]: 11/07/2022 13:34:05 - heartbeat: 32016
+1657546450.0231090 [modbus_tcp_node-2] [INFO] [1657546450.021980422] [meso.modbus_tcp_node]: 11/07/2022 13:34:10 - heartbeat: 32016
+1657546455.0238276 [modbus_tcp_node-2] [INFO] [1657546455.022674668] [meso.modbus_tcp_node]: 11/07/2022 13:34:15 - heartbeat: 32016
+1657546460.0188632 [modbus_tcp_node-2] [INFO] [1657546460.018290102] [meso.modbus_tcp_node]: 11/07/2022 13:34:20 - heartbeat: 32016
+1657546463.2163386 [small_control_node-1] [INFO] [1657546463.215359579] [meso.small_control_node]: 11/07/2022 13:34:23 - temp_setpoint_A:1800
+1657546465.0230381 [modbus_tcp_node-2] [INFO] [1657546465.021859676] [meso.modbus_tcp_node]: 11/07/2022 13:34:25 - heartbeat: 32016
+1657546470.0232220 [modbus_tcp_node-2] [INFO] [1657546470.022079200] [meso.modbus_tcp_node]: 11/07/2022 13:34:30 - heartbeat: 32016
+1657546475.0229530 [modbus_tcp_node-2] [INFO] [1657546475.021799147] [meso.modbus_tcp_node]: 11/07/2022 13:34:35 - heartbeat: 32016
+1657546480.0229621 [modbus_tcp_node-2] [INFO] [1657546480.021823955] [meso.modbus_tcp_node]: 11/07/2022 13:34:40 - heartbeat: 32016
+1657546485.0230234 [modbus_tcp_node-2] [INFO] [1657546485.021881421] [meso.modbus_tcp_node]: 11/07/2022 13:34:45 - heartbeat: 32016
+1657546490.0188746 [modbus_tcp_node-2] [INFO] [1657546490.018299988] [meso.modbus_tcp_node]: 11/07/2022 13:34:50 - heartbeat: 32016
+1657546493.2139437 [small_control_node-1] [INFO] [1657546493.212905461] [meso.small_control_node]: 11/07/2022 13:34:53 - temp_setpoint_A:1800
+1657546495.0229328 [modbus_tcp_node-2] [INFO] [1657546495.021754317] [meso.modbus_tcp_node]: 11/07/2022 13:34:55 - heartbeat: 32016
+1657546500.0228348 [modbus_tcp_node-2] [INFO] [1657546500.021714652] [meso.modbus_tcp_node]: 11/07/2022 13:35:00 - heartbeat: 32016
+1657546505.0228801 [modbus_tcp_node-2] [INFO] [1657546505.021773646] [meso.modbus_tcp_node]: 11/07/2022 13:35:05 - heartbeat: 32016
+1657546510.0229063 [modbus_tcp_node-2] [INFO] [1657546510.021808948] [meso.modbus_tcp_node]: 11/07/2022 13:35:10 - heartbeat: 32016
+1657546515.0228972 [modbus_tcp_node-2] [INFO] [1657546515.021785873] [meso.modbus_tcp_node]: 11/07/2022 13:35:15 - heartbeat: 32016
+1657546520.0188897 [modbus_tcp_node-2] [INFO] [1657546520.018307657] [meso.modbus_tcp_node]: 11/07/2022 13:35:20 - heartbeat: 32016
+1657546523.2044399 [small_control_node-1] [INFO] [1657546523.203561486] [meso.small_control_node]: 11/07/2022 13:35:23 - temp_setpoint_A:1800
+1657546525.0230525 [modbus_tcp_node-2] [INFO] [1657546525.021933665] [meso.modbus_tcp_node]: 11/07/2022 13:35:25 - heartbeat: 32016
+1657546530.0229254 [modbus_tcp_node-2] [INFO] [1657546530.021781460] [meso.modbus_tcp_node]: 11/07/2022 13:35:30 - heartbeat: 32016
+1657546535.0229852 [modbus_tcp_node-2] [INFO] [1657546535.021826395] [meso.modbus_tcp_node]: 11/07/2022 13:35:35 - heartbeat: 32016
+1657546540.0230134 [modbus_tcp_node-2] [INFO] [1657546540.021840546] [meso.modbus_tcp_node]: 11/07/2022 13:35:40 - heartbeat: 32016
+1657546545.0231538 [modbus_tcp_node-2] [INFO] [1657546545.021957671] [meso.modbus_tcp_node]: 11/07/2022 13:35:45 - heartbeat: 32016
+1657546550.0188999 [modbus_tcp_node-2] [INFO] [1657546550.018319343] [meso.modbus_tcp_node]: 11/07/2022 13:35:50 - heartbeat: 32016
+1657546553.2118242 [small_control_node-1] [INFO] [1657546553.208607360] [meso.small_control_node]: 11/07/2022 13:35:53 - temp_setpoint_A:1800
+1657546555.0231020 [modbus_tcp_node-2] [INFO] [1657546555.021946534] [meso.modbus_tcp_node]: 11/07/2022 13:35:55 - heartbeat: 32016
+1657546560.0229759 [modbus_tcp_node-2] [INFO] [1657546560.021826513] [meso.modbus_tcp_node]: 11/07/2022 13:36:00 - heartbeat: 32016
+1657546565.0230241 [modbus_tcp_node-2] [INFO] [1657546565.021734689] [meso.modbus_tcp_node]: 11/07/2022 13:36:05 - heartbeat: 32016
+1657546570.0229874 [modbus_tcp_node-2] [INFO] [1657546570.021846857] [meso.modbus_tcp_node]: 11/07/2022 13:36:10 - heartbeat: 32016
+1657546575.0237029 [modbus_tcp_node-2] [INFO] [1657546575.022572532] [meso.modbus_tcp_node]: 11/07/2022 13:36:15 - heartbeat: 32016
+1657546580.0189645 [modbus_tcp_node-2] [INFO] [1657546580.018382376] [meso.modbus_tcp_node]: 11/07/2022 13:36:20 - heartbeat: 32016
+1657546584.2814536 [small_control_node-1] [INFO] [1657546584.280761058] [meso.small_control_node]: 11/07/2022 13:36:24 - Waiting for system to be stopped
+1657546585.0189226 [modbus_tcp_node-2] [INFO] [1657546585.018345213] [meso.modbus_tcp_node]: 11/07/2022 13:36:25 - heartbeat: 32016
+1657546585.2814569 [small_control_node-1] [INFO] [1657546585.280784358] [meso.small_control_node]: 11/07/2022 13:36:25 - Waiting for system to be stopped
+1657546586.2814362 [small_control_node-1] [INFO] [1657546586.280773917] [meso.small_control_node]: 11/07/2022 13:36:26 - Waiting for system to be stopped
+1657546587.2814364 [small_control_node-1] [INFO] [1657546587.280757106] [meso.small_control_node]: 11/07/2022 13:36:27 - Waiting for system to be stopped
+1657546588.2815161 [small_control_node-1] [INFO] [1657546588.280788331] [meso.small_control_node]: 11/07/2022 13:36:28 - Waiting for system to be stopped
+1657546589.3774376 [small_control_node-1] [INFO] [1657546589.376805371] [meso.small_control_node]: 11/07/2022 13:36:29 - Waiting for system to be stopped
+1657546590.0191298 [modbus_tcp_node-2] [INFO] [1657546590.018558041] [meso.modbus_tcp_node]: 11/07/2022 13:36:30 - heartbeat: 32016
+1657546590.3774650 [small_control_node-1] [INFO] [1657546590.376815947] [meso.small_control_node]: 11/07/2022 13:36:30 - Waiting for system to be stopped
+1657546591.3774946 [small_control_node-1] [INFO] [1657546591.376833393] [meso.small_control_node]: 11/07/2022 13:36:31 - Waiting for system to be stopped
+1657546592.3774610 [small_control_node-1] [INFO] [1657546592.376807785] [meso.small_control_node]: 11/07/2022 13:36:32 - Waiting for system to be stopped
+1657546593.3774459 [small_control_node-1] [INFO] [1657546593.376747620] [meso.small_control_node]: 11/07/2022 13:36:33 - Waiting for system to be stopped
+1657546594.4709425 [small_control_node-1] [INFO] [1657546594.470333348] [meso.small_control_node]: 11/07/2022 13:36:34 - System stopped
+1657546594.4728913 [small_control_node-1] [INFO] [1657546594.472348552] [meso.small_control_node]: 11/07/2022 13:36:34 - STATUS: {'temp_control_A': 0, 'temp_setpoint_A': 1800, 'temp_hysteresis_A': 10, 'temp_control_B': 0, 'temp_setpoint_B': 1800, 'temp_hysteresis_B': 10, 'v1': 0, 'v2': 0, 'v3': 0, 'v4': 0, 'v5': 0, 'v6': 0, 'v7': 0, 'p1': 0, 'mps_temp': 1762, 'mps_ph': 793, 'mps_cond': 4390, 'mps_o2': 770, 'status': 3, 'status_timer': 20, 'last_tank': 1, 'cooler_tank_A': 0, 'heater_tank_A': 1, 'cooler_tank_B': 0, 'heater_tank_B': 1}
+1657546595.0191970 [modbus_tcp_node-2] [INFO] [1657546595.018636883] [meso.modbus_tcp_node]: 11/07/2022 13:36:35 - heartbeat: 32016
+1657546596.4829731 [small_control_node-1] [INFO] [1657546596.482365295] [meso.small_control_node]: 11/07/2022 13:36:36 - Flushing started
+1657546596.4846590 [small_control_node-1] [INFO] [1657546596.484145593] [meso.small_control_node]: 11/07/2022 13:36:36 - STATUS: {'temp_control_A': 0, 'temp_setpoint_A': 1800, 'temp_hysteresis_A': 10, 'temp_control_B': 0, 'temp_setpoint_B': 1800, 'temp_hysteresis_B': 10, 'v1': 0, 'v2': 0, 'v3': 0, 'v4': 0, 'v5': 1, 'v6': 1, 'v7': 0, 'p1': 0, 'mps_temp': 1762, 'mps_ph': 793, 'mps_cond': 4389, 'mps_o2': 769, 'status': 3, 'status_timer': 18, 'last_tank': 1, 'cooler_tank_A': 0, 'heater_tank_A': 1, 'cooler_tank_B': 0, 'heater_tank_B': 1}
+1657546600.0222251 [modbus_tcp_node-2] [INFO] [1657546600.021092920] [meso.modbus_tcp_node]: 11/07/2022 13:36:40 - heartbeat: 32016
+1657546605.0230198 [modbus_tcp_node-2] [INFO] [1657546605.021874374] [meso.modbus_tcp_node]: 11/07/2022 13:36:45 - heartbeat: 32016
+1657546610.0192907 [modbus_tcp_node-2] [INFO] [1657546610.018746154] [meso.modbus_tcp_node]: 11/07/2022 13:36:50 - heartbeat: 32016
+1657546615.0213060 [modbus_tcp_node-2] [INFO] [1657546615.020260627] [meso.modbus_tcp_node]: 11/07/2022 13:36:55 - heartbeat: 32016
+1657546617.6053348 [small_control_node-1] [INFO] [1657546617.604592745] [meso.small_control_node]: 11/07/2022 13:36:57 - Waiting for system to be stopped
+1657546618.6053603 [small_control_node-1] [INFO] [1657546618.604642722] [meso.small_control_node]: 11/07/2022 13:36:58 - System stopped
+1657546618.6072400 [small_control_node-1] [INFO] [1657546618.606706703] [meso.small_control_node]: 11/07/2022 13:36:58 - STATUS: {'temp_control_A': 0, 'temp_setpoint_A': 1800, 'temp_hysteresis_A': 10, 'temp_control_B': 0, 'temp_setpoint_B': 1800, 'temp_hysteresis_B': 10, 'v1': 0, 'v2': 0, 'v3': 0, 'v4': 0, 'v5': 0, 'v6': 0, 'v7': 0, 'p1': 0, 'mps_temp': 1775, 'mps_ph': 792, 'mps_cond': 6, 'mps_o2': 795, 'status': 3, 'status_timer': 30, 'last_tank': 1, 'cooler_tank_A': 0, 'heater_tank_A': 1, 'cooler_tank_B': 0, 'heater_tank_B': 1}
+1657546620.0190198 [modbus_tcp_node-2] [INFO] [1657546620.018446274] [meso.modbus_tcp_node]: 11/07/2022 13:37:00 - heartbeat: 32016
+1657546623.6225226 [small_control_node-1] [INFO] [1657546623.621204953] [meso.small_control_node]: 11/07/2022 13:37:03 - Waiting for tank B to be prepared
+1657546625.0190477 [modbus_tcp_node-2] [INFO] [1657546625.018466101] [meso.modbus_tcp_node]: 11/07/2022 13:37:05 - heartbeat: 32016
+1657546628.6174212 [small_control_node-1] [INFO] [1657546628.616683375] [meso.small_control_node]: 11/07/2022 13:37:08 - Waiting for tank B to be prepared
+1657546629.6223612 [small_control_node-1] [INFO] [1657546629.621154697] [meso.small_control_node]: 11/07/2022 13:37:09 - Tank B prepared
+1657546629.6271231 [small_control_node-1] [INFO] [1657546629.625954005] [meso.small_control_node]: 11/07/2022 13:37:09 - STATUS: {'temp_control_A': 0, 'temp_setpoint_A': 1800, 'temp_hysteresis_A': 10, 'temp_control_B': 0, 'temp_setpoint_B': 1800, 'temp_hysteresis_B': 10, 'v1': 0, 'v2': 0, 'v3': 1, 'v4': 1, 'v5': 0, 'v6': 0, 'v7': 0, 'p1': 0, 'mps_temp': 1788, 'mps_ph': 785, 'mps_cond': 5, 'mps_o2': 917, 'status': 3, 'status_timer': 30, 'last_tank': 1, 'cooler_tank_A': 0, 'heater_tank_A': 1, 'cooler_tank_B': 0, 'heater_tank_B': 1}
+1657546630.0233676 [modbus_tcp_node-2] [INFO] [1657546630.022239574] [meso.modbus_tcp_node]: 11/07/2022 13:37:10 - heartbeat: 32016
+1657546631.6423182 [small_control_node-1] [INFO] [1657546631.641108592] [meso.small_control_node]: 11/07/2022 13:37:11 - Pump started
+1657546631.6470246 [small_control_node-1] [INFO] [1657546631.645877640] [meso.small_control_node]: 11/07/2022 13:37:11 - STATUS: {'temp_control_A': 0, 'temp_setpoint_A': 1800, 'temp_hysteresis_A': 10, 'temp_control_B': 0, 'temp_setpoint_B': 1800, 'temp_hysteresis_B': 10, 'v1': 0, 'v2': 0, 'v3': 1, 'v4': 1, 'v5': 0, 'v6': 0, 'v7': 0, 'p1': 1, 'mps_temp': 1788, 'mps_ph': 785, 'mps_cond': 4, 'mps_o2': 907, 'status': 3, 'status_timer': 30, 'last_tank': 1, 'cooler_tank_A': 0, 'heater_tank_A': 1, 'cooler_tank_B': 0, 'heater_tank_B': 1}
+1657546635.0222175 [modbus_tcp_node-2] [INFO] [1657546635.021198048] [meso.modbus_tcp_node]: 11/07/2022 13:37:15 - heartbeat: 32016
+1657546640.0188110 [modbus_tcp_node-2] [INFO] [1657546640.018268757] [meso.modbus_tcp_node]: 11/07/2022 13:37:20 - heartbeat: 32016
+1657546645.0217350 [modbus_tcp_node-2] [INFO] [1657546645.020661949] [meso.modbus_tcp_node]: 11/07/2022 13:37:25 - heartbeat: 32016
+1657546650.0208175 [modbus_tcp_node-2] [INFO] [1657546650.019977219] [meso.modbus_tcp_node]: 11/07/2022 13:37:30 - heartbeat: 32016
+1657546655.0213785 [modbus_tcp_node-2] [INFO] [1657546655.020376789] [meso.modbus_tcp_node]: 11/07/2022 13:37:35 - heartbeat: 32016
+1657546660.0229301 [modbus_tcp_node-2] [INFO] [1657546660.021783659] [meso.modbus_tcp_node]: 11/07/2022 13:37:40 - heartbeat: 32016
+1657546661.6989651 [small_control_node-1] [INFO] [1657546661.698031838] [meso.small_control_node]: 11/07/2022 13:37:41 - temp_setpoint_B:1800
+1657546665.0208187 [modbus_tcp_node-2] [INFO] [1657546665.019919517] [meso.modbus_tcp_node]: 11/07/2022 13:37:45 - heartbeat: 32016
+1657546670.0190275 [modbus_tcp_node-2] [INFO] [1657546670.018445441] [meso.modbus_tcp_node]: 11/07/2022 13:37:50 - heartbeat: 32016
+1657546675.0209310 [modbus_tcp_node-2] [INFO] [1657546675.020079183] [meso.modbus_tcp_node]: 11/07/2022 13:37:55 - heartbeat: 32016
+1657546680.0216863 [modbus_tcp_node-2] [INFO] [1657546680.020696410] [meso.modbus_tcp_node]: 11/07/2022 13:38:00 - heartbeat: 32016
+1657546685.0212319 [modbus_tcp_node-2] [INFO] [1657546685.020428678] [meso.modbus_tcp_node]: 11/07/2022 13:38:05 - heartbeat: 32016
+1657546690.0200231 [modbus_tcp_node-2] [INFO] [1657546690.019454170] [meso.modbus_tcp_node]: 11/07/2022 13:38:10 - heartbeat: 32016
+1657546691.6617565 [small_control_node-1] [INFO] [1657546691.660776646] [meso.small_control_node]: 11/07/2022 13:38:11 - temp_setpoint_B:1800
+1657546695.0215147 [modbus_tcp_node-2] [INFO] [1657546695.020496361] [meso.modbus_tcp_node]: 11/07/2022 13:38:15 - heartbeat: 32016
+1657546700.0188646 [modbus_tcp_node-2] [INFO] [1657546700.018286244] [meso.modbus_tcp_node]: 11/07/2022 13:38:20 - heartbeat: 32016
+1657546705.0225618 [modbus_tcp_node-2] [INFO] [1657546705.021711533] [meso.modbus_tcp_node]: 11/07/2022 13:38:25 - heartbeat: 32016
+1657546710.0231881 [modbus_tcp_node-2] [INFO] [1657546710.022048642] [meso.modbus_tcp_node]: 11/07/2022 13:38:30 - heartbeat: 32016
+1657546715.0207009 [modbus_tcp_node-2] [INFO] [1657546715.019836159] [meso.modbus_tcp_node]: 11/07/2022 13:38:35 - heartbeat: 32016
+1657546720.0208454 [modbus_tcp_node-2] [INFO] [1657546720.020019075] [meso.modbus_tcp_node]: 11/07/2022 13:38:40 - heartbeat: 32016
+1657546721.6973171 [small_control_node-1] [INFO] [1657546721.695976072] [meso.small_control_node]: 11/07/2022 13:38:41 - temp_setpoint_B:1800
+1657546725.0187736 [modbus_tcp_node-2] [INFO] [1657546725.018195228] [meso.modbus_tcp_node]: 11/07/2022 13:38:45 - heartbeat: 32016
+1657546730.0188324 [modbus_tcp_node-2] [INFO] [1657546730.018252617] [meso.modbus_tcp_node]: 11/07/2022 13:38:50 - heartbeat: 32016
+1657546735.0224929 [modbus_tcp_node-2] [INFO] [1657546735.021611713] [meso.modbus_tcp_node]: 11/07/2022 13:38:55 - heartbeat: 32016
+1657546740.0230799 [modbus_tcp_node-2] [INFO] [1657546740.021916036] [meso.modbus_tcp_node]: 11/07/2022 13:39:00 - heartbeat: 32016
+1657546745.0222073 [modbus_tcp_node-2] [INFO] [1657546745.021174161] [meso.modbus_tcp_node]: 11/07/2022 13:39:05 - heartbeat: 32016
+1657546750.0229642 [modbus_tcp_node-2] [INFO] [1657546750.021868009] [meso.modbus_tcp_node]: 11/07/2022 13:39:10 - heartbeat: 32016
+1657546751.6952863 [small_control_node-1] [INFO] [1657546751.694421546] [meso.small_control_node]: 11/07/2022 13:39:11 - temp_setpoint_B:1800
+1657546755.0231960 [modbus_tcp_node-2] [INFO] [1657546755.022106153] [meso.modbus_tcp_node]: 11/07/2022 13:39:15 - heartbeat: 32016
+1657546760.0188026 [modbus_tcp_node-2] [INFO] [1657546760.018220066] [meso.modbus_tcp_node]: 11/07/2022 13:39:20 - heartbeat: 32016
+1657546765.0229084 [modbus_tcp_node-2] [INFO] [1657546765.021775802] [meso.modbus_tcp_node]: 11/07/2022 13:39:25 - heartbeat: 32016
+1657546770.0229101 [modbus_tcp_node-2] [INFO] [1657546770.021769073] [meso.modbus_tcp_node]: 11/07/2022 13:39:30 - heartbeat: 32016
+1657546775.0231740 [modbus_tcp_node-2] [INFO] [1657546775.022095290] [meso.modbus_tcp_node]: 11/07/2022 13:39:35 - heartbeat: 32016
+1657546780.0231595 [modbus_tcp_node-2] [INFO] [1657546780.022067556] [meso.modbus_tcp_node]: 11/07/2022 13:39:40 - heartbeat: 32016
+1657546781.6942873 [small_control_node-1] [INFO] [1657546781.693498575] [meso.small_control_node]: 11/07/2022 13:39:41 - temp_setpoint_B:1800
+1657546785.0237629 [modbus_tcp_node-2] [INFO] [1657546785.022198154] [meso.modbus_tcp_node]: 11/07/2022 13:39:45 - heartbeat: 32016
+1657546790.0187349 [modbus_tcp_node-2] [INFO] [1657546790.018155578] [meso.modbus_tcp_node]: 11/07/2022 13:39:50 - heartbeat: 32016
+1657546795.0246365 [modbus_tcp_node-2] [INFO] [1657546795.022887538] [meso.modbus_tcp_node]: 11/07/2022 13:39:55 - heartbeat: 32016
+1657546800.0205724 [modbus_tcp_node-2] [INFO] [1657546800.019981654] [meso.modbus_tcp_node]: 11/07/2022 13:40:00 - heartbeat: 32016
+1657546805.0242238 [modbus_tcp_node-2] [INFO] [1657546805.022301321] [meso.modbus_tcp_node]: 11/07/2022 13:40:05 - heartbeat: 32016
+1657546810.0240057 [modbus_tcp_node-2] [INFO] [1657546810.022823115] [meso.modbus_tcp_node]: 11/07/2022 13:40:10 - heartbeat: 32016
+1657546811.6718206 [small_control_node-1] [INFO] [1657546811.671189403] [meso.small_control_node]: 11/07/2022 13:40:11 - temp_setpoint_B:1800
+1657546815.0187981 [modbus_tcp_node-2] [INFO] [1657546815.018217124] [meso.modbus_tcp_node]: 11/07/2022 13:40:15 - heartbeat: 32016
+1657546820.0189421 [modbus_tcp_node-2] [INFO] [1657546820.018356166] [meso.modbus_tcp_node]: 11/07/2022 13:40:20 - heartbeat: 32016
+1657546825.0233130 [modbus_tcp_node-2] [INFO] [1657546825.022170923] [meso.modbus_tcp_node]: 11/07/2022 13:40:25 - heartbeat: 32016
+1657546830.0230007 [modbus_tcp_node-2] [INFO] [1657546830.021849702] [meso.modbus_tcp_node]: 11/07/2022 13:40:30 - heartbeat: 32016
+1657546835.0237503 [modbus_tcp_node-2] [INFO] [1657546835.022591734] [meso.modbus_tcp_node]: 11/07/2022 13:40:35 - heartbeat: 32016
+1657546840.0232081 [modbus_tcp_node-2] [INFO] [1657546840.021874572] [meso.modbus_tcp_node]: 11/07/2022 13:40:40 - heartbeat: 32016
+1657546841.6901021 [small_control_node-1] [INFO] [1657546841.688652416] [meso.small_control_node]: 11/07/2022 13:40:41 - temp_setpoint_B:1800
+1657546845.0230107 [modbus_tcp_node-2] [INFO] [1657546845.021874422] [meso.modbus_tcp_node]: 11/07/2022 13:40:45 - heartbeat: 32016
+1657546850.0189011 [modbus_tcp_node-2] [INFO] [1657546850.018319477] [meso.modbus_tcp_node]: 11/07/2022 13:40:50 - heartbeat: 32016
+1657546855.0229383 [modbus_tcp_node-2] [INFO] [1657546855.021792510] [meso.modbus_tcp_node]: 11/07/2022 13:40:55 - heartbeat: 32016
+1657546860.0229826 [modbus_tcp_node-2] [INFO] [1657546860.021841206] [meso.modbus_tcp_node]: 11/07/2022 13:41:00 - heartbeat: 32016
+1657546865.0230019 [modbus_tcp_node-2] [INFO] [1657546865.021836377] [meso.modbus_tcp_node]: 11/07/2022 13:41:05 - heartbeat: 32016
+1657546870.0188451 [modbus_tcp_node-2] [INFO] [1657546870.018304778] [meso.modbus_tcp_node]: 11/07/2022 13:41:10 - heartbeat: 32016
+1657546871.6613672 [small_control_node-1] [INFO] [1657546871.660557033] [meso.small_control_node]: 11/07/2022 13:41:11 - temp_setpoint_B:1800
+1657546875.0238330 [modbus_tcp_node-2] [INFO] [1657546875.022679655] [meso.modbus_tcp_node]: 11/07/2022 13:41:15 - heartbeat: 32016
+1657546880.0188689 [modbus_tcp_node-2] [INFO] [1657546880.018297671] [meso.modbus_tcp_node]: 11/07/2022 13:41:20 - heartbeat: 32016
+1657546885.0228667 [modbus_tcp_node-2] [INFO] [1657546885.021711493] [meso.modbus_tcp_node]: 11/07/2022 13:41:25 - heartbeat: 32016
+1657546890.0233893 [modbus_tcp_node-2] [INFO] [1657546890.022246321] [meso.modbus_tcp_node]: 11/07/2022 13:41:30 - heartbeat: 32016
+1657546895.0230098 [modbus_tcp_node-2] [INFO] [1657546895.021906918] [meso.modbus_tcp_node]: 11/07/2022 13:41:35 - heartbeat: 32016
+1657546900.0228798 [modbus_tcp_node-2] [INFO] [1657546900.021707376] [meso.modbus_tcp_node]: 11/07/2022 13:41:40 - heartbeat: 32016
+1657546901.6780453 [small_control_node-1] [INFO] [1657546901.676416318] [meso.small_control_node]: 11/07/2022 13:41:41 - temp_setpoint_B:1800
+1657546905.0230811 [modbus_tcp_node-2] [INFO] [1657546905.021977800] [meso.modbus_tcp_node]: 11/07/2022 13:41:45 - heartbeat: 32016
+1657546910.0195479 [modbus_tcp_node-2] [INFO] [1657546910.018923671] [meso.modbus_tcp_node]: 11/07/2022 13:41:50 - heartbeat: 32016
+1657546915.0230091 [modbus_tcp_node-2] [INFO] [1657546915.021830251] [meso.modbus_tcp_node]: 11/07/2022 13:41:55 - heartbeat: 32016
+1657546920.0231302 [modbus_tcp_node-2] [INFO] [1657546920.021987746] [meso.modbus_tcp_node]: 11/07/2022 13:42:00 - heartbeat: 32016
+1657546925.0232844 [modbus_tcp_node-2] [INFO] [1657546925.022146203] [meso.modbus_tcp_node]: 11/07/2022 13:42:05 - heartbeat: 32016
+1657546930.0229604 [modbus_tcp_node-2] [INFO] [1657546930.021803944] [meso.modbus_tcp_node]: 11/07/2022 13:42:10 - heartbeat: 32016
+1657546931.6721087 [small_control_node-1] [INFO] [1657546931.671420536] [meso.small_control_node]: 11/07/2022 13:42:11 - temp_setpoint_B:1800
+1657546935.0191801 [modbus_tcp_node-2] [INFO] [1657546935.018632611] [meso.modbus_tcp_node]: 11/07/2022 13:42:15 - heartbeat: 32016
+1657546940.0228832 [modbus_tcp_node-2] [INFO] [1657546940.021743769] [meso.modbus_tcp_node]: 11/07/2022 13:42:20 - heartbeat: 32016
+1657546945.0191073 [modbus_tcp_node-2] [INFO] [1657546945.018558901] [meso.modbus_tcp_node]: 11/07/2022 13:42:25 - heartbeat: 32016
+1657546950.0233338 [modbus_tcp_node-2] [INFO] [1657546950.022204531] [meso.modbus_tcp_node]: 11/07/2022 13:42:30 - heartbeat: 32016
+1657546955.0231645 [modbus_tcp_node-2] [INFO] [1657546955.022075704] [meso.modbus_tcp_node]: 11/07/2022 13:42:35 - heartbeat: 32016
+1657546960.0190592 [modbus_tcp_node-2] [INFO] [1657546960.018514725] [meso.modbus_tcp_node]: 11/07/2022 13:42:40 - heartbeat: 32016
+1657546961.6765630 [small_control_node-1] [INFO] [1657546961.675266498] [meso.small_control_node]: 11/07/2022 13:42:41 - temp_setpoint_B:1800
+1657546965.0232975 [modbus_tcp_node-2] [INFO] [1657546965.022154530] [meso.modbus_tcp_node]: 11/07/2022 13:42:45 - heartbeat: 32016
+1657546970.0235159 [modbus_tcp_node-2] [INFO] [1657546970.022406549] [meso.modbus_tcp_node]: 11/07/2022 13:42:50 - heartbeat: 32016
+1657546975.0204339 [modbus_tcp_node-2] [INFO] [1657546975.019727330] [meso.modbus_tcp_node]: 11/07/2022 13:42:55 - heartbeat: 32016
+1657546980.0234213 [modbus_tcp_node-2] [INFO] [1657546980.022294582] [meso.modbus_tcp_node]: 11/07/2022 13:43:00 - heartbeat: 32016
+1657546985.0234895 [modbus_tcp_node-2] [INFO] [1657546985.022352216] [meso.modbus_tcp_node]: 11/07/2022 13:43:05 - heartbeat: 32016
+1657546990.0234842 [modbus_tcp_node-2] [INFO] [1657546990.022041733] [meso.modbus_tcp_node]: 11/07/2022 13:43:10 - heartbeat: 32016
+1657546991.6768641 [small_control_node-1] [INFO] [1657546991.675425521] [meso.small_control_node]: 11/07/2022 13:43:11 - temp_setpoint_B:1800
+1657546995.0232203 [modbus_tcp_node-2] [INFO] [1657546995.022047104] [meso.modbus_tcp_node]: 11/07/2022 13:43:15 - heartbeat: 32016
+1657547000.0239444 [modbus_tcp_node-2] [INFO] [1657547000.022688914] [meso.modbus_tcp_node]: 11/07/2022 13:43:20 - heartbeat: 32016
+1657547005.0187531 [modbus_tcp_node-2] [INFO] [1657547005.018179856] [meso.modbus_tcp_node]: 11/07/2022 13:43:25 - heartbeat: 32016
+1657547010.0233276 [modbus_tcp_node-2] [INFO] [1657547010.022180768] [meso.modbus_tcp_node]: 11/07/2022 13:43:30 - heartbeat: 32016
+1657547015.0231755 [modbus_tcp_node-2] [INFO] [1657547015.022016997] [meso.modbus_tcp_node]: 11/07/2022 13:43:35 - heartbeat: 32016
+1657547020.0230165 [modbus_tcp_node-2] [INFO] [1657547020.021852463] [meso.modbus_tcp_node]: 11/07/2022 13:43:40 - heartbeat: 32016
+1657547021.6760266 [small_control_node-1] [INFO] [1657547021.674895326] [meso.small_control_node]: 11/07/2022 13:43:41 - temp_setpoint_B:1800
+1657547025.0230193 [modbus_tcp_node-2] [INFO] [1657547025.021873680] [meso.modbus_tcp_node]: 11/07/2022 13:43:45 - heartbeat: 32016
+1657547030.0230622 [modbus_tcp_node-2] [INFO] [1657547030.021918390] [meso.modbus_tcp_node]: 11/07/2022 13:43:50 - heartbeat: 32016
+1657547035.0189261 [modbus_tcp_node-2] [INFO] [1657547035.018353862] [meso.modbus_tcp_node]: 11/07/2022 13:43:55 - heartbeat: 32016
+1657547040.0229900 [modbus_tcp_node-2] [INFO] [1657547040.021859556] [meso.modbus_tcp_node]: 11/07/2022 13:44:00 - heartbeat: 32016
+1657547045.0230601 [modbus_tcp_node-2] [INFO] [1657547045.021923582] [meso.modbus_tcp_node]: 11/07/2022 13:44:05 - heartbeat: 32016

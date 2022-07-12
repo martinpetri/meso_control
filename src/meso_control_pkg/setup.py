@@ -21,9 +21,8 @@ setup(
     entry_points={
         'console_scripts': [
             "sensor_string_val_node = meso_control_pkg.sensor_string_val_node:main",
-            "actuator_node = meso_control_pkg.actuator_node:main",
-            "big_control_node = meso_control_pkg.big_control_node:main",
             "small_control_node = meso_control_pkg.small_control_node:main",
+            "simple_control_node = meso_control_pkg.simple_control_node:main",
             "modbus_tcp_node = meso_control_pkg.modbus_tcp_node:main",
             "test_node = meso_control_pkg.test_node:main",
         ],
