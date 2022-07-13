@@ -19,6 +19,7 @@ STATUS_PREP_TANK_B = json.loads('{"v1":0, "v2":0, "v3":1, "v4":1, "v5":0, "v6":0
 STATUS_START_TANK_B = json.loads('{"v1":0, "v2":0, "v3":1, "v4":1, "v5":0, "v6":0, "v7":0, "p1":1}')
 
 class ControlNode(Node):
+
     def __init__(self):
         super().__init__("control_node")
 
@@ -49,17 +50,20 @@ class ControlNode(Node):
         self.timer_tank_switch_ =  self.create_timer(self.tank_switch_interval_, self.tank_switch)
         self.timer_temp_control_ =  self.create_timer(self.temp_check_interval_, self.temp_control)
         self.timer_stop_emptying_ = self.create_timer(self.empty_duration_, self.stop_emptying)
-        self.timer_status_watchdog_ = self.create_timer(1, self.status_watchdog)
+        self.timer_status_watchdog_ = self.create_timer(2, self.status_watchdog)
+        self.timer_unlock_modbus_ = self.create_timer(5, self.unlock_modbus)
 
         self.timer_tank_switch_.cancel()
         self.timer_temp_control_.cancel()
         self.timer_stop_emptying_.cancel()
 
+        self.modbus_locked_ = False
+
         self.modbus_subscriber_ = self.create_subscription(
             AWIStringValue, self.topic_modbus_values_,
             self.callback_modbus_subscription, 10
         )
-               
+
         self.log("Node " + self.name_ + " has been started")
 
         self.status_list_ = []
@@ -88,10 +92,18 @@ class ControlNode(Node):
                 self.timer_main_control_.cancel()
                 self.timer_stop_emptying_.reset()
 
-    def correct_status(self):
-        json_string = json.dumps(self.json_obj_target_status_)
+    def unlock_modbus(self):
+        self.timer_unlock_modbus_.cancel()
+        self.modbus_locked_ = False
+        self.log("Modbus unlocked")
+
+    def correct_status(self, dict_values):
+        json_string = json.dumps(dict_values)
         self.log_control_status("Sending target status to modbus", self.json_obj_target_status_)
         self.json_to_modbus(json_string)
+        self.modbus_locked_ = True
+        self.timer_unlock_modbus_.reset()
+        self.log("Modbus locked")
 
     def tank_switch(self):
         self.log("Switching tank")
@@ -101,7 +113,18 @@ class ControlNode(Node):
         self.timer_main_control_.reset()
 
     def status_watchdog(self):
-        if not self.status_consistent(): self.correct_status()
+        if not self.modbus_locked_:
+            #self.log("status watchdog")
+            if not self.status_consistent():
+                dict_status_diff = self.get_status_diff()
+                self.correct_status(dict_status_diff)
+    
+    def get_status_diff(self):
+        dict_diff = {}
+        for k,v in self.json_obj_target_status_.items():
+            if not self.json_obj_modbus_status_[k] == v: dict_diff[k] = v
+
+        return dict_diff
 
     def temp_control(self):
         self.log("temp control")
@@ -186,11 +209,13 @@ class ControlNode(Node):
         self.status_list_.append(STATUS_STOP)
         self.status_list_.append(STATUS_PREP_TANK_A)
         self.status_list_.append(STATUS_START_TANK_A)
+        self.status_list_.append(STATUS_PREP_TANK_A)
         self.status_list_.append(STATUS_STOP)
         self.status_list_.append(STATUS_START_EMPTY)
         self.status_list_.append(STATUS_STOP)
         self.status_list_.append(STATUS_PREP_TANK_B)
         self.status_list_.append(STATUS_START_TANK_B)
+        self.status_list_.append(STATUS_PREP_TANK_B)
         self.status_list_.append(STATUS_STOP)
         self.status_list_.append(STATUS_START_EMPTY)
 
