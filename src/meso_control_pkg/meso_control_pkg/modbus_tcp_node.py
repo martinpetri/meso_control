@@ -38,7 +38,6 @@ class ModbusTcpNode(Node):
 
         self.json_obj_modbus_write_registers_ = json.loads(self.get_parameter("json_modbus_write_registers").value)
         self.json_obj_modbus_feedback_registers_ = json.loads(self.get_parameter("json_modbus_feedback_registers").value)
-        self.log(json.dumps(self.json_obj_modbus_feedback_registers_))
         self.json_data_modbus_values_ = {}
 
         self.status_publisher_ = self.create_publisher(AWIStringValue, self.topic_name_, 10)

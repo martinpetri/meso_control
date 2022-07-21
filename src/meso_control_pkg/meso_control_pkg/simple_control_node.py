@@ -25,8 +25,11 @@ class ControlNode(Node):
 
         self.declare_parameter("name", "control_node")
         self.declare_parameter("temp_setpoint", 12)
-        self.declare_parameter("temp_hysteresis", 1.0)
-        self.declare_parameter("temp_check_interval", 2)
+        self.declare_parameter("temp_setpoint_A", 12)
+        self.declare_parameter("temp_hysteresis_A", 0.1)
+        self.declare_parameter("temp_setpoint_B", 12)
+        self.declare_parameter("temp_hysteresis_B", 0.1)
+        self.declare_parameter("temp_check_interval", 5)
         self.declare_parameter("tank_switch_interval", 30)
         self.declare_parameter("empty_duration", 10)
         self.declare_parameter("topic_modbus_values", "json_modbus_values")
@@ -34,8 +37,12 @@ class ControlNode(Node):
         self.declare_parameter("modbus_service_name", "modbus_service")
      
         self.name_ = self.get_parameter("name").value
-        self.temp_setpoint_ = self.get_parameter("temp_setpoint").value    
-        self.temp_hysteresis_ = self.get_parameter("temp_hysteresis").value
+
+        self.temp_setpoint_A_ = float(self.get_parameter("temp_setpoint_A").value)
+        self.temp_hysteresis_A_ = float(self.get_parameter("temp_hysteresis_A").value)
+        self.temp_setpoint_B_ = float(self.get_parameter("temp_setpoint_B").value)
+        self.temp_hysteresis_B_ = float(self.get_parameter("temp_hysteresis_B").value)
+        
         self.temp_check_interval_ = self.get_parameter("temp_check_interval").value
         self.tank_switch_interval_ = self.get_parameter("tank_switch_interval").value
         self.empty_duration_ = self.get_parameter("empty_duration").value
@@ -99,7 +106,8 @@ class ControlNode(Node):
 
     def correct_status(self, dict_values):
         json_string = json.dumps(dict_values)
-        self.log_control_status("Sending target status to modbus", self.json_obj_target_status_)
+        self.log_status("Current status", self.json_obj_modbus_status_)
+        self.log_status("Sending target status to modbus", self.json_obj_target_status_)
         self.json_to_modbus(json_string)
         self.modbus_locked_ = True
         self.timer_unlock_modbus_.reset()
@@ -127,7 +135,27 @@ class ControlNode(Node):
         return dict_diff
 
     def temp_control(self):
-        self.log("temp control")
+
+        # Normal temp control routine
+        set_point_A = int(float(f'{self.temp_setpoint_A_:.2f}')*100)
+        hysteresis_A = int(float(f'{self.temp_hysteresis_A_:.2f}')*100)
+        
+        set_point_B = int(float(f'{self.temp_setpoint_B_:.2f}')*100)
+        hysteresis_B = int(float(f'{self.temp_hysteresis_B_:.2f}')*100)
+
+        dict_temps = {}
+        dict_temps['temp_setpoint_A'] = set_point_A
+        dict_temps['temp_hysteresis_A'] = hysteresis_A
+        dict_temps['temp_setpoint_B'] = set_point_B
+        dict_temps['temp_hysteresis_B'] = hysteresis_B
+
+        json_string = json.dumps(dict_temps)
+        self.log("Sending temp setpoints to modbus")
+        self.log(str(dict_temps))
+        self.json_to_modbus(json_string)
+        self.modbus_locked_ = True
+        self.timer_unlock_modbus_.reset()
+        self.log("Modbus locked")
     
     def stop_emptying(self):
         self.log("Waiting for emptying to stop")
@@ -138,7 +166,7 @@ class ControlNode(Node):
     def log_status(self):
         self.log(str(self.json_obj_status_))
     
-    def log_control_status(self, prefix = "", json_status = {}):
+    def log_status(self, prefix = "", json_status = {}):
         if json_status == STATUS_STOP: status = "STATUS_STOP"
         elif json_status == STATUS_PREP_TANK_A: status = "STATUS_PREP_TANK_A"
         elif json_status == STATUS_START_TANK_A: status = "STATUS_START_TANK_A"
@@ -203,7 +231,7 @@ class ControlNode(Node):
             self.target_status_index_ = 0
 
         self.json_obj_target_status_ = self.status_list_[self.target_status_index_].copy()
-        #self.log_control_status("Set target status to", self.json_obj_target_status_)
+        #self.log_status("Set target status to", self.json_obj_target_status_)
 
     def fill_status_list(self):
         self.status_list_.append(STATUS_STOP)
