@@ -12,10 +12,12 @@ from awi_interfaces.srv import ActuatorControl, Modbus, Json
 from functools import partial
 
 STATUS_STOP = json.loads('{"v1":0, "v2":0, "v3":0, "v4":0, "v5":0, "v6":0, "v7":0, "p1":0}')
-STATUS_PREP_TANK_A = json.loads('{"v1":1, "v2":1, "v3":0, "v4":0, "v5":0, "v6":0, "v7":0, "p1":0}')
+STATUS_PREP_TANK_A = json.loads('{"v1":1, "v2":1, "v3":0, "v4":0, "v5":1, "v6":0, "v7":0, "p1":0}')
+STATUS_VENT_TANK_A = json.loads('{"v1":1, "v2":1, "v3":0, "v4":0, "v5":1, "v6":0, "v7":0, "p1":1}')
 STATUS_START_TANK_A = json.loads('{"v1":1, "v2":1, "v3":0, "v4":0, "v5":0, "v6":0, "v7":0, "p1":1}')
 STATUS_START_EMPTY = json.loads('{"v1":0, "v2":0, "v3":0, "v4":0, "v5":1, "v6":1, "v7":0, "p1":0}')
-STATUS_PREP_TANK_B = json.loads('{"v1":0, "v2":0, "v3":1, "v4":1, "v5":0, "v6":0, "v7":0, "p1":0}')
+STATUS_PREP_TANK_B = json.loads('{"v1":0, "v2":0, "v3":1, "v4":1, "v5":1, "v6":0, "v7":0, "p1":0}')
+STATUS_VENT_TANK_B = json.loads('{"v1":0, "v2":0, "v3":1, "v4":1, "v5":1, "v6":0, "v7":0, "p1":1}')
 STATUS_START_TANK_B = json.loads('{"v1":0, "v2":0, "v3":1, "v4":1, "v5":0, "v6":0, "v7":0, "p1":1}')
 
 class ControlNode(Node):
@@ -53,12 +55,12 @@ class ControlNode(Node):
         self.json_obj_modbus_status_ = STATUS_STOP.copy()
         self.json_obj_target_status_ = STATUS_STOP.copy()
 
-        self.timer_main_control_ =  self.create_timer(3, self.main_control)
+        self.timer_main_control_ =  self.create_timer(15, self.main_control)
         self.timer_tank_switch_ =  self.create_timer(self.tank_switch_interval_, self.tank_switch)
         self.timer_temp_control_ =  self.create_timer(self.temp_check_interval_, self.temp_control)
         self.timer_stop_emptying_ = self.create_timer(self.empty_duration_, self.stop_emptying)
         self.timer_status_watchdog_ = self.create_timer(2, self.status_watchdog)
-        self.timer_unlock_modbus_ = self.create_timer(5, self.unlock_modbus)
+        self.timer_unlock_modbus_ = self.create_timer(3, self.unlock_modbus)
 
         self.timer_tank_switch_.cancel()
         self.timer_temp_control_.cancel()
@@ -80,9 +82,11 @@ class ControlNode(Node):
     def main_control(self):
 
         if self.status_consistent():
-            if ( self.json_obj_modbus_status_ == STATUS_PREP_TANK_A or 
-                 self.json_obj_modbus_status_ == STATUS_PREP_TANK_B or
-                 self.json_obj_modbus_status_ == STATUS_STOP): 
+            if (self.json_obj_modbus_status_ == STATUS_PREP_TANK_A or
+                self.json_obj_modbus_status_ == STATUS_VENT_TANK_A or
+                self.json_obj_modbus_status_ == STATUS_PREP_TANK_B or
+                self.json_obj_modbus_status_ == STATUS_VENT_TANK_B or
+                self.json_obj_modbus_status_ == STATUS_STOP):
                 self.set_next_target_status()
 
             if (self.json_obj_modbus_status_ == STATUS_START_TANK_A or self.json_obj_modbus_status_ == STATUS_START_TANK_B):
@@ -102,7 +106,7 @@ class ControlNode(Node):
     def unlock_modbus(self):
         self.timer_unlock_modbus_.cancel()
         self.modbus_locked_ = False
-        self.log("Modbus unlocked")
+        #self.log("Modbus unlocked")
 
     def correct_status(self, dict_values):
         json_string = json.dumps(dict_values)
@@ -111,7 +115,7 @@ class ControlNode(Node):
         self.json_to_modbus(json_string)
         self.modbus_locked_ = True
         self.timer_unlock_modbus_.reset()
-        self.log("Modbus locked")
+        #self.log("Modbus locked")
 
     def tank_switch(self):
         self.log("Switching tank")
@@ -150,12 +154,12 @@ class ControlNode(Node):
         dict_temps['temp_hysteresis_B'] = hysteresis_B
 
         json_string = json.dumps(dict_temps)
-        self.log("Sending temp setpoints to modbus")
+        #self.log("Sending temp setpoints to modbus")
         self.log(str(dict_temps))
         self.json_to_modbus(json_string)
         self.modbus_locked_ = True
         self.timer_unlock_modbus_.reset()
-        self.log("Modbus locked")
+        #self.log("Modbus locked")
     
     def stop_emptying(self):
         self.log("Waiting for emptying to stop")
@@ -167,12 +171,14 @@ class ControlNode(Node):
         self.log(str(self.json_obj_status_))
     
     def log_status(self, prefix = "", json_status = {}):
-        if json_status == STATUS_STOP: status = "STATUS_STOP"
-        elif json_status == STATUS_PREP_TANK_A: status = "STATUS_PREP_TANK_A"
-        elif json_status == STATUS_START_TANK_A: status = "STATUS_START_TANK_A"
-        elif json_status == STATUS_PREP_TANK_B: status = "STATUS_PREP_TANK_B"
-        elif json_status == STATUS_START_TANK_B: status = "STATUS_START_TANK_B"
-        elif json_status == STATUS_START_EMPTY: status = "STATUS_START_EMPTY"
+        if json_status == STATUS_STOP: status = "STOP"
+        elif json_status == STATUS_PREP_TANK_A: status = "PREP_TANK_A"
+        elif json_status == STATUS_START_TANK_A: status = "START_TANK_A"
+        elif json_status == STATUS_VENT_TANK_A: status = "VENT_TANK_A"
+        elif json_status == STATUS_PREP_TANK_B: status = "PREP_TANK_B"
+        elif json_status == STATUS_START_TANK_B: status = "START_TANK_B"
+        elif json_status == STATUS_VENT_TANK_B: status = "VENT_TANK_B"
+        elif json_status == STATUS_START_EMPTY: status = "START_EMPTY"
         else:  status = "STATUS_UNKNOWN"
 
         self.log(prefix + ': ' + status)
@@ -231,17 +237,21 @@ class ControlNode(Node):
             self.target_status_index_ = 0
 
         self.json_obj_target_status_ = self.status_list_[self.target_status_index_].copy()
+
+
         #self.log_status("Set target status to", self.json_obj_target_status_)
 
     def fill_status_list(self):
         self.status_list_.append(STATUS_STOP)
         self.status_list_.append(STATUS_PREP_TANK_A)
+        self.status_list_.append(STATUS_VENT_TANK_A)
         self.status_list_.append(STATUS_START_TANK_A)
         self.status_list_.append(STATUS_PREP_TANK_A)
         self.status_list_.append(STATUS_STOP)
         self.status_list_.append(STATUS_START_EMPTY)
         self.status_list_.append(STATUS_STOP)
         self.status_list_.append(STATUS_PREP_TANK_B)
+        self.status_list_.append(STATUS_VENT_TANK_B)
         self.status_list_.append(STATUS_START_TANK_B)
         self.status_list_.append(STATUS_PREP_TANK_B)
         self.status_list_.append(STATUS_STOP)

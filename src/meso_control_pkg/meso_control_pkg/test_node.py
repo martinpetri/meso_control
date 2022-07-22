@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 import rclpy
-import time
+from datetime import datetime
 from rclpy.logging import get_logger
 from rclpy.node import Node
 from awi_interfaces.msg import AWIFloatValue, AWIStringValue
@@ -13,44 +13,34 @@ class TestNode(Node):
     def __init__(self):
         super().__init__("test_node")
 
-        logging.basicConfig(filename='log/meso_control.log', level=logging.DEBUG)
-        logging.info("log test")
+        self.timer_main_control_ =  self.create_timer(1, self.main_control)
+        self.timer_one_ =  self.create_timer(1, self.timer_one)
+        self.timer_one_.cancel()
+        self.counter_ = 0
 
-        self.timer_main_control_ =  self.create_timer(3, self.main_control)
         self.get_logger().info("Test node started")
 
     def main_control(self):
-        self.get_logger().info("Sending wrong info to modbus")
-        self.send_modbus_command("v5", 0)
+        self.counter_ += 1
+        if self.timer_one_.is_canceled():
+            self.timer_one_ =  self.create_timer(self.counter_, self.timer_one)
+            self.log("resetting timer")   
+        else:
+         self.log("timer is running")
+            
+    def timer_one(self):
+        self.log("stop")
+        self.timer_one_.cancel()
+        self.timer_one_.destroy()
         
-    def send_modbus_command(self, json_modbus_key_name, new_status):
-        # self.get_logger().info("sending " + json_modbus_key_name  +':'+ str(new_status))
-        service_name = "/meso/modbus_tcp_node"
-        client = self.create_client(Modbus, service_name)
-        while not client.wait_for_service(1.0):
-            self.get_logger().warn("Waiting for service " + service_name)
-    
-        request = Modbus.Request()
-        request.key_name = json_modbus_key_name
-        request.value_to_send = str(new_status)
-
-        future = client.call_async(request)
-        future.add_done_callback(partial(self.callback_send_modbus_command))
-
-    def callback_send_modbus_command(self, future):
-        try:
-            response = future.result()
-            #self.get_logger().info('modbus request: set ' + str(response.key_name) + ' to ' + str(response.value_to_send))
-        except Exception as e:
-            self.get_logger().error("Service call failed %r" % (e,))
-    
-    def callback_modbus_subscription(self, msg):
-        self.json_obj_status_ = json.loads(msg.data)
-        for k_modbus, v_modbus in self.json_obj_modbus_status_.items():
-            for k, v in self.json_obj_status_.items():
-                 if k == k_modbus: self.json_obj_modbus_status_[k] = v
-        # self.log(str(self.json_obj_modbus_status_))
-    
+    def log(self, msg = "", include_datetime = True):
+        
+        if include_datetime:
+            now = datetime.now()
+            msg = now.strftime("%d/%m/%Y %H:%M:%S") + ' - ' + msg
+        self.get_logger().info(msg)
+        
+        
 def main(args=None):
     rclpy.init(args=args)
     node = TestNode()
