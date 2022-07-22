@@ -55,12 +55,12 @@ class ControlNode(Node):
         self.json_obj_modbus_status_ = STATUS_STOP.copy()
         self.json_obj_target_status_ = STATUS_STOP.copy()
 
-        self.timer_main_control_ =  self.create_timer(15, self.main_control)
+        self.timer_main_control_ =  self.create_timer(5, self.main_control)
         self.timer_tank_switch_ =  self.create_timer(self.tank_switch_interval_, self.tank_switch)
         self.timer_temp_control_ =  self.create_timer(self.temp_check_interval_, self.temp_control)
         self.timer_stop_emptying_ = self.create_timer(self.empty_duration_, self.stop_emptying)
         self.timer_status_watchdog_ = self.create_timer(2, self.status_watchdog)
-        self.timer_unlock_modbus_ = self.create_timer(3, self.unlock_modbus)
+        self.timer_unlock_modbus_ = self.create_timer(5, self.unlock_modbus)
 
         self.timer_tank_switch_.cancel()
         self.timer_temp_control_.cancel()
@@ -72,6 +72,8 @@ class ControlNode(Node):
             AWIStringValue, self.topic_modbus_values_,
             self.callback_modbus_subscription, 10
         )
+
+        self.client_modbus_ = self.create_client(Modbus, self.modbus_service_name_)
 
         self.log("Node " + self.name_ + " has been started")
 
@@ -203,16 +205,15 @@ class ControlNode(Node):
 
     def send_modbus_command(self, json_modbus_key_name, new_status):
         # self.get_logger().info("sending " + json_modbus_key_name  +':'+ str(new_status))
-        service_name = self.modbus_service_name_
-        client = self.create_client(Modbus, service_name)
-        while not client.wait_for_service(1.0):
-            self.get_logger().warn("Waiting for service " + service_name)
+        
+        while not self.client_modbus_.wait_for_service(1.0):
+            self.get_logger().warn("Waiting for service " + self.modbus_service_name_)
     
         request = Modbus.Request()
         request.key_name = json_modbus_key_name
         request.value_to_send = str(new_status)
 
-        future = client.call_async(request)
+        future = self.client_modbus_.call_async(request)
         future.add_done_callback(partial(self.callback_send_modbus_command))
 
     def callback_send_modbus_command(self, future):
@@ -246,14 +247,12 @@ class ControlNode(Node):
         self.status_list_.append(STATUS_PREP_TANK_A)
         self.status_list_.append(STATUS_VENT_TANK_A)
         self.status_list_.append(STATUS_START_TANK_A)
-        self.status_list_.append(STATUS_PREP_TANK_A)
         self.status_list_.append(STATUS_STOP)
         self.status_list_.append(STATUS_START_EMPTY)
         self.status_list_.append(STATUS_STOP)
         self.status_list_.append(STATUS_PREP_TANK_B)
         self.status_list_.append(STATUS_VENT_TANK_B)
         self.status_list_.append(STATUS_START_TANK_B)
-        self.status_list_.append(STATUS_PREP_TANK_B)
         self.status_list_.append(STATUS_STOP)
         self.status_list_.append(STATUS_START_EMPTY)
 
