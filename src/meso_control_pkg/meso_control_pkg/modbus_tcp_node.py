@@ -61,20 +61,22 @@ class ModbusTcpNode(Node):
         #self.log('heartbeat: ' + str(register))
 
     def callback_service(self, request, response):
-        
-        if not request.register_address:
-            register = self.get_register(request.key_name)
-        else:
-            register = int(float(request.register_address))
-        
-        value = int(float(request.value_to_send))
-        self.write_modbus(register, value)
-        
-        response.key_name = request.key_name
-        response.register_address = str(register)
-        response.value_to_send = str(value)
-        
-        return response
+        try:
+            if not request.register_address:
+                register = self.get_register(request.key_name)
+            else:
+                register = int(float(request.register_address))
+            
+            value = int(float(request.value_to_send))
+            self.write_modbus(register, value)
+            
+            response.key_name = request.key_name
+            response.register_address = str(register)
+            response.value_to_send = str(value)
+            
+            return response
+        except:
+            self.log("Service callback failed")
     
     def publish_status(self):
         msg = AWIStringValue()
@@ -142,6 +144,7 @@ class ModbusTcpNode(Node):
         if include_datetime:
             now = datetime.now()
             msg = now.strftime("%d/%m/%Y %H:%M:%S") + ' - ' + msg
+        
         self.get_logger().info(msg)
 
 def main(args=None):
