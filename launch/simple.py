@@ -43,9 +43,9 @@ def generate_launch_description():
                         {"temp_hysteresis_A": 0.1},
                         {"temp_setpoint_B": 20.0},
                         {"temp_hysteresis_B": 0.1},
-                        {"temp_check_interval": 30},
-                        {"tank_switch_interval": 1800},
-                        {"empty_duration": 20},
+                        {"temp_check_interval": 2},
+                        {"tank_switch_interval": 20},
+                        {"empty_duration": 5},
                         {"modbus_service_name": MODBUS_SERVICE_NAME},
                         {"topic_modbus_values": TOPIC_MODBUS_VALUES}
                 ]                  
@@ -60,10 +60,10 @@ def generate_launch_description():
                 parameters=[
                         {"name": 'modbus_tcp_node'},
                         {"topic_name": 'json_modbus_values'},
-                        {"modbus_host_ip": '192.168.51.102'},
-                        {"modbus_host_port": 502},
-                        #{"modbus_host_ip": '134.1.4.23'},
-                        #{"modbus_host_port": 10502},
+                        #{"modbus_host_ip": '192.168.51.102'},
+                        #{"modbus_host_port": 502},
+                        {"modbus_host_ip": '134.1.4.23'},
+                        {"modbus_host_port": 10502},
                         {"modbus_service_name": MODBUS_SERVICE_NAME},
                         {"read_modbus_interval": 1},
                         {"json_modbus_write_registers": JSON_MODBUS_WRITE_REGISTERS},
