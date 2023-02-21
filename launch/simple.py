@@ -62,7 +62,7 @@ def generate_launch_description():
                         {"topic_name": 'json_modbus_values'},
                         #{"modbus_host_ip": '192.168.51.102'},
                         #{"modbus_host_port": 502},
-                        {"modbus_host_ip": '134.1.4.23'},
+                        {"modbus_host_ip": 'localhost'},
                         {"modbus_host_port": 10502},
                         {"modbus_service_name": MODBUS_SERVICE_NAME},
                         {"read_modbus_interval": 1},
