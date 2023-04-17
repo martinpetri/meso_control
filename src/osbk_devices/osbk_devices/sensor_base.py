@@ -20,11 +20,11 @@ class SensorBase(Node):
         msg = AWIFloatValue()
         msg.topic_name = self.publish_topic
         msg.data = self.read_sensor()
-        msg.unit = ''
+        msg.unit = None
         self.publisher.publish(msg)
     
     def read_sensor():
-        return 0.0
+        return None
 
 
 def main(args=None):
