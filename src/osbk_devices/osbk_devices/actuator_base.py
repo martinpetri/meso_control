@@ -1,19 +1,15 @@
 import rclpy
 from rclpy.node import Node
-from awi_interfaces import ActuatorControl
+from awi_interfaces.srv import ActuatorControl
 
 
 class ActuatorBase(Node):
 
-    def __init__(self, name):
+    def __init__(self, name = 'actuator'):
         super().__init__(name)
 
         self.service_name = f'{name}/control'
         self.srv = self.create_service(ActuatorControl, self.service_name, self.command_callback)
-    def __init__(self):
-        self.__init__('sensor')
-        
-
 
     def command_callback(self, request, response):
         response = self.set_actuator(request)

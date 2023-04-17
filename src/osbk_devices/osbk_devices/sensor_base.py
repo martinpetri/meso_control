@@ -5,16 +5,11 @@ from awi_interfaces import AWIFloatValue
 
 class SensorBase(Node):
 
-    def __init__(self, name):
+    def __init__(self, name = 'sensor'):
         super().__init__(name)
 
         self.publish_topic = f'{name}/value'
         self.publisher = self.create_publisher(String, self.publish_topic, 10)
-
-    def __init__(self):
-        self.__init__('sensor')
-        
-
 
     def publish_reading(self):
         msg = AWIFloatValue()
