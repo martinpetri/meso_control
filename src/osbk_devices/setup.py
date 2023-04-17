@@ -20,6 +20,8 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
+            'sensor_base = osbk_devices.sensor_base:main',
+            'actuator_base = osbk_devices.actuator_base:main',
         ],
     },
 )
