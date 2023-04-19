@@ -1,40 +1,39 @@
 import rclpy
 from rclpy.node import Node
 from awi_interfaces import AWIFloatValue
+from abc import ABC, abstractmethod
 
+class SensorBase(Node, ABC):
 
-class SensorBase(Node):
-
-    def __init__(self, name = 'sensor'):
+    def __init__(self, name, msg_interface=AWIFloatValue):
         super().__init__(name)
 
         self.publish_topic = f'{name}/value'
-        self.publisher = self.create_publisher(String, self.publish_topic, 10)
+        self.msg_interface = msg_interface
+        self.publisher = self.create_publisher(msg_interface, self.publish_topic, 10)
 
     def publish_reading(self):
-        msg = AWIFloatValue()
-        msg.topic_name = self.publish_topic
-        msg.data = self.read_sensor()
-        msg.unit = None
+        msg = self.read_sensor()
         self.publisher.publish(msg)
     
+    @abstractmethod
     def read_sensor():
-        return None
+        pass
 
 
-def main(args=None):
-    rclpy.init(args=args)
+# def main(args=None):
+#     rclpy.init(args=args)
 
-    sensor = SensorBase()
+#     sensor = SensorBase()
 
-    rclpy.spin(sensor)
+#     rclpy.spin(sensor)
 
-    # Destroy the node explicitly
-    # (optional - otherwise it will be done automatically
-    # when the garbage collector destroys the node object)
-    sensor.destroy_node()
-    rclpy.shutdown()
+#     # Destroy the node explicitly
+#     # (optional - otherwise it will be done automatically
+#     # when the garbage collector destroys the node object)
+#     sensor.destroy_node()
+#     rclpy.shutdown()
 
 
-if __name__ == '__main__':
-    main()
+# if __name__ == '__main__':
+#     main()
