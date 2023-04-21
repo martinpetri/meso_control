@@ -15,7 +15,7 @@ setup(
     zip_safe=True,
     maintainer='Tim Galdiga',
     maintainer_email='t.galdiga@uni-bremen.de',
-    description='Provides basic nodes for sensors, actuators and interface-devices that can be inherited in order to implement nodes for specific hardware.',
+    description='Provides basic hardware nodes to inherit from',
     license='TODO: License declaration',
     tests_require=['pytest'],
     entry_points={

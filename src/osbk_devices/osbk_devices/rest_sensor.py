@@ -1,18 +1,18 @@
 import rclpy
-from rclpy.node import Node
 from awi_interfaces import AWIFloatValue
 from osbk_devices.sensor_base import SensorBase
 import requests
 
+
 class RestSensor(SensorBase):
-    
+
     def __init__(self):
-        super.__init__(name = 'RESTSensor', msg_interface = AWIFloatValue)
+        super.__init__(name='RESTSensor', msg_interface=AWIFloatValue)
 
         self.declare_parameter('source_url')
         self.declare_parameter('path_to_value')
         self.declare_parameter('unit')
-        
+
     def read_sensor(self):
         msg = AWIFloatValue()
         msg.topic_name = self.publish_topic
@@ -28,10 +28,11 @@ class RestSensor(SensorBase):
 
         for key in self.get_parameter('path_to_value').split('.'):
             response = response[key]
-        
+
         msg.data = response
 
         return msg
+
 
 def main(args=None):
     rclpy.init(args=args)

@@ -1,7 +1,7 @@
-import rclpy
 from rclpy.node import Node
 from awi_interfaces import AWIFloatValue
 from abc import ABC, abstractmethod
+
 
 class SensorBase(Node, ABC):
 
@@ -10,12 +10,14 @@ class SensorBase(Node, ABC):
 
         self.publish_topic = f'{name}/value'
         self.msg_interface = msg_interface
-        self.publisher = self.create_publisher(msg_interface, self.publish_topic, 10)
+        self.publisher = self.create_publisher(msg_interface,
+                                               self.publish_topic,
+                                               10)
 
     def publish_reading(self):
         msg = self.read_sensor()
         self.publisher.publish(msg)
-    
+
     @abstractmethod
     def read_sensor():
         pass
