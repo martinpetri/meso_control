@@ -1,5 +1,5 @@
 import rclpy
-from awi_interfaces import AWIFloatValue
+from awi_interfaces .msg import AWIFloatValue
 from osbk_devices.sensor_base import SensorBase
 import requests
 

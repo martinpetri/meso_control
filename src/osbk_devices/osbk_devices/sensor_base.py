@@ -1,5 +1,5 @@
 from rclpy.node import Node
-from awi_interfaces import AWIFloatValue
+from awi_interfaces.msg import AWIFloatValue
 from abc import ABC, abstractmethod
 
 
