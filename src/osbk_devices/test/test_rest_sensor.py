@@ -57,7 +57,8 @@ def test_read_sensor(sensor_obj, server):
     #     Parameter('unit', Parameter.Type.STRING, '°C')
     # ]
     param_list = [
-        Parameter('source_url', Parameter.Type.STRING, 'http://localhost:55555'),
+        Parameter('source_url', Parameter.Type.STRING,
+                  'http://localhost:55555'),
         Parameter('path_to_value', Parameter.Type.STRING, 'path.to.json'),
         Parameter('unit', Parameter.Type.STRING, '°C')
     ]
