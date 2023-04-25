@@ -49,13 +49,6 @@ class HTTPHandler(BaseHTTPRequestHandler):
 
 
 def test_read_sensor(sensor_obj, server):
-    # param_list = [
-    #     Parameter('source_url', Parameter.Type.STRING,
-    #               'http://echo.jsontest.com/test/22.5/one/two'),
-    #     Parameter('path_to_value', Parameter.Type.STRING,
-    #               'test'),
-    #     Parameter('unit', Parameter.Type.STRING, '°C')
-    # ]
     param_list = [
         Parameter('source_url', Parameter.Type.STRING,
                   'http://localhost:55555'),
@@ -65,11 +58,8 @@ def test_read_sensor(sensor_obj, server):
     sensor_obj.set_parameters(param_list)
 
     http_thread = Thread(target=server.handle_request)
-    print("start")
     http_thread.start()
-    print("read")
     reading = sensor_obj.read_sensor()
-    print("join")
     http_thread.join()
 
     print(f'this: {reading}')
