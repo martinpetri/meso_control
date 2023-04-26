@@ -25,7 +25,6 @@ class RestSensor(SensorBase):
             return None
 
         response = response.json()
-        print(response)
         for key in self.get_parameter("path_to_value").value.split("."):
             response = response[key]
 
