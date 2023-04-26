@@ -77,5 +77,5 @@ def test_read_sensor(sensor_obj, server):
     assert reading.topic_name == 'RESTSensor/value'
     assert reading.data == 22.5
     assert reading.unit == 'degC'
-    
+
     rclpy.shutdown()
