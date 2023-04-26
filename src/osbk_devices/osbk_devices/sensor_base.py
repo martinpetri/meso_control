@@ -1,25 +1,72 @@
 from rclpy.node import Node
-from awi_interfaces.msg import AWIFloatValue
+from typing import TypeVar
 from abc import ABC, abstractmethod
+
+from awi_interfaces.msg import AWIFloatValue
+
+MsgType = TypeVar('MsgType')
 
 
 class SensorBase(Node, ABC):
+    """
+    Abstract base class for sensor implementations to use with the OSBK-library
 
-    def __init__(self, name, msg_interface=AWIFloatValue):
+    Nodes, that implement a specific sensor directly connected to the
+    controller should inherit from this base class and overwrite the
+    :func:'read_sensor()' function.
+
+    :param publish_topic: topic name, the sensors readings are published to,
+        defaults to "[node_name]/value"
+    :type publish_topic: str
+    :param msg_interface: the msg-interface this sensor uses to publish its
+        readings
+    :type msg_interface: MsgType
+    :param publisher: ROS publisher for sending the readings
+    :type publisher: Publisher
+
+    """
+
+    def __init__(self,
+                 name: str,
+                 msg_interface: MsgType = AWIFloatValue) -> None:
+        """
+        Constructor for SensorBase
+
+        Initializing the nodes name and its attributes for publishing sensor
+        values.
+        :param name: name of the node
+        :type name: str
+        :param msg_interface: ROS msg-interface to use for publishing
+        :type msg_interface: MsgType
+        """
+
+        # call the constructor of Node
         super().__init__(name)
 
+        # initialize topic name, interface and publisher
         self.publish_topic = f"{name}/value"
         self.msg_interface = msg_interface
         self.publisher = self.create_publisher(msg_interface,
                                                self.publish_topic,
                                                10)
 
-    def publish_reading(self):
+    def publish_reading(self) -> None:
+        """
+        publishes what :func: 'read_sensor()' returns
+
+        :rtype: None
+        """
         msg = self.read_sensor()
         self.publisher.publish(msg)
 
     @abstractmethod
     def read_sensor():
+        """
+        Abstract method that returns a sensor reading
+
+        This should be overridden for specific hardware implementation.
+        :return: an instance of the MsgType specified in self.msg_interface
+        """
         pass
 
 
