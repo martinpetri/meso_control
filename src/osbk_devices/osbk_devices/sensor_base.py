@@ -71,21 +71,3 @@ class SensorBase(Node, ABC):
         :return: an instance of the MsgType specified in self.msg_interface
         """
         pass
-
-
-# def main(args=None):
-#     rclpy.init(args=args)
-
-#     sensor = SensorBase()
-
-#     rclpy.spin(sensor)
-
-#     # Destroy the node explicitly
-#     # (optional - otherwise it will be done automatically
-#     # when the garbage collector destroys the node object)
-#     sensor.destroy_node()
-#     rclpy.shutdown()
-
-
-# if __name__ == '__main__':
-#     main()
