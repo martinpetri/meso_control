@@ -37,7 +37,8 @@ class SensorBase(Node, ABC):
         values.
         :param name: name of the node
         :type name: str
-        :param msg_interface: ROS msg-interface to use for publishing
+        :param msg_interface: ROS msg-interface to use for publishing,
+            defaults to 'AWIFloatValue'
         :type msg_interface: MsgType
         """
 
