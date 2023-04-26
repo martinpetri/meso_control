@@ -10,7 +10,7 @@ MsgType = TypeVar('MsgType')
 
 class SensorBase(Node, ABC):
     """
-    Abstract base class for sensor implementations to use with the OSBK-library
+    Abstract base class for sensor implementations.
 
     Nodes, that implement a specific sensor directly connected to the
     controller should inherit from this base class and overwrite the
@@ -31,7 +31,7 @@ class SensorBase(Node, ABC):
                  name: str,
                  msg_interface: MsgType = AWIFloatValue) -> None:
         """
-        Constructor for SensorBase
+        Construct instance of :class:'SensorBase'.
 
         Initializing the nodes name and its attributes for publishing sensor
         values.
@@ -41,7 +41,6 @@ class SensorBase(Node, ABC):
             defaults to 'AWIFloatValue'
         :type msg_interface: MsgType
         """
-
         # call the constructor of Node
         super().__init__(name)
 
@@ -56,7 +55,7 @@ class SensorBase(Node, ABC):
 
     def publish_reading(self) -> None:
         """
-        publishes what :func: 'read_sensor()' returns
+        Publish what :func: 'read_sensor()' returns.
 
         :rtype: None
         """
@@ -66,7 +65,7 @@ class SensorBase(Node, ABC):
     @abstractmethod
     def read_sensor():
         """
-        Abstract method that returns a sensor reading
+        Abstract method that returns a sensor reading.
 
         This should be overridden for specific hardware implementation.
         :return: an instance of the MsgType specified in self.msg_interface

@@ -21,7 +21,6 @@ setup(
     entry_points={
         'console_scripts': [
             'rest_sensor = osbk_devices.rest_sensor:main',
-            'actuator_base = osbk_devices.actuator_base:main',
         ],
     },
 )
