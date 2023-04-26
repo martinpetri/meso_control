@@ -1,4 +1,5 @@
 from rclpy.node import Node
+from rclpy.impl.implementation_singleton import rclpy_implementation as _rclpy
 from typing import TypeVar
 from abc import ABC, abstractmethod
 
@@ -44,11 +45,13 @@ class SensorBase(Node, ABC):
         super().__init__(name)
 
         # initialize topic name, interface and publisher
-        self.publish_topic = f"{name}/value"
-        self.msg_interface = msg_interface
-        self.publisher = self.create_publisher(msg_interface,
-                                               self.publish_topic,
-                                               10)
+        self.publish_topic: str = f"{name}/value"
+        self.msg_interface: MsgType = msg_interface
+        self.publisher: _rclpy.Publisher = self.create_publisher(
+            msg_interface,
+            self.publish_topic,
+            10
+        )
 
     def publish_reading(self) -> None:
         """
