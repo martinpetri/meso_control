@@ -5,10 +5,10 @@ from awi_interfaces.srv import ActuatorControl
 
 class ActuatorBase(Node):
 
-    def __init__(self, name='actuator'):
+    def __init__(self, name="actuator"):
         super().__init__(name)
 
-        self.service_name = f'{name}/control'
+        self.service_name = f"{name}/control"
         self.srv = self.create_service(ActuatorControl,
                                        self.service_name,
                                        self.command_callback)

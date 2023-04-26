@@ -8,7 +8,7 @@ class SensorBase(Node, ABC):
     def __init__(self, name, msg_interface=AWIFloatValue):
         super().__init__(name)
 
-        self.publish_topic = f'{name}/value'
+        self.publish_topic = f"{name}/value"
         self.msg_interface = msg_interface
         self.publisher = self.create_publisher(msg_interface,
                                                self.publish_topic,

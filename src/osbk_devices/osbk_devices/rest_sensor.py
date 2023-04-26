@@ -7,18 +7,18 @@ import requests
 class RestSensor(SensorBase):
 
     def __init__(self):
-        super().__init__(name='RESTSensor', msg_interface=AWIFloatValue)
+        super().__init__(name="RESTSensor", msg_interface=AWIFloatValue)
 
-        self.declare_parameter('source_url')
-        self.declare_parameter('path_to_value')
-        self.declare_parameter('unit')
+        self.declare_parameter("source_url")
+        self.declare_parameter("path_to_value")
+        self.declare_parameter("unit")
 
     def read_sensor(self):
         msg = AWIFloatValue()
         msg.topic_name = self.publish_topic
-        msg.unit = self.get_parameter('unit').value
+        msg.unit = self.get_parameter("unit").value
 
-        url = self.get_parameter('source_url').value
+        url = self.get_parameter("source_url").value
         if type(url) == str:
             response = requests.get(url)
         else:
@@ -26,7 +26,7 @@ class RestSensor(SensorBase):
 
         response = response.json()
         print(response)
-        for key in self.get_parameter('path_to_value').value.split('.'):
+        for key in self.get_parameter("path_to_value").value.split("."):
             response = response[key]
 
         msg.data = response

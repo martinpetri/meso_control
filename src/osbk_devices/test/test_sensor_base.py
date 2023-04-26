@@ -4,11 +4,11 @@ import rclpy
 from osbk_devices.sensor_base import SensorBase
 from awi_interfaces.msg import AWIFloatValue
 
-SENSOR_NAME = 'test_sensor'
+SENSOR_NAME = "test_sensor"
 SENSOR_VALUE = 1.2
-SENSOR_UNIT = 'mV'
+SENSOR_UNIT = "mV"
 
-PUBLISH_TOPIC = 'test_sensor/value'
+PUBLISH_TOPIC = "test_sensor/value"
 
 
 class MockSensor(SensorBase):
