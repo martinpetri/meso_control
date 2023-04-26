@@ -15,7 +15,8 @@ class ActuatorBase(Node, ABC):
 
     Nodes, that implement a specific actuator directly connected to the
     controller should inherit from this base class and overwrite the
-    :func:'set_actuator()' function.
+    :func:'set_actuator()' function. This class also inherits from Node.
+
     :param service_name: name of the service this actuator can be
         controlled with
     :type service_name: str
@@ -29,6 +30,7 @@ class ActuatorBase(Node, ABC):
         Construct instance of :class: 'ActuatorBase'.
 
         Initializes a service and its name as attributes.
+
         :param name: name for the node
         :type name: str
         """
@@ -36,7 +38,7 @@ class ActuatorBase(Node, ABC):
         super().__init__(name)
 
         # initialize the service to control this actuator with
-        self.service_name: str = f"{name}/control"
+        self.service_name: str = f'{name}/control'
         self.srv: _rclpy.Service = self.create_service(ActuatorControl,
                                                        self.service_name,
                                                        self.__command_callback)
@@ -53,7 +55,8 @@ class ActuatorBase(Node, ABC):
         """
         Abstract method that sets the actuator to a new setpoint.
 
-        This method should be overriden by specific hardware implementation
+        This method should be overriden by specific hardware implementation.
+
         :param setpoint: the Request sent to self.srv
         :type setpoint: SrvTypeRequest
         :return: confirmation of the setpoint

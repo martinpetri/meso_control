@@ -13,18 +13,17 @@ class SensorBase(Node, ABC):
     Abstract base class for sensor implementations.
 
     Nodes, that implement a specific sensor directly connected to the
-    controller should inherit from this base class and overwrite the
-    :func:'read_sensor()' function.
+    controller, should inherit from this base class and overwrite the
+    :func:'read_sensor()' function. This Class also inherits from Node.
 
     :param publish_topic: topic name, the sensors readings are published to,
-        defaults to "[node_name]/value"
+        defaults to '[node_name]/value'
     :type publish_topic: str
     :param msg_interface: the msg-interface this sensor uses to publish its
         readings
     :type msg_interface: MsgType
     :param publisher: ROS publisher for sending the readings
     :type publisher: Publisher
-
     """
 
     def __init__(self,
@@ -35,6 +34,7 @@ class SensorBase(Node, ABC):
 
         Initializing the nodes name and its attributes for publishing sensor
         values.
+
         :param name: name of the node
         :type name: str
         :param msg_interface: ROS msg-interface to use for publishing,
@@ -45,7 +45,7 @@ class SensorBase(Node, ABC):
         super().__init__(name)
 
         # initialize topic name, interface and publisher
-        self.publish_topic: str = f"{name}/value"
+        self.publish_topic: str = f'{name}/value'
         self.msg_interface: MsgType = msg_interface
         self.publisher: _rclpy.Publisher = self.create_publisher(
             msg_interface,
@@ -68,6 +68,7 @@ class SensorBase(Node, ABC):
         Abstract method that returns a sensor reading.
 
         This should be overridden for specific hardware implementation.
+
         :return: an instance of the MsgType specified in self.msg_interface
         """
         pass
