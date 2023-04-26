@@ -55,7 +55,7 @@ class ActuatorBase(Node, ABC):
         """
         Abstract method that sets the actuator to a new setpoint.
 
-        This method should be overriden by specific hardware implementation.
+        This method should be overridden by specific hardware implementation.
 
         :param setpoint: the Request sent to self.srv
         :type setpoint: SrvTypeRequest
