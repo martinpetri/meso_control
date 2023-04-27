@@ -14,7 +14,7 @@ class SensorBase(Node, ABC):
 
     Nodes, that implement a specific sensor directly connected to the
     controller, should inherit from this base class and overwrite the
-    :func:'read_sensor()' function. This Class also inherits from Node.
+    'read_sensor()' function. This Class also inherits from Node.
 
     :param publish_topic: topic name, the sensors readings are published to,
         defaults to '[node_name]/value'
@@ -30,7 +30,7 @@ class SensorBase(Node, ABC):
                  name: str,
                  msg_interface: MsgType = AWIFloatValue) -> None:
         """
-        Construct instance of :class:'SensorBase'.
+        Construct instance of 'SensorBase'.
 
         Initializing the nodes name and its attributes for publishing sensor
         values.
