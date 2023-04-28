@@ -6,9 +6,15 @@ from osbk_operation.periodic_sensor_scheduler import PeriodicSensorScheduler
 
 
 def main():
+    """
+    Start an example setup using two RESTSensor and one PeriodicSensorScheduler
+    """
+    # initialize ROS setup
     rclpy.init()
 
+    # create the sensor-node for a Pegelonline request
     pegelonline = RestSensor('Pegelonline')
+    # set its source, json-element to extract and unit as ROS-parameters
     pegelonline.set_parameters([
         Parameter('source_url', Parameter.Type.STRING,
                   'https://www.pegelonline.wsv.de/webservices/rest-api/v2/st' +
@@ -17,6 +23,7 @@ def main():
         Parameter('unit', Parameter.Type.STRING, 'cm')
     ])
 
+    # create the sensor-node for a request to jsontest.com equivalently
     jsontest = RestSensor('JSONTest')
     jsontest.set_parameters([
         Parameter('source_url', Parameter.Type.STRING,
@@ -25,10 +32,13 @@ def main():
         Parameter('unit', Parameter.Type.STRING, 'degC')
     ])
 
+    # create the scheduler-node
     scheduler = PeriodicSensorScheduler()
+    # and add the two sensor-nodes
     scheduler.add_sensor(pegelonline, 5)
     scheduler.add_sensor(jsontest, 10)
 
+    # loop until exit
     try:
         rclpy.spin(scheduler)
     except KeyboardInterrupt:
