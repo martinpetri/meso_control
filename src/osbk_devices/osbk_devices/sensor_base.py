@@ -60,7 +60,8 @@ class SensorBase(Node, ABC):
         :rtype: None
         """
         msg = self.read_sensor()
-        self.publisher.publish(msg)
+        if(msg is not None):
+            self.publisher.publish(msg)
 
     @abstractmethod
     def read_sensor():

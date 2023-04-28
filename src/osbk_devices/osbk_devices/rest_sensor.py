@@ -19,15 +19,18 @@ class RestSensor(SensorBase):
     :type unit: ROS-param(String)
     """
 
-    def __init__(self) -> None:
+    def __init__(self, name: str = 'RESTSensor') -> None:
         """
         Construct an instance of RestSensor.
 
         Initializes name of node, the ROS-message-interface to use and its
         ROS-parameters.
+
+        :param name: name of this node, defaults to 'RESTSensor'
+        :type name: str
         """
         # call constructor of SensorBase
-        super().__init__(name='RESTSensor', msg_interface=AWIFloatValue)
+        super().__init__(name, AWIFloatValue)
 
         # initialize ROS-parameters
         self.declare_parameter('source_url')
@@ -59,11 +62,23 @@ class RestSensor(SensorBase):
 
         # parse json as dict
         response = response.json()
+        # if response is empty do nothing
+        if(response == [] or response is None):
+            return None
 
         # extract the specific value according to ros-param
         for key in self.get_parameter('path_to_value').value.split('.'):
-            response = response[key]
-        msg.data = response
+            try:
+                # if this nested level is dict:
+                response = response[key]
+            except TypeError:
+                # or a list:
+                response = response[int(key)]
+            except KeyError:
+                # message is probably not what is expected
+                return None
+
+        msg.data = float(response)
 
         return msg
 
