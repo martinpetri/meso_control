@@ -19,7 +19,9 @@ class RestSensor(SensorBase):
     :type unit: ROS-param(String)
     """
 
-    def __init__(self, name: str = 'RESTSensor') -> None:
+    def __init__(self,
+                 name: str = 'RESTSensor',
+                 read_interval: float = 10) -> None:
         """
         Construct an instance of RestSensor.
 
@@ -28,9 +30,12 @@ class RestSensor(SensorBase):
 
         :param name: name of this node, defaults to 'RESTSensor'
         :type name: str
+        :param read_interval: interval in seconds to publish sensor-readings,
+            defaults to 10
+        :type read_interval: float
         """
         # call constructor of SensorBase
-        super().__init__(name, AWIFloatValue)
+        super().__init__(name, read_interval, AWIFloatValue)
 
         # initialize ROS-parameters
         self.declare_parameter('source_url')
@@ -51,7 +56,11 @@ class RestSensor(SensorBase):
 
         # with topic name and unit
         msg.topic_name = self.publish_topic
-        msg.unit = self.get_parameter('unit').value
+        try:
+            msg.unit = self.get_parameter('unit').value
+        except AssertionError:
+            # do nothing if parameter is still empty
+            return None
 
         # send a request to the REST-server
         url = self.get_parameter('source_url').value

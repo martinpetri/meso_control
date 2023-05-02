@@ -1,5 +1,7 @@
 from rclpy.node import Node
+from rclpy.timer import Timer
 from rclpy.impl.implementation_singleton import rclpy_implementation as _rclpy
+
 from typing import TypeVar
 from abc import ABC, abstractmethod
 
@@ -24,10 +26,13 @@ class SensorBase(Node, ABC):
     :type msg_interface: MsgType
     :param publisher: ROS publisher for sending the readings
     :type publisher: Publisher
+    :param publish_timer: ROS timer to schedule publishing of sensor-readings
+    :type publish_timer: Timer
     """
 
     def __init__(self,
                  name: str,
+                 read_interval: float,
                  msg_interface: MsgType = AWIFloatValue) -> None:
         """
         Construct instance of 'SensorBase'.
@@ -37,6 +42,8 @@ class SensorBase(Node, ABC):
 
         :param name: name of the node
         :type name: str
+        :param read_interval: interval in seconds to publish sensor-readings
+        :type read_interval: float
         :param msg_interface: ROS msg-interface to use for publishing,
             defaults to 'AWIFloatValue'
         :type msg_interface: MsgType
@@ -46,12 +53,18 @@ class SensorBase(Node, ABC):
 
         # initialize topic name, interface and publisher
         self.publish_topic: str = f'{name}/value'
+
         self.msg_interface: MsgType = msg_interface
+
         self.publisher: _rclpy.Publisher = self.create_publisher(
             msg_interface,
             self.publish_topic,
             10
         )
+
+        # create the timer to publish sensor-readings periodically
+        self.publish_timer: Timer = self.create_timer(read_interval,
+                                                      self.publish_reading)
 
     def publish_reading(self) -> None:
         """

@@ -31,12 +31,12 @@ class MockSensor(SensorBase):
 @pytest.fixture
 def sensor_obj():
     rclpy.init()
-    return MockSensor(SENSOR_NAME)
+    return MockSensor(SENSOR_NAME, 10)
 
 
 def test_object_creation():
     rclpy.init()
-    obj = MockSensor(SENSOR_NAME)
+    obj = MockSensor(SENSOR_NAME, 10)
 
     assert obj is not None
 
