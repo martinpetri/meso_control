@@ -63,6 +63,7 @@ class SensorBase(Node, ABC):
         )
 
         # create the timer to publish sensor-readings periodically
+        # TODO: make configurable with ros-param
         self.publish_timer: Timer = self.create_timer(read_interval,
                                                       self.publish_reading)
 
