@@ -6,9 +6,7 @@ from osbk_operation.periodic_sensor_scheduler import PeriodicSensorScheduler
 
 
 def main():
-    """
-    Start an example setup using two RESTSensor and one PeriodicSensorScheduler
-    """
+    """Start an example setup using two RESTSensors and one SensorScheduler."""
     # initialize ROS setup
     rclpy.init()
 
