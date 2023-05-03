@@ -1,8 +1,10 @@
 from rclpy.node import Node
 from rclpy.timer import Timer
+from rclpy.parameter import Parameter
+from rcl_interfaces.msg import SetParametersResult
 from rclpy.impl.implementation_singleton import rclpy_implementation as _rclpy
 
-from typing import TypeVar
+from typing import TypeVar, List
 from abc import ABC, abstractmethod
 
 from awi_interfaces.msg import AWIFloatValue
@@ -63,9 +65,33 @@ class SensorBase(Node, ABC):
         )
 
         # create the timer to publish sensor-readings periodically
-        # TODO: make configurable with ros-param
         self.publish_timer: Timer = self.create_timer(read_interval,
                                                       self.publish_reading)
+
+        # make timer interval configurable
+        self.declare_parameter('read_interval', read_interval)
+        self.add_on_set_parameters_callback(self._parameter_set_callback)
+
+    def _parameter_set_callback(self, parameters: List[Parameter]) -> SetParametersResult:
+        """
+        Callback-function for parameters being set.
+
+        Updates the publish_timer-interval when read_interval is set.
+
+        :param parameters: list of parameters that are being updated
+        :type parameters: List[Parameter]
+        :rtype: SetParametersResult
+        """
+        # check every updated parameter
+        for param in parameters:
+
+            if param.name == 'read_interval':
+                # update the timer period
+                self.publish_timer.timer_period_ns = param.value * 1e9
+
+        result = SetParametersResult()
+        result.successful = True
+        return result
 
     def publish_reading(self) -> None:
         """
