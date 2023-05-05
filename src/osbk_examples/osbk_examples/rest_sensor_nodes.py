@@ -16,7 +16,7 @@ def main():
     pegelonline.set_parameters([
         Parameter('source_url', Parameter.Type.STRING,
                   'https://www.pegelonline.wsv.de/webservices/rest-api/v2/st' +
-                  'ations/LIST AUF SYLT/W/measurements.json?start=P0DT0H00M'),
+                  'ations/LIST AUF SYLT/W/measurements.json?start=P0DT0H30M'),
         Parameter('path_to_value', Parameter.Type.STRING, '0.value'),
         Parameter('unit', Parameter.Type.STRING, 'cm')
     ])

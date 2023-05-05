@@ -1,8 +1,5 @@
 {
     "editor.tabSize": 8,
-    "editor.rulers": [
-        79
-    ],
     "files.associations": {
         "*.repos": "yaml",
         "*.world": "xml",
@@ -69,5 +66,8 @@
         ".vscode",
         ".vscode-insiders",
         ".devcontainer/devcontainer.json"
+    ],
+    "editor.rulers": [
+        100
     ],
 }
