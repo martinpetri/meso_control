@@ -3,6 +3,7 @@ from rclpy.timer import Timer
 from rclpy.parameter import Parameter
 from rcl_interfaces.msg import SetParametersResult
 from rclpy.impl.implementation_singleton import rclpy_implementation as _rclpy
+from std_srvs.srv import Trigger
 
 from typing import TypeVar, List
 from abc import ABC, abstractmethod
@@ -23,11 +24,15 @@ class SensorBase(Node, ABC):
     :param publish_topic: topic name, the sensors readings are published to,
         defaults to '[node_name]/value'
     :type publish_topic: str
+    :param publish_service_name: name of the service to publish sensor readings
+    :type publish_service_name: str
     :param msg_interface: the msg-interface this sensor uses to publish its
         readings
     :type msg_interface: MsgType
     :param publisher: ROS publisher for sending the readings
     :type publisher: Publisher
+    :param publish_service: the service to request a publish of sensor readings
+    :type publish_service: Service
     :param publish_timer: ROS timer to schedule publishing of sensor-readings
     :type publish_timer: Timer
     """
@@ -53,15 +58,24 @@ class SensorBase(Node, ABC):
         # call the constructor of Node
         super().__init__(name)
 
-        # initialize topic name, interface and publisher
+        # initialize topic name, ros-interface
         self.publish_topic: str = f'{name}/value'
+        self.publish_service_name: str = f'{name}/request_publish'
 
         self.msg_interface: MsgType = msg_interface
 
+        # create publisher for sensor readings
         self.publisher: _rclpy.Publisher = self.create_publisher(
             msg_interface,
             self.publish_topic,
             10
+        )
+
+        # create service for reading and publishing sensor
+        self.publish_service: _rclpy.Service = self.create_service(
+            Trigger,
+            self.publish_service_name,
+            self._publish_request_callback
         )
 
         # create the timer to publish sensor-readings periodically
@@ -71,6 +85,31 @@ class SensorBase(Node, ABC):
         # make timer interval configurable
         self.declare_parameter('read_interval', read_interval)
         self.add_on_set_parameters_callback(self._parameter_set_callback)
+
+    def _publish_request_callback(self,
+                                  request: Trigger.Request,
+                                  response: Trigger.Response) -> Trigger.Response:
+        """
+        Callback-function for the publish_service.
+
+        Calls the publish_reading method.
+
+        :param request: service-request, should be empty
+        :type request: Trigger.Request
+        :param response: service-response, with a success flag and a message field
+        :type response: Trigger.Response
+        """
+        # request is empty
+        del request
+
+        # prepare response
+        response.success = True
+        response.message = 'OK.'
+
+        # TODO: probably let publish_reading return a bool, for proper error signaling
+        self.publish_reading()
+
+        return response
 
     def _parameter_set_callback(self, parameters: List[Parameter]) -> SetParametersResult:
         """
