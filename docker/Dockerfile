@@ -6,7 +6,7 @@ RUN apt-get update \
     && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/*
 
-RUN pip3 install requests pymodbus
+RUN pip3 install requests pymodbus python-statemachine
 RUN mkdir -p /workspaces
 
 WORKDIR /workspaces
