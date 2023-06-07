@@ -41,9 +41,9 @@ class ActuatorBase(Node, ABC):
         self.service_name: str = f'{name}/control'
         self.srv: _rclpy.Service = self.create_service(ActuatorControl,
                                                        self.service_name,
-                                                       self.__command_callback)
+                                                       self._command_callback)
 
-    def __command_callback(self,
+    def _command_callback(self,
                            request: SrvTypeRequest,
                            response: SrvTypeResponse) -> SrvTypeResponse:
         # callback function for self.srv that calls self.set_actuator
