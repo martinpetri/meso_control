@@ -1,4 +1,4 @@
-from osbk_devices.sensor_base import SensorBase
+from .sensor_base import SensorBase
 
 
 class JsonSensor(SensorBase):

@@ -1,6 +1,6 @@
 import rclpy
 from awi_interfaces.msg import AWIFloatValue
-from osbk_devices.sensor_base import SensorBase
+from .sensor_base import SensorBase
 import requests
 
 
