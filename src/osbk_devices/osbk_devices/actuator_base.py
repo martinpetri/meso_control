@@ -44,8 +44,8 @@ class ActuatorBase(Node, ABC):
                                                        self._command_callback)
 
     def _command_callback(self,
-                           request: SrvTypeRequest,
-                           response: SrvTypeResponse) -> SrvTypeResponse:
+                          request: SrvTypeRequest,
+                          response: SrvTypeResponse) -> SrvTypeResponse:
         # callback function for self.srv that calls self.set_actuator
         response = self.set_actuator(request)
         return response
