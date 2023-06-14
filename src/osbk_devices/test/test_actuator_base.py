@@ -4,7 +4,8 @@ import rclpy
 from typing import TypeVar
 
 from osbk_devices.actuator_base import ActuatorBase
-from osbk_interfaces.srv import ActuatorControl
+from osbk_interfaces.srv import ContinuousActuatorControl
+from osbk_interfaces.msg import ContinuousActuatorState
 
 SrvTypeRequest = TypeVar('SrvTypeRequest')
 SrvTypeResponse = TypeVar('SrvTypeResponse')
@@ -21,14 +22,17 @@ class MockActuator(ActuatorBase):
 
         self.status: float = 0
 
-    def set_actuator(self, setpoint: ActuatorControl.Request) -> ActuatorControl.Response:
+    def set_actuator(self, setpoint: ContinuousActuatorControl.Request) -> ContinuousActuatorControl.Response:
         """Overwrite abstract set_actuator to just set a status variable."""
         self.status = setpoint.new_status
 
-        response = ActuatorControl.Response()
+        response = ContinuousActuatorControl.Response()
         response.requested_status = self.status
 
         return response
+    
+    def poll_status(self) -> ContinuousActuatorState:
+        pass
 
 
 @pytest.fixture
@@ -46,7 +50,7 @@ def test_object_creation():
 
 
 def test_set_actuator(actuator_obj: MockActuator):
-    request = ActuatorControl.Request()
+    request = ContinuousActuatorControl.Request()
     request.new_status = 5.0
 
     assert actuator_obj.status == 0.0

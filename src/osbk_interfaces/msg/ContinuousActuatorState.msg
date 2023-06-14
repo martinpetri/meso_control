@@ -1,0 +1,2 @@
+string topic_name
+float32 state

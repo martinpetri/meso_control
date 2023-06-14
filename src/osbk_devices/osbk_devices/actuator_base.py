@@ -1,10 +1,16 @@
 from rclpy.node import Node
 from rclpy.impl.implementation_singleton import rclpy_implementation as _rclpy
+from rclpy.timer import Timer
 from typing import TypeVar
 from abc import ABC, abstractmethod
 
-from osbk_interfaces.srv import ActuatorControl
+from osbk_interfaces.srv import (ContinuousActuatorControl,
+                                 DiscreteActuatorControl,
+                                 ContinuousActuatorState,
+                                 DiscreteActuatorState)
 
+
+MsgType = TypeVar('MsgType')
 SrvTypeRequest = TypeVar('SrvTypeRequest')
 SrvTypeResponse = TypeVar('SrvTypeResponse')
 
@@ -25,7 +31,10 @@ class ActuatorBase(Node, ABC):
     :type srv: Service
     """
 
-    def __init__(self, name: str) -> None:
+    def __init__(self,
+                 name: str,
+                 continuous: bool = True,
+                 status_poll_interval: int = 1000) -> None:
         """
         Construct instance of :class: 'ActuatorBase'.
 
@@ -37,11 +46,34 @@ class ActuatorBase(Node, ABC):
         # call constructor for Node
         super().__init__(name)
 
+        # continuous or discrete actuator states
+        self._continuous: bool = continuous
+        if continuous:
+            self._control_interface = ContinuousActuatorControl
+            self._publish_interface = ContinuousActuatorState
+        else:
+            self._control_interface = DiscreteActuatorControl
+            self._publish_interface = DiscreteActuatorState
+
         # initialize the service to control this actuator with
-        self.service_name: str = f'{name}/control'
-        self.srv: _rclpy.Service = self.create_service(ActuatorControl,
+        self.service_name: str = f"{name}/control"
+        self.srv: _rclpy.Service = self.create_service(self._control_interface,
                                                        self.service_name,
                                                        self._command_callback)
+        
+        # create a timer to periodically retrieve the current status
+        self.status_poll_interval: int = status_poll_interval
+        self.poll_timer: Timer = self.create_timer(self.status_poll_interval,
+                                                   self.poll_status)
+        self.current_status: MsgType = None
+
+        # create publisher for the actuators current state
+        self.publish_topic = f"{name}/state"
+        self.publisher: _rclpy.Publisher = self.create_publisher(
+            self._publish_interface,
+            self.publish_topic,
+            10
+        )
 
     def _command_callback(self,
                           request: SrvTypeRequest,
@@ -62,4 +94,16 @@ class ActuatorBase(Node, ABC):
         :return: confirmation of the setpoint
         :rtype: SrvTypeResponse
         """
+        pass
+    
+    def _publish_status(self) -> None:
+        """Publish the status returned by self.poll_status() if changed."""
+        status = self.poll_status()
+        if status != self.current_status:
+            self.publisher.publish(status)
+            self.current_status = status
+
+    @abstractmethod
+    def poll_status(self) -> MsgType:
+        """Abstract method that should retrieves the current actuator status."""
         pass

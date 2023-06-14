@@ -18,7 +18,10 @@ rosidl_generate_interfaces(${PROJECT_NAME}
   "msg/OSBKFloatValue.msg"
   "msg/OSBKInt32Value.msg"
   "msg/OSBKStringValue.msg"
-  "srv/ActuatorControl.srv"
+  "msg/DiscreteActuatorState.msg"
+  "msg/ContinuousActuatorState.msg"
+  "srv/DiscreteActuatorControl.srv"
+  "srv/ContinuousActuatorControl.srv"
   "srv/Modbus.srv"
   "srv/Json.srv"
 )
