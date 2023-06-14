@@ -3,7 +3,7 @@ from rclpy.impl.implementation_singleton import rclpy_implementation as _rclpy
 from typing import TypeVar
 from abc import ABC, abstractmethod
 
-from awi_interfaces.srv import ActuatorControl
+from osbk_interfaces.srv import ActuatorControl
 
 SrvTypeRequest = TypeVar('SrvTypeRequest')
 SrvTypeResponse = TypeVar('SrvTypeResponse')

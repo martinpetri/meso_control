@@ -6,9 +6,9 @@ import json
 from datetime import datetime
 from rclpy.logging import get_logger
 from rclpy.node import Node
-from awi_interfaces.msg import AWIFloatValue
-from awi_interfaces.msg import AWIStringValue
-from awi_interfaces.srv import Modbus, Json
+from osbk_interfaces.msg import OSBKFloatValue
+from osbk_interfaces.msg import OSBKStringValue
+from osbk_interfaces.srv import Modbus, Json
 
 from pymodbus.client.sync import ModbusTcpClient
 
@@ -40,7 +40,7 @@ class ModbusTcpNode(Node):
         self.json_obj_modbus_feedback_registers_ = json.loads(self.get_parameter("json_modbus_feedback_registers").value)
         self.json_data_modbus_values_ = {}
 
-        self.status_publisher_ = self.create_publisher(AWIStringValue, self.topic_name_, 10)
+        self.status_publisher_ = self.create_publisher(OSBKStringValue, self.topic_name_, 10)
 
         self.service_register_ = self.create_service(Modbus, self.modbus_service_name_, self.callback_service)
         self.modbus_client_ = ModbusTcpClient(host=self.modbus_host_ip_ ,port=self.modbus_host_port_)
@@ -79,7 +79,7 @@ class ModbusTcpNode(Node):
             self.log("Service callback failed")
     
     def publish_status(self):
-        msg = AWIStringValue()
+        msg = OSBKStringValue()
         msg.topic_name = self.topic_name_ 
         msg.data = str(self.json_data_modbus_values_)
         msg.unit = 'json'

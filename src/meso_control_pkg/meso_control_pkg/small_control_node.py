@@ -7,8 +7,8 @@ from rclpy.node import Node
 from datetime import datetime
 import logging
 
-from awi_interfaces.msg import AWIStringValue
-from awi_interfaces.srv import Modbus
+from osbk_interfaces.msg import OSBKStringValue
+from osbk_interfaces.srv import Modbus
 from functools import partial
 
 CONST_OPEN = 1
@@ -64,7 +64,7 @@ class SmallControlNode(Node):
         self.timer_stop_flushing_.cancel()
 
         self.modbus_subscriber_ = self.create_subscription(
-            AWIStringValue, self.topic_modbus_values_,
+            OSBKStringValue, self.topic_modbus_values_,
             self.callback_modbus_subscription, 10
         )
         

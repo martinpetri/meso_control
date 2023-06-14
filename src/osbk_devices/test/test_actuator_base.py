@@ -4,7 +4,7 @@ import rclpy
 from typing import TypeVar
 
 from osbk_devices.actuator_base import ActuatorBase
-from awi_interfaces.srv import ActuatorControl
+from osbk_interfaces.srv import ActuatorControl
 
 SrvTypeRequest = TypeVar('SrvTypeRequest')
 SrvTypeResponse = TypeVar('SrvTypeResponse')

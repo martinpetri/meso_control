@@ -1,5 +1,5 @@
 import rclpy
-from awi_interfaces.msg import AWIFloatValue
+from osbk_interfaces.msg import OSBKFloatValue
 from .sensor_base import SensorBase
 import requests
 
@@ -35,14 +35,14 @@ class RestSensor(SensorBase):
         :type read_interval: float
         """
         # call constructor of SensorBase
-        super().__init__(name, read_interval, AWIFloatValue)
+        super().__init__(name, read_interval, OSBKFloatValue)
 
         # initialize ROS-parameters
         self.declare_parameter('source_url')
         self.declare_parameter('path_to_value')
         self.declare_parameter('unit')
 
-    def read_sensor(self) -> AWIFloatValue:
+    def read_sensor(self) -> OSBKFloatValue:
         """
         Read the current value from the REST-server.
 
@@ -52,7 +52,7 @@ class RestSensor(SensorBase):
         the 'path_to_value' parameter
         """
         # create the message object
-        msg = AWIFloatValue()
+        msg = OSBKFloatValue()
 
         # with topic name and unit
         msg.topic_name = self.publish_topic

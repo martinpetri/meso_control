@@ -3,8 +3,8 @@ import rclpy
 from datetime import datetime
 from rclpy.logging import get_logger
 from rclpy.node import Node
-from awi_interfaces.msg import AWIFloatValue, AWIStringValue
-from awi_interfaces.srv import Modbus, Json
+from osbk_interfaces.msg import OSBKFloatValue, OSBKStringValue
+from osbk_interfaces.srv import Modbus, Json
 from functools import partial
 
 import logging

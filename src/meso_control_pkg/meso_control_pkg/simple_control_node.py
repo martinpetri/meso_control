@@ -7,8 +7,8 @@ from rclpy.logging import get_logger
 from rclpy.node import Node
 from datetime import datetime
 
-from awi_interfaces.msg import AWIFloatValue, AWIStringValue
-from awi_interfaces.srv import ActuatorControl, Modbus, Json
+from osbk_interfaces.msg import OSBKFloatValue, OSBKStringValue
+from osbk_interfaces.srv import ActuatorControl, Modbus, Json
 from functools import partial
 
 STATUS_STOP = json.loads('{"v1":0, "v2":0, "v3":0, "v4":0, "v5":0, "v6":0, "v7":0, "p1":0}')
@@ -69,7 +69,7 @@ class ControlNode(Node):
         self.modbus_locked_ = False
 
         self.modbus_subscriber_ = self.create_subscription(
-            AWIStringValue, self.topic_modbus_values_,
+            OSBKStringValue, self.topic_modbus_values_,
             self.callback_modbus_subscription, 10
         )
 

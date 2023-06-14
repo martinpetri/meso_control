@@ -8,7 +8,7 @@ from std_srvs.srv import Trigger
 from typing import TypeVar, List
 from abc import ABC, abstractmethod
 
-from awi_interfaces.msg import AWIFloatValue
+from osbk_interfaces.msg import OSBKFloatValue
 
 MsgType = TypeVar('MsgType')
 
@@ -40,7 +40,7 @@ class SensorBase(Node, ABC):
     def __init__(self,
                  name: str,
                  read_interval: float,
-                 msg_interface: MsgType = AWIFloatValue) -> None:
+                 msg_interface: MsgType = OSBKFloatValue) -> None:
         """
         Construct instance of 'SensorBase'.
 
@@ -52,7 +52,7 @@ class SensorBase(Node, ABC):
         :param read_interval: interval in seconds to publish sensor-readings
         :type read_interval: float
         :param msg_interface: ROS msg-interface to use for publishing,
-            defaults to 'AWIFloatValue'
+            defaults to 'OSBKFloatValue'
         :type msg_interface: MsgType
         """
         # call the constructor of Node

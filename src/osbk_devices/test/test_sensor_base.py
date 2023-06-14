@@ -2,7 +2,7 @@ import pytest
 import rclpy
 
 from osbk_devices.sensor_base import SensorBase
-from awi_interfaces.msg import AWIFloatValue
+from osbk_interfaces.msg import OSBKFloatValue
 
 SENSOR_NAME = 'test_sensor'
 SENSOR_VALUE = 1.2
@@ -14,10 +14,10 @@ PUBLISH_TOPIC = 'test_sensor/value'
 class MockSensor(SensorBase):
     """Subclass of SensorBase for testing."""
 
-    def read_sensor(self) -> AWIFloatValue:
+    def read_sensor(self) -> OSBKFloatValue:
         """Overwrite abstract read_sensor to return constant value."""
-        # create AWIFloatValue object
-        msg = AWIFloatValue()
+        # create OSBKFloatValue object
+        msg = OSBKFloatValue()
 
         # with topic, unit and value
         msg.topic_name = self.publish_topic
@@ -46,7 +46,7 @@ def test_object_creation():
 def test_attributes(sensor_obj):
     assert sensor_obj.get_name() == SENSOR_NAME
     assert sensor_obj.publish_topic == PUBLISH_TOPIC
-    assert sensor_obj.msg_interface == AWIFloatValue
+    assert sensor_obj.msg_interface == OSBKFloatValue
 
     rclpy.shutdown()
 

@@ -8,8 +8,8 @@ import json
 from rclpy.logging import get_logger
 from rclpy.node import Node
 
-from awi_interfaces.msg import AWIFloatValue, AWIStringValue
-from awi_interfaces.srv import ActuatorControl, Modbus
+from osbk_interfaces.msg import OSBKFloatValue, OSBKStringValue
+from osbk_interfaces.srv import ActuatorControl, Modbus
 from functools import partial
 
 class ActuatorNode(Node):
@@ -39,9 +39,9 @@ class ActuatorNode(Node):
         self.status_ = 0.0
         self.topic_name_ = "/meso/" + self.name_ + "_status"
 
-        self.modbus_subscriber_ = self.create_subscription(AWIStringValue, self.topic_modbus_values_, self.callback_modbus_subscription, 10)
+        self.modbus_subscriber_ = self.create_subscription(OSBKStringValue, self.topic_modbus_values_, self.callback_modbus_subscription, 10)
 
-        self.status_publisher_ = self.create_publisher(AWIFloatValue, self.topic_name_, 10)
+        self.status_publisher_ = self.create_publisher(OSBKFloatValue, self.topic_name_, 10)
         self.service_ = self.create_service(ActuatorControl, self.name_ + "_control", self.callback_control)
         self.timer1_ = self.create_timer(self.publish_interval_, self.publish_status)
         #self.timer2_ = self.create_timer(self.poll_interval_, self.poll_status)
@@ -50,7 +50,7 @@ class ActuatorNode(Node):
         self.poll_status()
 
     def publish_status(self):
-        msg = AWIFloatValue()
+        msg = OSBKFloatValue()
         msg.topic_name = self.topic_name_ 
         msg.data = self.status_
         msg.unit = 'deg'
