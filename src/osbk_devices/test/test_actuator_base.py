@@ -22,7 +22,9 @@ class MockActuator(ActuatorBase):
 
         self.status: float = 0
 
-    def set_actuator(self, setpoint: ContinuousActuatorControl.Request) -> ContinuousActuatorControl.Response:
+    def set_actuator(self,
+                     setpoint: ContinuousActuatorControl.Request
+                     ) -> ContinuousActuatorControl.Response:
         """Overwrite abstract set_actuator to just set a status variable."""
         self.status = setpoint.new_status
 
@@ -30,7 +32,7 @@ class MockActuator(ActuatorBase):
         response.requested_status = self.status
 
         return response
-    
+
     def poll_status(self) -> ContinuousActuatorState:
         pass
 

@@ -4,10 +4,8 @@ from rclpy.timer import Timer
 from typing import TypeVar
 from abc import ABC, abstractmethod
 
-from osbk_interfaces.srv import (ContinuousActuatorControl,
-                                 DiscreteActuatorControl,
-                                 ContinuousActuatorState,
-                                 DiscreteActuatorState)
+from osbk_interfaces.srv import ContinuousActuatorControl, DiscreteActuatorControl
+from osbk_interfaces.msg import ContinuousActuatorState, DiscreteActuatorState
 
 
 MsgType = TypeVar('MsgType')
@@ -60,7 +58,7 @@ class ActuatorBase(Node, ABC):
         self.srv: _rclpy.Service = self.create_service(self._control_interface,
                                                        self.service_name,
                                                        self._command_callback)
-        
+
         # create a timer to periodically retrieve the current status
         self.status_poll_interval: int = status_poll_interval
         self.poll_timer: Timer = self.create_timer(self.status_poll_interval,
@@ -83,7 +81,8 @@ class ActuatorBase(Node, ABC):
         return response
 
     @abstractmethod
-    def set_actuator(self, setpoint: SrvTypeRequest) -> SrvTypeResponse:
+    def set_actuator(self,
+                     setpoint: SrvTypeRequest) -> SrvTypeResponse:
         """
         Abstract method that sets the actuator to a new setpoint.
 
@@ -95,7 +94,7 @@ class ActuatorBase(Node, ABC):
         :rtype: SrvTypeResponse
         """
         pass
-    
+
     def _publish_status(self) -> None:
         """Publish the status returned by self.poll_status() if changed."""
         status = self.poll_status()
