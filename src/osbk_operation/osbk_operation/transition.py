@@ -16,7 +16,7 @@ class Transition(ABC):
             self.action()
             return self.end
         else:
-            return self.start
+            return None
 
     @abstractmethod
     def action():
