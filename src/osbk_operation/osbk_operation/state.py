@@ -13,4 +13,8 @@ class State:
         self.possible_transitions: List[Transition] = []
 
     def check_exit_conditions(self) -> Transition:
-        pass
+        """Return the first Transition with a satisfied condition."""
+        for transition in self.possible_transitions:
+            if transition.condition():
+                return transition
+        return None
