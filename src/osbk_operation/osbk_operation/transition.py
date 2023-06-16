@@ -1,27 +1,41 @@
-from abc import ABC, abstractmethod
+from typing import Callable
 
 from .state import State
 
 
-class Transition(ABC):
+def _default_condition() -> bool:
+    return False
+
+
+def _default_action() -> None:
+    return
+
+
+class Transition():
     """Represents a transition between two states."""
 
-    def __init__(self, start: State, end: State):
+    def __init__(self,
+                 start: State,
+                 end: State,
+                 timed: bool = True,
+                 time: int = 5000,
+                 condition: Callable[[], bool] = _default_condition,
+                 action: Callable[[], None] = _default_action
+                 ) -> None:
         start.possible_transitions.append(self)
         self.start: State = start
         self.end: State = end
+        self.timed: bool = timed
+        self.time: int = time
+        self.condition: Callable[[], bool] = condition
+        self.action: Callable[[], None] = action
+
+    def force_take(self) -> State:
+        self.action()
+        return self.end
 
     def take(self) -> State:
         if(self.condition()):
-            self.action()
-            return self.end
+            return self.force_take
         else:
             return None
-
-    @abstractmethod
-    def action():
-        pass
-
-    @abstractmethod
-    def condition() -> bool:
-        pass

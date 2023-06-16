@@ -5,6 +5,7 @@ from rclpy.subscription import Subscription
 
 from abc import ABC
 from typing import List, TypeVar
+from functools import partial
 
 from .state import State
 from .transition import Transition
@@ -63,6 +64,13 @@ class ActuatorStateMachine(Node, ABC):
 
         # initialize the transitions between these states
         self.transitions: List[Transition] = transitions
+        # and create timers for timed transitions
+        self.transition_timers: List[Timer] = []
+        for transition in self.transitions:
+            if transition.timed and transition.time >= 0:
+                callback = partial(self._timed_transition_callback, transition)
+                timer = self.create_timer(transition.time, callback)
+                self.transition_timers.append(timer)
 
         # and the control-services and status-topics of each actuator
         self.actuators: List[ActuatorEntry] = actuators
@@ -121,3 +129,6 @@ class ActuatorStateMachine(Node, ABC):
         """Reset the state machine and restart."""
         self.update_timer.reset()
         self.active = False
+
+    def _timed_transition_callback(self, transition: Transition) -> None:
+        self._change_state(transition.take())
