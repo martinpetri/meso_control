@@ -80,7 +80,8 @@ class ActuatorStateMachine(Node, ABC):
 
             actuator.topic = self.create_subscription(actuator.topic_type,
                                                       actuator.topic_name,
-                                                      actuator.handle)
+                                                      actuator.handle,
+                                                      10)
 
         # set a timer to check the current state
         self.update_interval: int = update_interval
