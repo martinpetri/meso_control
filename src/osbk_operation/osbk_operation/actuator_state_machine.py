@@ -7,8 +7,8 @@ from abc import ABC
 from typing import List, TypeVar
 from functools import partial
 
-from .state import State
-from .transition import Transition
+from .utility import State
+from .utility import Transition
 
 SrvType = TypeVar('SrvType')
 SrvTypeRequest = TypeVar('SrvTypeRequest')
