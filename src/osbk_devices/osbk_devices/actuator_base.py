@@ -99,6 +99,7 @@ class ActuatorBase(Node, ABC):
         """Publish the status returned by self.poll_status() if changed."""
         status = self.poll_status()
         if status != self.current_status:
+            status.topic_name = self.publish_topic
             self.publisher.publish(status)
             self.current_status = status
 
