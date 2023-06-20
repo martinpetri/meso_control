@@ -34,7 +34,11 @@ class HTTPHandler(BaseHTTPRequestHandler):
 
 @pytest.fixture
 def sensor_obj():
-    rclpy.init()
+    try:
+        rclpy.init()
+    except(RuntimeError):
+        rclpy.shutdown()
+        rclpy.init()
     return RestSensor()
 
 

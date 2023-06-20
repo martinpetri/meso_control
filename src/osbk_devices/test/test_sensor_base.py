@@ -30,7 +30,11 @@ class MockSensor(SensorBase):
 
 @pytest.fixture
 def sensor_obj():
-    rclpy.init()
+    try:
+        rclpy.init()
+    except(RuntimeError):
+        rclpy.shutdown()
+        rclpy.init()
     return MockSensor(SENSOR_NAME, 10)
 
 
