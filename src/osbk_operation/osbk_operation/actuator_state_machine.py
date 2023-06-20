@@ -1,3 +1,4 @@
+import rclpy
 from rclpy.node import Node
 from rclpy.client import Client
 from rclpy.timer import Timer
@@ -6,6 +7,7 @@ from rclpy.subscription import Subscription
 from abc import ABC
 from typing import List, TypeVar
 from functools import partial
+import warnings
 
 from .utility import State
 from .utility import Transition
@@ -103,7 +105,12 @@ class ActuatorStateMachine(Node, ABC):
             # compare it to its current state
             if actuator.current_state != setpoint.new_status:
                 # and send setpoint again if different
-                actuator.service.call(setpoint)
+                while not actuator.service.wait_for_service(timeout_sec=1.0):
+                    self.get_logger().info('service not available, waiting...')
+                warnings.warn("call")
+                future = actuator.service.call_async(setpoint)
+                rclpy.spin_until_future_complete(self, future)
+                warnings.warn("called")
                 consistent = False
 
         # terminate state machine if final state is reached and actuators are set correctly
