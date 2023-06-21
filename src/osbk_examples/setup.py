@@ -21,6 +21,8 @@ setup(
     entry_points={
         'console_scripts': [
             'rest_sensor_nodes = osbk_examples.rest_sensor_nodes:main',
+            'example_state_machine = osbk_examples.example_state_machine:main',
+            'example_actuator = osbk_examples.example_actuator:main'
         ],
     },
 )

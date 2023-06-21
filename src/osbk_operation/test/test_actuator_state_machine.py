@@ -230,8 +230,9 @@ def test__change_state(machine_example: ActuatorStateMachine,
     assert machine_example.current_state == machine_example.initial_state
     future = Future()
     actuator_thread = Thread(target=lambda: (rclpy.spin_until_future_complete(mock_actuator, future),
-                                             warnings.warn("spin ended")))
-    machine_thread = Thread(target=lambda: rclpy.spin_once(machine_example))
+                                             warnings.warn("spin1 ended")))
+    machine_thread = Thread(target=lambda: (rclpy.spin_until_future_complete(machine_example),
+                                            warnings.warn("spin2 ended")))
     warnings.warn("start actuator_thread")
     actuator_thread.start()
     machine_thread.start()

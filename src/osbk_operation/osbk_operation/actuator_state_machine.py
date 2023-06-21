@@ -4,7 +4,6 @@ from rclpy.client import Client
 from rclpy.timer import Timer
 from rclpy.subscription import Subscription
 
-from abc import ABC
 from typing import List, TypeVar
 from functools import partial
 import warnings
@@ -42,7 +41,7 @@ class ActuatorEntry():
         self.current_state = msg.state
 
 
-class ActuatorStateMachine(Node, ABC):
+class ActuatorStateMachine(Node):
     """A node that manages actuators following a finite statemachine."""
 
     def __init__(self,
@@ -107,10 +106,10 @@ class ActuatorStateMachine(Node, ABC):
                 # and send setpoint again if different
                 while not actuator.service.wait_for_service(timeout_sec=1.0):
                     self.get_logger().info('service not available, waiting...')
-                warnings.warn("call")
-                future = actuator.service.call_async(setpoint)
-                rclpy.spin_until_future_complete(self, future)
-                warnings.warn("called")
+                self.get_logger().warn("call")
+                self.future = actuator.service.call_async(setpoint)
+                rclpy.spin_until_future_complete(self, self.future)
+                self.get_logger().warn("called")
                 consistent = False
 
         # terminate state machine if final state is reached and actuators are set correctly
