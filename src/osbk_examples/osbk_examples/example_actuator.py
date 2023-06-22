@@ -6,6 +6,7 @@ from typing import TypeVar
 from threading import Thread
 import warnings
 
+from osbk_devices.actuator_base import ActuatorBase
 from osbk_interfaces.srv import DiscreteActuatorControl, ContinuousActuatorControl
 from osbk_interfaces.msg import DiscreteActuatorState, ContinuousActuatorState
 from osbk_operation.utility import State, Transition
@@ -15,31 +16,32 @@ from osbk_operation.actuator_state_machine import (
 )
 
 
-class Actuator(Node):
+class ExampleActuator(ActuatorBase):
     """Simple node to mock up an actuator with a Publisher and Service."""
 
-    def __init__(self, name: str, srv_name: str, topic: str):
-        super().__init__(name)
+    def __init__(self):
+        super().__init__("example_actuator", True, 1)
 
-        self.publisher = self.create_publisher(ContinuousActuatorState, topic, 10)
-        self.service = self.create_service(ContinuousActuatorControl, srv_name, self._callback)
+        self.status: float = 0.0
 
-    def _callback(self,
-                  request: ContinuousActuatorControl.Request,
-                  response: ContinuousActuatorControl.Response
-                  ) -> ContinuousActuatorControl.Response:
-        self.get_logger().warn(f"request received:{request}")
-        response.requested_status = request.new_status
-        msg = ContinuousActuatorState()
-        msg.state = request.new_status
-        msg.topic_name = self.publisher.topic_name
-        self.publisher.publish(msg)
+    def set_actuator(self, setpoint: ContinuousActuatorControl.Request) -> ContinuousActuatorControl.Response:
+        self.status = setpoint.new_status
+        
+        response = ContinuousActuatorControl.Response()
+        response.requested_status = setpoint.new_status
+
         return response
+    
+    def poll_status(self) -> ContinuousActuatorState:
+        msg = ContinuousActuatorState()
+        msg.topic_name = self.publish_topic
+        msg.state = self.status
+        return msg
 
 
 def main():
     rclpy.init()
-    test_actuator_node = Actuator("test_actuator", "test_actuator/control", "test_actuator/state")
+    test_actuator_node = ExampleActuator()
     rclpy.spin(test_actuator_node)
     rclpy.shutdown()
 

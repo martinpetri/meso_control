@@ -32,7 +32,7 @@ class ActuatorBase(Node, ABC):
     def __init__(self,
                  name: str,
                  continuous: bool = True,
-                 status_poll_interval: int = 1000) -> None:
+                 status_poll_interval: int = 1) -> None:
         """
         Construct instance of :class: 'ActuatorBase'.
 
@@ -62,7 +62,7 @@ class ActuatorBase(Node, ABC):
         # create a timer to periodically retrieve the current status
         self.status_poll_interval: int = status_poll_interval
         self.poll_timer: Timer = self.create_timer(self.status_poll_interval,
-                                                   self.poll_status)
+                                                   self._publish_status)
         self.current_status: MsgType = None
 
         # create publisher for the actuators current state
