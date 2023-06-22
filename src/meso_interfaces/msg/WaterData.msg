@@ -1,0 +1,9 @@
+string topic_name
+float32 temperature
+string temperature_unit
+float32 salinity
+string salinity_unit
+float32 o2_concentration
+string o2_concentration_unit
+float32 acidity
+string acidity_unit
