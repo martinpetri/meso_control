@@ -90,8 +90,6 @@ class ActuatorStateMachine(Node):
         # activate timers for transitions out of current_state
         for transition in self.current_state.possible_transitions:
             if transition.timed and transition.time >= 0:
-                self.get_logger().info(f"activating timer from {transition.start.name} \
-                                       to {transition.end.name}")
                 transition.timer.reset()
 
     def _change_state(self, next_state: State):
@@ -100,20 +98,15 @@ class ActuatorStateMachine(Node):
             # deactivate timers for transitions out of previous state
             for transition in self.current_state.possible_transitions:
                 if transition.timed and transition.time >= 0:
-                    self.get_logger().info(f"cancelling timer from {transition.start.name} \
-                                           to {transition.end.name}")
                     transition.timer.cancel()
             # change state
             self.current_state = next_state
             # activate timers for transitions out of new state
             for transition in self.current_state.possible_transitions:
                 if transition.timed and transition.time >= 0:
-                    self.get_logger().info(f"activating timer from {transition.start.name} \
-                                           to {transition.end.name}")
                     transition.timer.reset()
             # set actuators to new state
             # self._check_current_state()
-            self.get_logger().info("checked new state")
 
     def _check_current_state(self) -> None:
         """Check if actuators are set according to current state."""
@@ -127,10 +120,8 @@ class ActuatorStateMachine(Node):
                 # and send setpoint again if different
                 while not actuator.service.wait_for_service(timeout_sec=1.0):
                     self.get_logger().info('service not available, waiting...')
-                self.get_logger().info("call")
                 actuator.service.call_async(setpoint)
                 # rclpy.spin_until_future_complete(self, self.future)
-                self.get_logger().info("called")
                 consistent = False
 
         # terminate state machine if final state is reached and actuators are set correctly
@@ -160,5 +151,4 @@ class ActuatorStateMachine(Node):
         self.active = False
 
     def _timed_transition_callback(self, transition: Transition) -> None:
-        self.get_logger().info(f"timer callback out of {transition.start.name}")
         self._change_state(transition.force_take())
