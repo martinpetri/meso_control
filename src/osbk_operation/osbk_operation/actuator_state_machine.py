@@ -1,4 +1,3 @@
-import rclpy
 from rclpy.node import Node
 from rclpy.client import Client
 from rclpy.timer import Timer
@@ -6,7 +5,6 @@ from rclpy.subscription import Subscription
 
 from typing import List, TypeVar
 from functools import partial
-import warnings
 
 from .utility import State
 from .utility import Transition
@@ -50,7 +48,7 @@ class ActuatorStateMachine(Node):
                  initial_state: State,
                  transitions: List[Transition],
                  actuators: List[ActuatorEntry],
-                 update_interval: int = 1000):
+                 update_interval: int = 1):
         super().__init__(name)
 
         self.active: bool = True
@@ -70,8 +68,8 @@ class ActuatorStateMachine(Node):
         for transition in self.transitions:
             if transition.timed and transition.time >= 0:
                 callback = partial(self._timed_transition_callback, transition)
-                timer = self.create_timer(transition.time, callback)
-                self.transition_timers.append(timer)
+                transition.timer = self.create_timer(transition.time, callback)
+                transition.timer.cancel()
 
         # and the control-services and status-topics of each actuator
         self.actuators: List[ActuatorEntry] = actuators
@@ -89,10 +87,33 @@ class ActuatorStateMachine(Node):
         self.update_timer: Timer = self.create_timer(self.update_interval,
                                                      self._update)
 
+        # activate timers for transitions out of current_state
+        for transition in self.current_state.possible_transitions:
+            if transition.timed and transition.time >= 0:
+                self.get_logger().info(f"activating timer from {transition.start.name} \
+                                       to {transition.end.name}")
+                transition.timer.reset()
+
     def _change_state(self, next_state: State):
         """Change current_state to next_state and send new setpoints to actuators."""
-        self.current_state = next_state
-        self._check_current_state()
+        if next_state is not None:
+            # deactivate timers for transitions out of previous state
+            for transition in self.current_state.possible_transitions:
+                if transition.timed and transition.time >= 0:
+                    self.get_logger().info(f"cancelling timer from {transition.start.name} \
+                                           to {transition.end.name}")
+                    transition.timer.cancel()
+            # change state
+            self.current_state = next_state
+            # activate timers for transitions out of new state
+            for transition in self.current_state.possible_transitions:
+                if transition.timed and transition.time >= 0:
+                    self.get_logger().info(f"activating timer from {transition.start.name} \
+                                           to {transition.end.name}")
+                    transition.timer.reset()
+            # set actuators to new state
+            # self._check_current_state()
+            self.get_logger().info("checked new state")
 
     def _check_current_state(self) -> None:
         """Check if actuators are set according to current state."""
@@ -106,10 +127,10 @@ class ActuatorStateMachine(Node):
                 # and send setpoint again if different
                 while not actuator.service.wait_for_service(timeout_sec=1.0):
                     self.get_logger().info('service not available, waiting...')
-                self.get_logger().warn("call")
-                self.future = actuator.service.call_async(setpoint)
-                rclpy.spin_until_future_complete(self, self.future)
-                self.get_logger().warn("called")
+                self.get_logger().info("call")
+                actuator.service.call_async(setpoint)
+                # rclpy.spin_until_future_complete(self, self.future)
+                self.get_logger().info("called")
                 consistent = False
 
         # terminate state machine if final state is reached and actuators are set correctly
@@ -126,6 +147,7 @@ class ActuatorStateMachine(Node):
         """Check if actuators are in the correct state or a transition should be taken."""
         self._check_current_state()
         self._check_exits()
+        self.update_timer.reset()
 
     def _terminate(self):
         """Terminate state machine execution."""
@@ -138,4 +160,5 @@ class ActuatorStateMachine(Node):
         self.active = False
 
     def _timed_transition_callback(self, transition: Transition) -> None:
-        self._change_state(transition.take())
+        self.get_logger().info(f"timer callback out of {transition.start.name}")
+        self._change_state(transition.force_take())

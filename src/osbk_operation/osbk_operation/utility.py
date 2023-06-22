@@ -1,4 +1,5 @@
 from typing import List, Callable
+from rclpy.timer import Timer
 
 
 class Transition:
@@ -46,6 +47,7 @@ class Transition():
         self.end: State = end
         self.timed: bool = timed
         self.time: int = time
+        self.timer: Timer = None
         self.condition: Callable[[], bool] = condition
         self.action: Callable[[], None] = action
 
@@ -55,6 +57,6 @@ class Transition():
 
     def take(self) -> State:
         if(self.condition()):
-            return self.force_take
+            return self.force_take()
         else:
             return None

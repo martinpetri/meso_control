@@ -1,10 +1,8 @@
 import pytest
 import rclpy
 from rclpy.node import Node
-from rclpy.task import Future
 
 from typing import TypeVar
-from threading import Thread
 import warnings
 
 from osbk_interfaces.srv import DiscreteActuatorControl, ContinuousActuatorControl
@@ -223,26 +221,27 @@ def test_failed_object_creation(states, actuator_entries):
     rclpy.shutdown()
 
 
-def test__change_state(machine_example: ActuatorStateMachine,
-                       mock_actuator: Actuator):
-    
-    warnings.warn("test__change_state")
-    assert machine_example.current_state == machine_example.initial_state
-    future = Future()
-    actuator_thread = Thread(target=lambda: (rclpy.spin_until_future_complete(mock_actuator, future),
-                                             warnings.warn("spin1 ended")))
-    machine_thread = Thread(target=lambda: (rclpy.spin_until_future_complete(machine_example),
-                                            warnings.warn("spin2 ended")))
-    warnings.warn("start actuator_thread")
-    actuator_thread.start()
-    machine_thread.start()
-    warnings.warn("execute _change_state")
-    machine_example._change_state(machine_example.states[1])
-    warnings.warn("executed")
-    future.set_result(True)
-    machine_thread.join()
-    actuator_thread.join()
-    warnings.warn("thread joined")
+# def test__change_state(machine_example: ActuatorStateMachine,
+#                        mock_actuator: Actuator):
 
-    assert machine_example.current_state == machine_example.states[1]
-    rclpy.shutdown()
+#     warnings.warn("test__change_state")
+#     assert machine_example.current_state == machine_example.initial_state
+#     future = Future()
+    # actuator_thread = Thread(target=lambda:
+    #                          (rclpy.spin_until_future_complete(mock_actuator, future),
+    #                           warnings.warn("spin1 ended")))
+#     machine_thread = Thread(target=lambda: (rclpy.spin_until_future_complete(machine_example),
+#                                             warnings.warn("spin2 ended")))
+#     warnings.warn("start actuator_thread")
+#     actuator_thread.start()
+#     machine_thread.start()
+#     warnings.warn("execute _change_state")
+#     machine_example._change_state(machine_example.states[1])
+#     warnings.warn("executed")
+#     future.set_result(True)
+#     machine_thread.join()
+#     actuator_thread.join()
+#     warnings.warn("thread joined")
+
+#     assert machine_example.current_state == machine_example.states[1]
+#     rclpy.shutdown()

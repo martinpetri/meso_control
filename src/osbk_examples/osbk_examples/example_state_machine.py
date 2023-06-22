@@ -1,18 +1,15 @@
 import rclpy
-from rclpy.node import Node
-from rclpy.task import Future
 
-from typing import TypeVar
-from threading import Thread
-import warnings
-
-from osbk_interfaces.srv import DiscreteActuatorControl, ContinuousActuatorControl
-from osbk_interfaces.msg import DiscreteActuatorState, ContinuousActuatorState
+from osbk_interfaces.srv import ContinuousActuatorControl
+from osbk_interfaces.msg import ContinuousActuatorState
 from osbk_operation.utility import State, Transition
 from osbk_operation.actuator_state_machine import (
     ActuatorEntry,
     ActuatorStateMachine
 )
+
+
+flag = False
 
 
 condition_0_to_1 = False
@@ -26,16 +23,18 @@ condition_2_to_3 = False
 def action():
     global flag
     flag = not flag
+    print(f"Transition, flag={flag}")
 
 
 def create_state_machine():
-    
-    setpoints = [ContinuousActuatorControl.Request()] * 4
-    for idx, setpoint in enumerate(setpoints):
-        setpoint.new_status = float(idx)
+    setpoints = []
+    for i in range(4):
+        request = ContinuousActuatorControl.Request()
+        request.new_status = float(i)
+        setpoints.append(request)
 
     states = [
-        State(f"State_{idx}", {"test_actuator": setpoint}, idx == 3)
+        State(f"State_{idx}", {"example_actuator": setpoint}, idx == 3)
         for idx, setpoint in enumerate(setpoints)
     ]
 
@@ -43,8 +42,8 @@ def create_state_machine():
         Transition(
             states[0],
             states[1],
-            False,
-            -1,
+            True,
+            5,
             lambda: condition_0_to_1,
             action),
         Transition(
@@ -57,8 +56,8 @@ def create_state_machine():
         Transition(
             states[1],
             states[2],
-            False,
-            -1,
+            True,
+            5,
             lambda: condition_1_to_2,
             action),
         Transition(
@@ -78,40 +77,34 @@ def create_state_machine():
         Transition(
             states[2],
             states[3],
-            False,
-            -1,
+            True,
+            5,
             lambda: condition_2_to_3,
             action)
     ]
 
     actuators = [
-        ActuatorEntry("test_actuator",
-                      "test_actuator/control",
+        ActuatorEntry("example_actuator",
+                      "example_actuator/control",
                       ContinuousActuatorControl,
-                      "test_actuator/state",
+                      "example_actuator/state",
                       ContinuousActuatorState)
     ]
 
-    return ActuatorStateMachine("testmachine",
+    return ActuatorStateMachine("example_machine",
                                 states,
                                 states[0],
                                 transitions,
                                 actuators,
-                                10000)
+                                1)
 
 
 def main():
     rclpy.init()
 
     state_machine_node = create_state_machine()
-    state_machine_node._change_state(state_machine_node.states[1])
-    state_machine_node.get_logger().warn(state_machine_node.current_state.name)
-    state_machine_node._change_state(state_machine_node.states[2])
-    state_machine_node.get_logger().warn(state_machine_node.current_state.name)
-    state_machine_node._change_state(state_machine_node.states[3])
-    state_machine_node.get_logger().warn(state_machine_node.current_state.name)
-    # rclpy.spin(state_machine_node)
-    
+    rclpy.spin(state_machine_node)
+
     rclpy.shutdown()
 
 
