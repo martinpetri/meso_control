@@ -20,6 +20,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
+            "mock_publisher = meso_control_pkg.mock_publisher:main",
             "water_sensor_node = meso_control_pkg.water_sensor_node:main",
             "modbus_tcp_node = meso_control_pkg.modbus_tcp_node:main",
         ],
