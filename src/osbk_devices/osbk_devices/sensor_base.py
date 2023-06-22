@@ -143,7 +143,7 @@ class SensorBase(Node, ABC):
             self.publisher.publish(msg)
 
     @abstractmethod
-    def read_sensor():
+    def read_sensor() -> MsgType:
         """
         Abstract method that returns a sensor reading.
 
