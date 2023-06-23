@@ -54,7 +54,7 @@ class ActuatorBase(Node, ABC):
             self._publish_interface = DiscreteActuatorState
 
         # initialize the service to control this actuator with
-        self.service_name: str = f"{name}/control"
+        self.service_name: str = f"{self.get_name()}/control"
         self.srv: _rclpy.Service = self.create_service(self._control_interface,
                                                        self.service_name,
                                                        self._command_callback)
@@ -66,7 +66,7 @@ class ActuatorBase(Node, ABC):
         self.current_status: MsgType = None
 
         # create publisher for the actuators current state
-        self.publish_topic = f"{name}/state"
+        self.publish_topic = f"{self.get_name()}/state"
         self.publisher: _rclpy.Publisher = self.create_publisher(
             self._publish_interface,
             self.publish_topic,
@@ -98,10 +98,10 @@ class ActuatorBase(Node, ABC):
     def _publish_status(self) -> None:
         """Publish the status returned by self.poll_status() if changed."""
         status = self.poll_status()
-        if status != self.current_status:
-            status.topic_name = self.publish_topic
-            self.publisher.publish(status)
-            self.current_status = status
+        # if status != self.current_status:
+        status.topic_name = self.publish_topic
+        self.publisher.publish(status)
+        self.current_status = status
 
     @abstractmethod
     def poll_status(self) -> MsgType:

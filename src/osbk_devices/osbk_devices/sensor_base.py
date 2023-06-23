@@ -59,8 +59,8 @@ class SensorBase(Node, ABC):
         super().__init__(name)
 
         # initialize topic name, ros-interface
-        self.publish_topic: str = f'{name}/value'
-        self.publish_service_name: str = f'{name}/request_publish'
+        self.publish_topic: str = f'{self.get_name()}/value'
+        self.publish_service_name: str = f'{self.get_name()}/request_publish'
 
         self.msg_interface: MsgType = msg_interface
 
