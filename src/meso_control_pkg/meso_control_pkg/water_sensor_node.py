@@ -17,7 +17,7 @@ class WaterSensor(SensorBase):
         self.last_reading: List[float] = [0.0, 0.0, 0.0, 0.0]
 
         self.modbus_subscriber = self.create_subscription(OSBKStringValue,
-                                                          "modbus_tcp_node/json_modbus_values",
+                                                          "modbus_tcp_node/read",
                                                           self.modbus_handle,
                                                           10)
     
@@ -47,7 +47,12 @@ class WaterSensor(SensorBase):
 def main():
     rclpy.init()
     water_sensor_node = WaterSensor()
-    rclpy.spin(water_sensor_node)
+    try:
+        rclpy.spin(water_sensor_node)
+    except(KeyboardInterrupt):
+        water_sensor_node.get_logger().info("Shutting down.")
+
+    water_sensor_node.destroy_node()
     rclpy.shutdown()
 
 
