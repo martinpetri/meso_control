@@ -68,5 +68,49 @@ def generate_launch_description():
                         {"modbus_write_service": MODBUS_WRITE_SERVICE},
                         {"write_key": "PUMP"}
             ]
+        ),
+        Node(
+            package='meso_control_pkg',
+            executable='sps_continuous_actuator_node',
+            name="temp_control_a",
+            parameters=[
+                        {"modbus_read_topic":MODBUS_READ_TOPIC},
+                        {"read_key": "TEMP_SETPOINT_A"},
+                        {"modbus_write_service": MODBUS_WRITE_SERVICE},
+                        {"write_key": "TEMP_SETPOINT_A"}
+            ]
+        ),
+        Node(
+            package='meso_control_pkg',
+            executable='sps_continuous_actuator_node',
+            name="temp_control_b",
+            parameters=[
+                        {"modbus_read_topic":MODBUS_READ_TOPIC},
+                        {"read_key": "TEMP_SETPOINT_B"},
+                        {"modbus_write_service": MODBUS_WRITE_SERVICE},
+                        {"write_key": "TEMP_SETPOINT_B"}
+            ]
+        ),
+        Node(
+            package='meso_control_pkg',
+            executable='sps_continuous_actuator_node',
+            name="tide_control_a",
+            parameters=[
+                        {"modbus_read_topic":MODBUS_READ_TOPIC},
+                        {"read_key": "TIDE_A"},
+                        {"modbus_write_service": MODBUS_WRITE_SERVICE},
+                        {"write_key": "TIDE_A"}
+            ]
+        ),
+        Node(
+            package='meso_control_pkg',
+            executable='sps_continuous_actuator_node',
+            name="tide_control_b",
+            parameters=[
+                        {"modbus_read_topic":MODBUS_READ_TOPIC},
+                        {"read_key": "TIDE_B"},
+                        {"modbus_write_service": MODBUS_WRITE_SERVICE},
+                        {"write_key": "TIDE_B"}
+            ]
         )
     ])

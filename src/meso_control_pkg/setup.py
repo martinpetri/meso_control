@@ -28,6 +28,7 @@ setup(
             "water_sensor_node = meso_control_pkg.water_sensor_node:main",
             "modbus_tcp_node = meso_control_pkg.modbus_tcp_node:main",
             "sps_binary_actuator_node = meso_control_pkg.sps_binary_actuator_node:main",
+            "sps_continuous_actuator_node = meso_control_pkg.sps_continuous_actuator_node:main",
         ],
     },
 )
