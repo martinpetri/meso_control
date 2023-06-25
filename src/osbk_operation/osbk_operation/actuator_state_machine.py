@@ -64,7 +64,6 @@ class ActuatorStateMachine(Node):
         # initialize the transitions between these states
         self.transitions: List[Transition] = transitions
         # and create timers for timed transitions
-        self.transition_timers: List[Timer] = []
         for transition in self.transitions:
             if transition.timed and transition.time >= 0:
                 callback = partial(self._timed_transition_callback, transition)
@@ -88,25 +87,19 @@ class ActuatorStateMachine(Node):
                                                      self._update)
 
         # activate timers for transitions out of current_state
-        for transition in self.current_state.possible_transitions:
-            if transition.timed and transition.time >= 0:
-                transition.timer.reset()
+        self._start_timers_of_current_state()
 
     def _change_state(self, next_state: State):
         """Change current_state to next_state and send new setpoints to actuators."""
         if next_state is not None:
             # deactivate timers for transitions out of previous state
-            for transition in self.current_state.possible_transitions:
-                if transition.timed and transition.time >= 0:
-                    transition.timer.cancel()
+            self._stop_active_timers()
             # change state
             self.current_state = next_state
             # activate timers for transitions out of new state
-            for transition in self.current_state.possible_transitions:
-                if transition.timed and transition.time >= 0:
-                    transition.timer.reset()
+            self._start_timers_of_current_state()
             # set actuators to new state
-            # self._check_current_state()
+            self._check_current_state()
 
     def _check_current_state(self) -> None:
         """Check if actuators are set according to current state."""
@@ -140,13 +133,25 @@ class ActuatorStateMachine(Node):
         self._check_exits()
         self.update_timer.reset()
 
+    def _stop_active_timers(self):
+        for transition in self.transitions:
+            if transition.timed and transition.time >= 0:
+                    transition.timer.cancel()
+
+    def _start_timers_of_current_state(self):
+        for transition in self.current_state.possible_transitions:
+                if transition.timed and transition.time >= 0:
+                    transition.timer.reset()
+
     def _terminate(self):
         """Terminate state machine execution."""
+        self._stop_active_timers()
         self.update_timer.cancel()
         self.active = False
 
     def _reset(self):
         """Reset the state machine and restart."""
+        self._start_timers_of_current_state()
         self.update_timer.reset()
         self.active = False
 
