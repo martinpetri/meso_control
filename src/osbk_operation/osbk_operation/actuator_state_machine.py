@@ -156,4 +156,7 @@ class ActuatorStateMachine(Node):
         self.active = False
 
     def _timed_transition_callback(self, transition: Transition) -> None:
-        self._change_state(transition.force_take())
+        if transition.active:
+            self._change_state(transition.force_take())
+        else:
+            transition.timer.reset()

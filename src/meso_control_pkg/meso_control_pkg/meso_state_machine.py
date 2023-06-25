@@ -10,6 +10,7 @@ from osbk_operation.actuator_state_machine import (
     ActuatorEntry,
     ActuatorStateMachine
 )
+from meso_interfaces.srv import ChangeOperatingMode
 
 
 REQUEST_0 = DiscreteActuatorControl.Request()
@@ -187,6 +188,9 @@ class MesoStateMachine(ActuatorStateMachine):
                                                                  "modbus_tcp_node/read",
                                                                  self._set_starting_state,
                                                                  10)
+        self.change_mode_service = self.create_service(ChangeOperatingMode,
+                                                       self.get_name(),
+                                                       self._change_mode)
         self.get_logger().info("Initialized statemachine.")
 
     def _set_starting_state(self, msg: OSBKStringValue) -> None:
@@ -202,7 +206,54 @@ class MesoStateMachine(ActuatorStateMachine):
         request.value_to_send = str(number)
 
         self.modbus_write_client.call_async(request)
-
+    
+    def _change_mode(self,
+                     request: ChangeOperatingMode.Request,
+                     response: ChangeOperatingMode.Response
+                     ) -> ChangeOperatingMode.Response:
+        response.requested_mode = request.mode
+        if request.mode == "AUTOMATIC_CYCLE":
+            # remove shortcuts
+            self.transitions[3].condition = lambda: False
+            self.transitions[8].condition = lambda: False
+            # activate all transitions
+            for idx, transition in enumerate(self.transitions):
+                transition.active = True
+        elif request.mode == "MEASURE_TANK_A":
+            # shortcut for transition out of RUN_TANK_B
+            self.transitions[8].condition = lambda: True
+            # remove other shortcuts
+            self.transitions[3].condition = lambda: False
+            # deactivate transition out of RUN_TANK_A
+            # activate other transitions
+            for idx, transition in enumerate(self.transitions):
+                transition.active = idx != 3
+        elif request.mode == "MEASURE_TANK_B":
+            # shortcut for transition out of RUN_TANK_A
+            self.transitions[3].condition = lambda: True
+            # remove other shortcuts
+            self.transitions[8].condition = lambda: False
+            # deactivate transition out of RUN_TANK_B
+            # activate other transitions
+            for idx, transition in enumerate(self.transitions):
+                transition.active = idx != 8
+        elif request.mode == "DRAIN_SENSOR":
+            # shortcuts for transitions out of RUN_TANK_A, RUN_TANK_B
+            self.transitions[3].condition = lambda: True
+            self.transitions[8].condition = lambda: True
+            # deactivate transition out of DRAIN_SENSOR_A or DRAIN_SENSOR_B
+            # activate other transitions
+            for idx, transition in enumerate(self.transitions):
+                transition.active = (idx != 5 and idx != 10)
+        elif request.mode == "STOP":
+            # shortcuts for transitions out of RUN_TANK_A, RUN_TANK_B
+            self.transitions[3].condition = lambda: True
+            self.transitions[8].condition = lambda: True
+            # deactivate transition out of STOP_SENSOR_A or STOP_SENSOR_B
+            # activate other transitions
+            for idx, transition in enumerate(self.transitions):
+                transition.active = (idx != 4 and idx != 9)
+        return response
 
 def main():
     rclpy.init()

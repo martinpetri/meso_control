@@ -50,6 +50,7 @@ class Transition():
         self.timer: Timer = None
         self.condition: Callable[[], bool] = condition
         self.action: Callable[[], None] = action
+        self.active: bool = True
 
     def force_take(self) -> State:
         self.action()
