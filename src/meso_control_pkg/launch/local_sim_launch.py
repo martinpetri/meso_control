@@ -112,5 +112,9 @@ def generate_launch_description():
                         {"modbus_write_service": MODBUS_WRITE_SERVICE},
                         {"write_key": "TIDE_B"}
             ]
+        ),
+        Node(
+            package='meso_control_pkg',
+            executable='meso_state_machine'
         )
     ])

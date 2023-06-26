@@ -26,8 +26,13 @@ set(msg_files
   "msg/WaterData.msg"
 )
 
+set(srv_files
+  "srv/ChangeOperatingMode.srv"
+)
+
 rosidl_generate_interfaces(${PROJECT_NAME}
   ${msg_files}
+  ${srv_files}
 )
 
 ament_export_dependencies(rosidl_default_runtime)

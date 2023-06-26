@@ -189,7 +189,7 @@ class MesoStateMachine(ActuatorStateMachine):
                                                                  self._set_starting_state,
                                                                  10)
         self.change_mode_service = self.create_service(ChangeOperatingMode,
-                                                       self.get_name(),
+                                                       f"{self.get_name()}/mode",
                                                        self._change_mode)
         self.get_logger().info("Initialized statemachine.")
 
@@ -198,6 +198,7 @@ class MesoStateMachine(ActuatorStateMachine):
         starting_state = self.states[int(sps_data["LAST_STEP_NUMBER"])]
         self._change_state(starting_state)
         self._starting_state_subscription.destroy()
+        self._reset()
         self.get_logger().info(f"Starting execution in state {self.current_state.name}.")
 
     def _set_last_step_number(self, number: int) -> None:
@@ -259,8 +260,12 @@ def main():
     rclpy.init()
 
     state_machine_node = MesoStateMachine()
-    rclpy.spin(state_machine_node)
+    try:
+        rclpy.spin(state_machine_node)
+    except(KeyboardInterrupt):
+        state_machine_node.get_logger().info("Shutting down.")
 
+    state_machine_node.destroy_node()
     rclpy.shutdown()
 
 
