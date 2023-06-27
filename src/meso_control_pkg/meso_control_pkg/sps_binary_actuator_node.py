@@ -58,7 +58,8 @@ class SpsBinaryActuator(ActuatorBase):
     def _subscription_callback(self, msg: OSBKStringValue) -> None:
         feedback_values = json.loads(msg.data)
         key = self.get_parameter("read_key").value
-        self.last_state = int(feedback_values[key])
+        if key in feedback_values:
+            self.last_state = int(feedback_values[key])
 
 
 

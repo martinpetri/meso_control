@@ -36,12 +36,15 @@ class WaterSensor(SensorBase):
     
     def modbus_handle(self, msg: OSBKStringValue):
         modbus_msg: Dict = json.loads(msg.data)
-        self.last_reading = [
-            float(modbus_msg["RO_TEMP"]) / 100.0,
-            float(modbus_msg["RO_COND"]) / 100.0,
-            float(modbus_msg["RO_OXYGEN"]) / 100.0,
-            float(modbus_msg["RO_PH"]) / 100.0
-        ]
+        try:
+            self.last_reading = [
+                float(modbus_msg["RO_TEMP"]) / 100.0,
+                float(modbus_msg["RO_COND"]) / 100.0,
+                float(modbus_msg["RO_OXYGEN"]) / 100.0,
+                float(modbus_msg["RO_PH"]) / 100.0
+            ]
+        except(KeyError):
+            pass
 
 
 def main():

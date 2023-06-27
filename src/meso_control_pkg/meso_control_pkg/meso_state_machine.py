@@ -195,11 +195,12 @@ class MesoStateMachine(ActuatorStateMachine):
 
     def _set_starting_state(self, msg: OSBKStringValue) -> None:
         sps_data = json.loads(msg.data)
-        starting_state = self.states[int(sps_data["LAST_STEP_NUMBER"])]
-        self._change_state(starting_state)
-        self._starting_state_subscription.destroy()
-        self._reset()
-        self.get_logger().info(f"Starting execution in state {self.current_state.name}.")
+        if "LAST_STEP_NUMBER" in sps_data:
+            starting_state = self.states[int(sps_data["LAST_STEP_NUMBER"])]
+            self._change_state(starting_state)
+            self._starting_state_subscription.destroy()
+            self._reset()
+            self.get_logger().info(f"Starting execution in state {self.current_state.name}.")
 
     def _set_last_step_number(self, number: int) -> None:
         request = Modbus.Request()

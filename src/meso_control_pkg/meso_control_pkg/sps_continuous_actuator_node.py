@@ -55,7 +55,8 @@ class SpsContinuousActuator(ActuatorBase):
     def _subscription_callback(self, msg: OSBKStringValue) -> None:
         feedback_values = json.loads(msg.data)
         key = self.get_parameter("read_key").value
-        self.last_state = round(float(feedback_values[key]) / 100.0, 2)
+        if key in feedback_values:
+            self.last_state = round(float(feedback_values[key]) / 100.0, 2)
 
 
 
