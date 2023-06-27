@@ -29,7 +29,8 @@ setup(
             "modbus_tcp_node = meso_control_pkg.modbus_tcp_node:main",
             "sps_binary_actuator_node = meso_control_pkg.sps_binary_actuator_node:main",
             "sps_continuous_actuator_node = meso_control_pkg.sps_continuous_actuator_node:main",
-            "meso_state_machine = meso_control_pkg.meso_state_machine:main"
+            "meso_state_machine = meso_control_pkg.meso_state_machine:main",
+            "tide_control = meso_control_pkg.tide_control:main"
         ],
     },
 )
