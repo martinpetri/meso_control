@@ -204,5 +204,9 @@ def generate_launch_description():
         Node(
             package='meso_control_pkg',
             executable='meso_state_machine'
+        ),
+        Node(
+            package='meso_control_pkg',
+            executable='tide_sim'
         )
     ])

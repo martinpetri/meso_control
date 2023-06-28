@@ -2,7 +2,6 @@ import rclpy
 from rclpy.node import Node
 
 import requests
-import json
 
 from osbk_interfaces.srv import ContinuousActuatorControl
 
@@ -14,11 +13,11 @@ MESO_MAX = 7.80
 MESO_MIN = 0
 
 
-class TideControl(Node):
+class TideSim(Node):
     """Node for controlling the tide platform based on real tide levels."""
 
     def __init__(self):
-        super().__init__("tide_control")
+        super().__init__("tide_sim")
 
         self.declare_parameter("update_interval", 300)
         self.declare_parameter(
@@ -64,13 +63,13 @@ class TideControl(Node):
 
 def main():
     rclpy.init()
-    tide_control_node = TideControl()
+    tide_sim_node = TideSim()
     try:
-        rclpy.spin(tide_control_node)
+        rclpy.spin(tide_sim_node)
     except(KeyboardInterrupt):
-        tide_control_node.get_logger().info("Shutting down.")
+        tide_sim_node.get_logger().info("Shutting down.")
 
-    tide_control_node.destroy_node()
+    tide_sim_node.destroy_node()
     rclpy.shutdown()
 
 
