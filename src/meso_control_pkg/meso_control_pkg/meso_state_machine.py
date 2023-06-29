@@ -4,7 +4,7 @@ import json
 from functools import partial
 
 from osbk_interfaces.srv import DiscreteActuatorControl, Modbus
-from osbk_interfaces.msg import DiscreteActuatorState, OSBKStringValue
+from osbk_interfaces.msg import DiscreteActuatorState, OSBKStringValue, OSBKInt32Value
 from osbk_operation.utility import State, Transition
 from osbk_operation.actuator_state_machine import (
     ActuatorEntry,
@@ -183,6 +183,9 @@ class MesoStateMachine(ActuatorStateMachine):
                          1)
         self._terminate()
         
+        self.step_publisher = self.create_publisher(OSBKInt32Value,
+                                                    f"/{self.get_name()}/current_step",
+                                                    10)
         self.modbus_write_client = self.create_client(Modbus, "modbus_tcp_node/write")
         self._starting_state_subscription = self.create_subscription(OSBKStringValue,
                                                                  "modbus_tcp_node/read",
@@ -208,6 +211,12 @@ class MesoStateMachine(ActuatorStateMachine):
         request.value_to_send = str(number)
 
         self.modbus_write_client.call_async(request)
+        
+        msg = OSBKInt32Value()
+        msg.topic_name = self.step_publisher.topic
+        msg.data = number
+        msg.unit = "stepnumber"
+        self.step_publisher.publish(msg)
     
     def _change_mode(self,
                      request: ChangeOperatingMode.Request,
