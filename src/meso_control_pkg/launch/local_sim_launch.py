@@ -1,5 +1,9 @@
 from launch import LaunchDescription
 from launch_ros.actions import Node
+from launch.actions import IncludeLaunchDescription
+from launch_ros.substitutions import FindPackageShare
+from launch.launch_description_sources import FrontendLaunchDescriptionSource
+
 import json
 
 MODBUS_READ_TOPIC = "modbus_tcp_node/read"
@@ -208,5 +212,10 @@ def generate_launch_description():
         Node(
             package='meso_control_pkg',
             executable='tide_sim'
+        ),
+        IncludeLaunchDescription(
+            FrontendLaunchDescriptionSource([
+                FindPackageShare("rosbridge_server"), '/launch', '/rosbridge_websocket_launch.xml'
+            ])
         )
     ])
