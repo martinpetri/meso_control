@@ -185,7 +185,7 @@ def generate_launch_description():
         ),
         Node(
             package='meso_control_pkg',
-            executable='sps_continuous_actuator_node',
+            executable='sps_discrete_actuator_node',
             name="tide_control_a",
             parameters=[
                         {"modbus_read_topic":MODBUS_READ_TOPIC},
@@ -196,7 +196,7 @@ def generate_launch_description():
         ),
         Node(
             package='meso_control_pkg',
-            executable='sps_continuous_actuator_node',
+            executable='sps_discrete_actuator_node',
             name="tide_control_b",
             parameters=[
                         {"modbus_read_topic":MODBUS_READ_TOPIC},

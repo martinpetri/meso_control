@@ -3,14 +3,14 @@ from rclpy.node import Node
 
 import requests
 
-from osbk_interfaces.srv import ContinuousActuatorControl, DiscreteActuatorControl
+from osbk_interfaces.srv import DiscreteActuatorControl
 from osbk_interfaces.msg import OSBKInt32Value
 
 
 REAL_MAX = 589.0
 REAL_MIN = 409.0
 
-MESO_MAX = 7.80
+MESO_MAX = 780
 MESO_MIN = 0
 
 
@@ -27,9 +27,9 @@ class TideSim(Node):
             "W/measurements.json?start=P0DT0H30M"
         )
         
-        self.tide_a_client = self.create_client(ContinuousActuatorControl,
+        self.tide_a_client = self.create_client(DiscreteActuatorControl,
                                                 "tide_control_a/control")
-        self.tide_b_client = self.create_client(ContinuousActuatorControl,
+        self.tide_b_client = self.create_client(DiscreteActuatorControl,
                                                 "tide_control_b/control")
         
         self.mode_publisher_a = self.create_publisher(OSBKInt32Value,
@@ -65,15 +65,15 @@ class TideSim(Node):
                 real_val = float(response[-1]["value"])
 
                 meso_val = (real_val - REAL_MIN) / 2.3;
-                meso_val = meso_val / 10;
-                meso_val = round(meso_val, 2);
+                meso_val = meso_val * 10;
+                meso_val = round(meso_val);
 
                 if meso_val > MESO_MAX:
                     meso_val = MESO_MAX;
                 elif meso_val < MESO_MIN:
                     meso_val = MESO_MIN;
 
-                request = ContinuousActuatorControl.Request()
+                request = DiscreteActuatorControl.Request()
                 request.new_status = meso_val
                 if self.auto_tide_setting_a:
                     while not self.tide_a_client.wait_for_service(timeout_sec=1.0):

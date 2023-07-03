@@ -1,2 +1,2 @@
 string topic_name
-uint8 state
+uint32 state
