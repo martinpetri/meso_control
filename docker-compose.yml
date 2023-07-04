@@ -5,8 +5,7 @@ services:
     build:
       context: .
       dockerfile: ./docker/Dockerfile
-  command: bash -c "cd /workspaces/meso_control && source /opt/ros/foxy/setup.bash && colcon build && source ./install/setup.bash && ros2 launch launch/small.py"
-  tty: true
+    tty: true
 
 #docker tag meso_control_ros martinpetri/meso_control
 #docker push martinpetri/meso_control
