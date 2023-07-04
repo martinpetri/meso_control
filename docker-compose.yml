@@ -5,6 +5,8 @@ services:
     build:
       context: .
       dockerfile: ./docker/Dockerfile
+    ports:
+      - 9090:9090
     tty: true
 
 #docker tag meso_control_ros martinpetri/meso_control

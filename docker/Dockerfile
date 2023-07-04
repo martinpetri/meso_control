@@ -22,6 +22,8 @@ RUN /bin/bash -c 'cd /workspaces/meso_control \
                     && source /opt/ros/foxy/setup.bash \
                     && colcon build'
 
+EXPOSE 9090
+
 ENTRYPOINT /bin/bash -c 'cd /workspaces/meso_control \
                     && source /opt/ros/foxy/setup.bash \
                     && source ./install/setup.bash \
