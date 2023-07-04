@@ -136,12 +136,12 @@ class ActuatorStateMachine(Node):
     def _stop_active_timers(self):
         for transition in self.transitions:
             if transition.timed and transition.time >= 0:
-                    transition.timer.cancel()
+                transition.timer.cancel()
 
     def _start_timers_of_current_state(self):
         for transition in self.current_state.possible_transitions:
-                if transition.timed and transition.time >= 0:
-                    transition.timer.reset()
+            if transition.timed and transition.time >= 0:
+                transition.timer.reset()
 
     def _terminate(self):
         """Terminate state machine execution."""
