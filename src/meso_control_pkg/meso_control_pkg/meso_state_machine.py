@@ -208,15 +208,17 @@ class MesoStateMachine(ActuatorStateMachine):
         self.current_mode_publisher = self.create_publisher(OSBKStringValue,
                                                             f"/{self.get_name()}/current_mode",
                                                             10)
-        self.publish_mode_timer = self.create_timer(5.0, self._publish_mode)
+        self.publish_status_timer = self.create_timer(5.0, self._publish_status)
         self.current_mode = "AUTOMATIC_CYCLE"
+        self.last_step_number = 0
 
         self.get_logger().info("Initialized statemachine.")
 
     def _set_starting_state(self, msg: OSBKStringValue) -> None:
         sps_data = json.loads(msg.data)
         if "LAST_STEP_NUMBER" in sps_data:
-            starting_state = self.states[int(sps_data["LAST_STEP_NUMBER"])]
+            self.last_step_number = int(sps_data["LAST_STEP_NUMBER"])
+            starting_state = self.states[self.last_step_number]
             self._change_state(starting_state)
             self._starting_state_subscription.destroy()
             self._reset()
@@ -226,14 +228,9 @@ class MesoStateMachine(ActuatorStateMachine):
         request = Modbus.Request()
         request.key_name = "LAST_STEP_NUMBER"
         request.value_to_send = str(number)
+        self.last_step_number = number
 
         self.modbus_write_client.call_async(request)
-        
-        msg = OSBKInt32Value()
-        msg.topic_name = self.step_publisher.topic
-        msg.data = number
-        msg.unit = "stepnumber"
-        self.step_publisher.publish(msg)
     
     def _change_mode(self,
                      request: ChangeOperatingMode.Request,
@@ -285,12 +282,20 @@ class MesoStateMachine(ActuatorStateMachine):
                     transition.active = (idx != 4 and idx != 9)
         return response
 
-    def _publish_mode(self):
+    def _publish_status(self):
         msg = OSBKStringValue()
         msg.topic_name = self.current_mode_publisher.topic
         msg.data = self.current_mode
         msg.unit = "Operating mode"
         self.current_mode_publisher.publish(msg)
+
+        msg = OSBKInt32Value()
+        msg.topic_name = self.step_publisher.topic
+        msg.data = self.last_step_number
+        msg.unit = "Stepnumber"
+        self.step_publisher.publish(msg)
+
+        self.publish_status_timer.reset()
 
 
 def main():
