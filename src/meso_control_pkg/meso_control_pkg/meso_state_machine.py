@@ -124,19 +124,20 @@ ACTUATOR_NODE_NAMES = [
     "pump"
 ]
 
-
+SECOND = 1
+MINUTE = 60
 STATE_TIMES = [
-    5, # STOP
-    5, # PREP_TANK_A
-    5, # VENT_TANK_A
-    10, # RUN_TANK_A
-    5, # STOP_TANK_A
-    5, # DRAIN_TANK_A
-    5, # PREP_TANK_B
-    5, # VENT_TANK_B
-    10, # RUN_TANK_B
-    5, # STOP_TANK_B
-    5, # DRAIN_TANK_B
+    5  * SECOND, # STOP
+    1  * SECOND, # PREP_TANK_A
+    20 * SECOND, # VENT_TANK_A
+    30 * MINUTE, # RUN_TANK_A
+    1  * SECOND, # STOP_TANK_A
+    30 * SECOND, # DRAIN_TANK_A
+    1  * SECOND, # PREP_TANK_B
+    20 * SECOND, # VENT_TANK_B
+    30 * MINUTE, # RUN_TANK_B
+    1  * SECOND, # STOP_TANK_B
+    30 * SECOND, # DRAIN_TANK_B
 ]
 
 
