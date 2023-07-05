@@ -2,6 +2,7 @@ import rclpy
 from rclpy.node import Node
 
 import requests
+from requests.exceptions import ConnectionError, Timeout
 
 from osbk_interfaces.srv import DiscreteActuatorControl
 from osbk_interfaces.msg import OSBKInt32Value
@@ -59,7 +60,16 @@ class TideSim(Node):
 
     def update(self):
         if self.auto_tide_setting_a or self.auto_tide_setting_b:
-            response = requests.get(self.get_parameter("request_url").value)
+            try:
+                response = requests.get(self.get_parameter("request_url").value, timeout=60.0)
+            except(ConnectionError):
+                self.get_logger().info(f"Connection to {self.get_parameter('request_url').value} failed, trying again next time.")
+                self.update_timer.reset()
+                return
+            except(Timeout):
+                self.get_logger().info(f"Request from {self.get_parameter('request_url').value} timed out, trying again next time.")
+                self.update_timer.reset()
+                return
             response = response.json()
             if len(response) != 0:
                 real_val = float(response[-1]["value"])
