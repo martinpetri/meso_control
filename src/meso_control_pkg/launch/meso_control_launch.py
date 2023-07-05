@@ -98,10 +98,6 @@ def generate_launch_description():
                         {"json_modbus_feedback_registers": JSON_MODBUS_FEEDBACK_REGISTERS}
                 ]
         ),
-        # Node(
-        #     package='meso_control_pkg',
-        #     executable='mock_publisher'
-        # ),
         Node(
             package='meso_control_pkg',
             executable='water_sensor_node'

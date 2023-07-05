@@ -27,4 +27,4 @@ EXPOSE 9090
 ENTRYPOINT /bin/bash -c 'cd /workspaces/meso_control \
                     && source /opt/ros/foxy/setup.bash \
                     && source ./install/setup.bash \
-                    && ros2 launch meso_control_pkg local_sim_launch.py'
+                    && ros2 launch meso_control_pkg meso_control_launch.py'
