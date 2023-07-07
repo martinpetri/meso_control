@@ -56,7 +56,7 @@ class ModbusTcpNode(Node):
         self.log("ModbusTcp node started")
     
     def heartbeat(self):
-        register = self.get_register('heartbeat')
+        register = self.get_register('HEARTBEAT')
         self.write_modbus(register, 1)
         #self.log('heartbeat: ' + str(register))
 

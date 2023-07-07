@@ -90,7 +90,7 @@ def generate_launch_description():
                 parameters=[
                         {"name": 'modbus_tcp_node'},
                         {"topic_name": MODBUS_READ_TOPIC},
-                        {"modbus_host_ip": '192.168.150.107'},
+                        {"modbus_host_ip": 'localhost'},
                         {"modbus_host_port": 5020},
                         {"modbus_service_name": MODBUS_WRITE_SERVICE},
                         {"read_modbus_interval": 1},

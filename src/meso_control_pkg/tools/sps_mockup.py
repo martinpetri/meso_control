@@ -110,7 +110,10 @@ def sps_simulation(context):
     context[0].setValues(3, 32001, list(wr_values.values()))
     context[0].setValues(3, 32033, list(fb_values.values()))
 
+    timeout = 2
+
     while(True):
+        # copy written values to feedback registers
         written = context[0].getValues(3, 32001, 32)
         for idx, key in enumerate(wr_values):
             wr_values[key] = written[idx]
@@ -124,8 +127,23 @@ def sps_simulation(context):
 
         string = ""
         for i in range(32):
-            string += f"{list(fb_values)[i]:>20}: {list(fb_values.values())[i]:4},\t{list(wr_values)[i]:>20}: {list(wr_values.values())[i]:4}\n"
-        print("\nFeedback-Values:\t\tWrite-Values:\n" + string)
+            string += f"\n{list(fb_values)[i]:>20}: {list(fb_values.values())[i]:4},\t{list(wr_values)[i]:>20}: {list(wr_values.values())[i]:4}"
+        print("\nFeedback-Values:\t\tWrite-Values:" + string)
+
+        # check Heartbeat
+        heartbeat = wr_values["HEARTBEAT"]
+        if heartbeat == 1:
+            timeout = 0
+        else:
+            timeout = timeout + 1 if timeout < 2 else 2
+        
+        if timeout >= 2:
+            print("Heartbeat: Not present")
+        else:
+            print("Heartbeat: OK")
+        
+        context[0].setValues(3, 32030, [0])
+
         
         time.sleep(5)
         
