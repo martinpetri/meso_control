@@ -107,6 +107,13 @@ class ModbusTcpNode(Node):
             self.log("Can't read from modbus")
     
     def write_modbus(self, register, value):
+        # limit tide setpoints between 100 and 780 to prevent deformation of tank lids
+        if register == self.get_register("TIDE_A") or register == self.get_register("TIDE_B"):
+            # also set tide to 100 if original value is None or NaN
+            if value < 100 or value is None or value != value:
+                value = 100
+            elif value > 780:
+                value = 780
         try:
             if self.modbus_client_.is_socket_open():
                 #self.log("Writing to modbus: " + str(register) + ':' + str(value))

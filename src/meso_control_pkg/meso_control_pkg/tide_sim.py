@@ -12,7 +12,7 @@ REAL_MAX = 589.0
 REAL_MIN = 409.0
 
 MESO_MAX = 780
-MESO_MIN = 0
+MESO_MIN = 100
 
 
 class TideSim(Node):
@@ -90,10 +90,10 @@ class TideSim(Node):
                             self.get_logger().info('service not available, waiting...')
                     self.tide_a_client.call_async(request)
 
-                if self.auto_tide_setting_b:
-                    while not self.tide_b_client.wait_for_service(timeout_sec=1.0):
-                            self.get_logger().info('service not available, waiting...')
-                    self.tide_b_client.call_async(request)
+                # if self.auto_tide_setting_b:
+                #     while not self.tide_b_client.wait_for_service(timeout_sec=1.0):
+                #             self.get_logger().info('service not available, waiting...')
+                #     self.tide_b_client.call_async(request)
 
         self.update_timer.reset()
     

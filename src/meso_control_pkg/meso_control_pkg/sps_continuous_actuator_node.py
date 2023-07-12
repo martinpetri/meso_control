@@ -40,6 +40,8 @@ class SpsContinuousActuator(ActuatorBase):
         modbus_request.key_name = self.get_parameter("write_key").value
         modbus_request.value_to_send = str(round(setpoint.new_status * 100.0))
 
+        while not self.write_client.wait_for_service(timeout_sec=1.0):
+                            self.get_logger().info('service not available, waiting...')
         self.future = self.write_client.call_async(modbus_request)
 
         response = ContinuousActuatorControl.Response()
@@ -57,7 +59,6 @@ class SpsContinuousActuator(ActuatorBase):
         key = self.get_parameter("read_key").value
         if key in feedback_values:
             self.last_state = round(float(feedback_values[key]) / 100.0, 2)
-
 
 
 def main():

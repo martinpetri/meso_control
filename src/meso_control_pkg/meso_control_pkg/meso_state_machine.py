@@ -46,7 +46,7 @@ SETPOINTS = [
     {# PREP_TANK_A
         "valve_tank_a": REQUEST_1,
         "valve_tank_b": REQUEST_0,
-        "upper_magnetic_valve": REQUEST_0,
+        "upper_magnetic_valve": REQUEST_1,
         "lower_magnetic_valve": REQUEST_0,
         "pump": REQUEST_0
     },
@@ -81,7 +81,7 @@ SETPOINTS = [
     {# PREP_TANK_B
         "valve_tank_a": REQUEST_0,
         "valve_tank_b": REQUEST_1,
-        "upper_magnetic_valve": REQUEST_0,
+        "upper_magnetic_valve": REQUEST_1,
         "lower_magnetic_valve": REQUEST_0,
         "pump": REQUEST_0
     },
@@ -128,15 +128,15 @@ SECOND = 1
 MINUTE = 60
 STATE_TIMES = [
     5  * SECOND, # STOP
-    1  * SECOND, # PREP_TANK_A
+    10  * SECOND, # PREP_TANK_A
     20 * SECOND, # VENT_TANK_A
     30 * MINUTE, # RUN_TANK_A
-    1  * SECOND, # STOP_TANK_A
+    10  * SECOND, # STOP_TANK_A
     30 * SECOND, # DRAIN_TANK_A
-    1  * SECOND, # PREP_TANK_B
+    10  * SECOND, # PREP_TANK_B
     20 * SECOND, # VENT_TANK_B
     30 * MINUTE, # RUN_TANK_B
-    1  * SECOND, # STOP_TANK_B
+    10  * SECOND, # STOP_TANK_B
     30 * SECOND, # DRAIN_TANK_B
 ]
 

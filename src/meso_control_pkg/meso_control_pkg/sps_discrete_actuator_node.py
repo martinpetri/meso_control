@@ -45,6 +45,8 @@ class SpsDiscreteActuator(ActuatorBase):
         else:
             modbus_request.value_to_send = "780"
 
+        while not self.write_client.wait_for_service(timeout_sec=1.0):
+                            self.get_logger().info('service not available, waiting...')
         self.future = self.write_client.call_async(modbus_request)
 
         response = DiscreteActuatorControl.Response()
