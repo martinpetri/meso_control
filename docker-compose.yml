@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-  ros-control:
+  ros-concept:
     build:
       context: .
       dockerfile: ./docker/Dockerfile
