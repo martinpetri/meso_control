@@ -8,6 +8,7 @@ services:
     ports:
       - 9090:9090
     tty: true
+    restart: unless-stopped
 
 #docker tag meso_control_ros martinpetri/meso_control
 #docker push martinpetri/meso_control
