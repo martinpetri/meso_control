@@ -13,7 +13,7 @@ WORKDIR /workspaces
 
 RUN git clone https://github.com/martinpetri/meso_control.git
 RUN /bin/bash -c 'cd /workspaces/meso_control \
-                    && git checkout feature-osbk_library'
+                    && git checkout deployed-osbk_library'
 WORKDIR /workspaces/meso_control
 
 RUN echo "source /opt/ros/foxy/setup.bash && source ./install/setup.bash" >> ~/.bashrc
