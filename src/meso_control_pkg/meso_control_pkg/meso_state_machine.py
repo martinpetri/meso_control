@@ -173,8 +173,25 @@ class MesoStateMachine(ActuatorStateMachine):
                 states[1],
                 True,
                 STATE_TIMES[-1],
-                action = partial(self._set_last_step_number, 1))
-        )
+                action = partial(self._set_last_step_number, 1)
+                
+        ))
+        # add shortcut from DRAIN_TANK_A to PREP_TANK_A for MEASURE_TANK_A mode
+        transitions.append(Transition(
+            states[5],
+            states[1],
+            False,
+            condition = lambda: False,
+            action = partial(self._set_last_step_number, 1)
+        ))
+        # add shortcut from DRAIN_TANK_B to PREP_TANK_B for MEASURE_TANK_B mode
+        transitions.append(Transition(
+            states[10],
+            states[6],
+            False,
+            condition = lambda: False,
+            action = partial(self._set_last_step_number, 6)
+        ))
 
         actuators = [
             ActuatorEntry(name,
@@ -243,14 +260,19 @@ class MesoStateMachine(ActuatorStateMachine):
                 # remove shortcuts
                 self.transitions[3].condition = lambda: False
                 self.transitions[8].condition = lambda: False
+                self.transitions[11].condition = lambda: False
+                self.transitions[12].condition = lambda: False
                 # activate all transitions
                 for idx, transition in enumerate(self.transitions):
                     transition.active = True
             elif request.mode == "MEASURE_TANK_A":
                 # shortcut for transition out of RUN_TANK_B
                 self.transitions[8].condition = lambda: True
+                # shortcut from DRAIN_TANK_A to PREP_TANK_A
+                self.transitions[11].condition = lambda: True
                 # remove other shortcuts
                 self.transitions[3].condition = lambda: False
+                self.transitions[12].condition = lambda: False
                 # deactivate transition out of RUN_TANK_A
                 # activate other transitions
                 for idx, transition in enumerate(self.transitions):
@@ -258,8 +280,11 @@ class MesoStateMachine(ActuatorStateMachine):
             elif request.mode == "MEASURE_TANK_B":
                 # shortcut for transition out of RUN_TANK_A
                 self.transitions[3].condition = lambda: True
+                # shortcut from DRAIN_TANK_B to PREP_TANK_B
+                self.transitions[12].condition = lambda: True
                 # remove other shortcuts
                 self.transitions[8].condition = lambda: False
+                self.transitions[11].condition = lambda: False
                 # deactivate transition out of RUN_TANK_B
                 # activate other transitions
                 for idx, transition in enumerate(self.transitions):
@@ -268,6 +293,9 @@ class MesoStateMachine(ActuatorStateMachine):
                 # shortcuts for transitions out of RUN_TANK_A, RUN_TANK_B
                 self.transitions[3].condition = lambda: True
                 self.transitions[8].condition = lambda: True
+                # deactivate other shortcuts out of DRAIN_SENSOR
+                self.transitions[11].condition = lambda: False
+                self.transitions[12].condition = lambda: False
                 # deactivate transition out of DRAIN_SENSOR_A or DRAIN_SENSOR_B
                 # activate other transitions
                 for idx, transition in enumerate(self.transitions):
@@ -276,6 +304,9 @@ class MesoStateMachine(ActuatorStateMachine):
                 # shortcuts for transitions out of RUN_TANK_A, RUN_TANK_B
                 self.transitions[3].condition = lambda: True
                 self.transitions[8].condition = lambda: True
+                # deactivate other shortcuts out of DRAIN_SENSOR
+                self.transitions[11].condition = lambda: False
+                self.transitions[12].condition = lambda: False
                 # deactivate transition out of STOP_SENSOR_A or STOP_SENSOR_B
                 # activate other transitions
                 for idx, transition in enumerate(self.transitions):
