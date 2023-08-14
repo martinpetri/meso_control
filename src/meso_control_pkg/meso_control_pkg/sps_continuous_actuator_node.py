@@ -10,7 +10,20 @@ from osbk_interfaces.msg import ContinuousActuatorState, OSBKStringValue
 
 
 class SpsContinuousActuator(ActuatorBase):
-    """Simple Actuator, that influences a shutoff-valve controlled by an SPS."""
+    """
+    A node for a continuous actuator controlled by an SPS, connected via Modbus.
+
+    Uses the ``ModbusTcpNode``.
+
+    :param last_state: the last state received from the ``ModbusTcpNode``
+    :type last_state: float
+
+    :param modbus_subscription: the subscriber listening to the ``ModbusTcpNode``
+    :type modbus_subscription: Subscription
+
+    :param write_client: the client for writing to the SPS via the ``ModbusTcpNode``
+    :type write_client: Client
+    """
 
     def __init__(self) -> None:
         super().__init__("temp_control_a", True, 1)
@@ -36,6 +49,15 @@ class SpsContinuousActuator(ActuatorBase):
     def set_actuator(self,
                      setpoint: ContinuousActuatorControl.Request
                      ) -> ContinuousActuatorControl.Response:
+        """
+        Send a new setpoint to the actuator.
+
+        :param setpoint: a service-request-object that contains the new setpoint
+        :type setpoint: ContinuousActuatorControl.Request
+
+        :return: a service-response-object to confirm the request
+        :rtype: ContinuousActuatorControl.Response
+        """
         modbus_request = Modbus.Request()
         modbus_request.key_name = self.get_parameter("write_key").value
         modbus_request.value_to_send = str(round(setpoint.new_status * 100.0))
@@ -49,6 +71,12 @@ class SpsContinuousActuator(ActuatorBase):
         return response
 
     def poll_status(self) -> ContinuousActuatorState:
+        """
+        Return the last transmitted actuator-state by the SPS.
+
+        :return: a message object containing the actuator-state
+        :rtype: ContinuousActuatorState
+        """
         msg = ContinuousActuatorState()
         msg.topic_name = self.publish_topic
         msg.state = self.last_state

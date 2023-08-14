@@ -17,9 +17,8 @@ class ActuatorBase(Node, ABC):
     """
     Abstract base class for actuator implementations.
 
-    Nodes, that implement a specific actuator directly connected to the
-    controller should inherit from this base class and overwrite the
-    :func:'set_actuator()' function. This class also inherits from Node.
+    Nodes that implement a specific actuator should inherit from this base class and overwrite the
+    ``set_actuator()`` and ``poll_status()`` function. This class also inherits from Node.
 
     :param service_name: name of the service this actuator can be
         controlled with
@@ -27,6 +26,10 @@ class ActuatorBase(Node, ABC):
     :param srv: the service registered with ROS, its callback function calls
         set_actuator()
     :type srv: Service
+    :param poll_timer: the timer to trigger publishing of current status
+    :type poll_timer: Timer
+    :param publisher: a publisher to publish current actuator status periodically
+    :type publisher: Publisher
     """
 
     def __init__(self,
@@ -34,12 +37,19 @@ class ActuatorBase(Node, ABC):
                  continuous: bool = True,
                  status_poll_interval: int = 1) -> None:
         """
-        Construct instance of :class: 'ActuatorBase'.
+        Construct instance of ``ActuatorBase``.
 
-        Initializes a service and its name as attributes.
+        Initializes a service to receive commands and a publisher to publish the
+        actuators current status.
 
         :param name: name for the node
         :type name: str
+        :param continuous: wether this actuator should use float (True) or integer (False) values 
+            for status representation. defaults to True
+        :type continuous: bool
+        :param status_poll_interval: the interval to publish the actuators status in seconds
+        :type status_poll_interval: int
+
         """
         # call constructor for Node
         super().__init__(name)
@@ -96,7 +106,7 @@ class ActuatorBase(Node, ABC):
         pass
 
     def _publish_status(self) -> None:
-        """Publish the status returned by self.poll_status() if changed."""
+        """Publish the status returned by ``self.poll_status()`` if changed."""
         status = self.poll_status()
         # if status != self.current_status:
         status.topic_name = self.publish_topic

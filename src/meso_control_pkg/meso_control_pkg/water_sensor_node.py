@@ -9,7 +9,18 @@ from meso_interfaces.msg import WaterData
 
 
 class WaterSensor(SensorBase):
-    """Node for collecting data from the water-sensor."""
+    """
+    Node for collecting and publishing the data from the water-sensor.
+    
+    This node extends the ``SensorBase``-node nad uses the ``ModbusTcpNode``.
+
+    :param last_reading: last transmitted sensor-readings from the SPS.
+    :type last_reading: List[float]
+
+    :param modbus_subscriber: subscribes to the topic where the content of the SPS-feedback-values
+        are published
+    :type modbus_subscriber: Subscription
+    """
 
     def __init__(self):
         super().__init__("water_sensor", 1, WaterData)
@@ -22,6 +33,9 @@ class WaterSensor(SensorBase):
                                                           10)
     
     def read_sensor(self):
+        """
+        Return the last sensor-reading as ROS-message to be published.
+        """
         reading = WaterData()
         reading.topic_name = self.publish_topic
         reading.temperature = self.last_reading[0]
@@ -35,6 +49,9 @@ class WaterSensor(SensorBase):
         return reading
     
     def modbus_handle(self, msg: OSBKStringValue):
+        """
+        Subscription-callback to store the transmitted sensor-values.
+        """
         modbus_msg: Dict = json.loads(msg.data)
         try:
             self.last_reading = [

@@ -151,6 +151,34 @@ MODE_LIST = [
 
 
 class MesoStateMachine(ActuatorStateMachine):
+    """
+    A node that imlpements the statemachine for controlling a mesocosm-tankpair.
+
+    This node extends the ``ActuatorStateMachine``-node.
+
+    :param step_publisher: publishes the current state-number
+    :type step_publisher: Publisher
+
+    :param modbus_write_client: service-client to write the current state-number to the SPS via
+        the ``ModbusTcpNode``
+    :type modbus_write_client: Client
+
+    :param change_mode_service: a service to change the operating mode (automatic cylce, measure
+        tank a, measure tank b, drain, stop) of this statemachine
+    :type change_mode_service: Service
+
+    :param current_mode_publisher: publishes the currently active operating mode
+    :type current_mode_publisher: Publisher
+
+    :param publish_status_timer: the timer to trigger the publishing of the active operating mode
+    :type publish_status_timer: Timer
+
+    :param current_mode: a string to represent the currently active operating mode
+    :type current_mode: str
+
+    :param last_step_number: the index of the curently active state
+    :type last_step_number: int
+    """
     def __init__(self) -> None:
         states = [
             State(STATE_NAMES[idx], setpoint, False)

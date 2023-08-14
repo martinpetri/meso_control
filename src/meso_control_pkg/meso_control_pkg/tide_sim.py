@@ -16,7 +16,44 @@ MESO_MIN = 100
 
 
 class TideSim(Node):
-    """Node for controlling the tide platform based on real tide levels."""
+    """
+    A node for controlling the tide platform based on real tide levels.
+    
+    This node uses pegelonline.wsv.de to retrieve current tide levels at List (Sylt)
+    and sends a proportional height to the stepper-motor-control on the SPS.
+
+    :param tide_a_client: interacts with the node controlling the tide-platform in tank A
+    :type tide_a_client: Client
+
+    :param tide_b_client: interacts with the node controlling the tide-platform in tank B
+    :type tide_b_client: Client
+
+    :param mode_publisher_a: publishes the currently active mode for tide control in
+        tank A (automatic or manual)
+    :type mode_publisher_a: Publisher
+
+    :param mode_service_a: can be used to set the mode for tide control in tank A
+    :type mode_service_a: Service
+
+    :param auto_tide_setting_a: wether tide level in tank A is controlled automatically
+    :type auto_tide_setting_a: bool
+
+    :param mode_publisher_b: publishes the currently active mode for tide control in
+        tank B
+    :type mode_publisher_b: Publisher
+
+    :param mode_service_b: can be used to set the mode for tide control in tank B
+    :type mode_service_b: Service
+
+    :param auto_tide_setting_b: wether tide level in tank B is controlled automatically
+    :type auto_tide_setting_b: bool
+
+    :param update_timer: triggers the update of the automatic tide control
+    :type update_timer: Timer
+
+    :param mode_publish_timer: triggers the publishing of the currently active modes
+    :type mode_publish_timer: Timer
+    """
 
     def __init__(self):
         super().__init__("tide_sim")
@@ -59,6 +96,9 @@ class TideSim(Node):
         self.update()
 
     def update(self):
+        """
+        Update the tide levels of the tanks according to real values.
+        """
         if self.auto_tide_setting_a or self.auto_tide_setting_b:
             try:
                 response = requests.get(self.get_parameter("request_url").value, timeout=60.0)
@@ -101,6 +141,7 @@ class TideSim(Node):
                       request: DiscreteActuatorControl.Request,
                       response: DiscreteActuatorControl.Response
                       ) -> DiscreteActuatorControl.Response:
+        """Service callback to set the mode for tide-control in tank A."""
         self.auto_tide_setting_a = request.new_status > 0
         response.requested_status = int(self.auto_tide_setting_a)
         self.update()
@@ -110,12 +151,14 @@ class TideSim(Node):
                       request: DiscreteActuatorControl.Request,
                       response: DiscreteActuatorControl.Response
                       ) -> DiscreteActuatorControl.Response:
+        """Service callback to set the mode for tide-control in tank A."""
         self.auto_tide_setting_b = request.new_status > 0
         response.requested_status = int(self.auto_tide_setting_b)
         self.update()
         return response
     
     def publish_mode(self):
+        """Publish the current modes of tide-control in tank A and B."""
         current_state_a = OSBKInt32Value()
         current_state_a.topic_name = self.mode_publisher_a.topic
         current_state_a.data = int(self.auto_tide_setting_a)

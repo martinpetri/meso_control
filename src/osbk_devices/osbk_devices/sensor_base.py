@@ -17,12 +17,13 @@ class SensorBase(Node, ABC):
     """
     Abstract base class for sensor implementations.
 
-    Nodes, that implement a specific sensor directly connected to the
-    controller, should inherit from this base class and overwrite the
-    'read_sensor()' function. This Class also inherits from Node.
+    Nodes that implement a specific sensor should inherit from this base class and overwrite the
+    ``read_sensor()`` function. This Class also inherits from Node.
 
+    :param read_interval: ROS parameter to change the poll-rate for sensor readings
+    :type read_interval: ROS parameter
     :param publish_topic: topic name, the sensors readings are published to,
-        defaults to '[node_name]/value'
+        defaults to ``'[node_name]/value'`` test
     :type publish_topic: str
     :param publish_service_name: name of the service to publish sensor readings
     :type publish_service_name: str
@@ -42,7 +43,7 @@ class SensorBase(Node, ABC):
                  read_interval: float,
                  msg_interface: MsgType = OSBKFloatValue) -> None:
         """
-        Construct instance of 'SensorBase'.
+        Construct instance of ``'SensorBase'``.
 
         Initializing the nodes name and its attributes for publishing sensor
         values.
@@ -52,7 +53,7 @@ class SensorBase(Node, ABC):
         :param read_interval: interval in seconds to publish sensor-readings
         :type read_interval: float
         :param msg_interface: ROS msg-interface to use for publishing,
-            defaults to 'OSBKFloatValue'
+            defaults to ``'OSBKFloatValue'``
         :type msg_interface: MsgType
         """
         # call the constructor of Node
@@ -134,7 +135,7 @@ class SensorBase(Node, ABC):
 
     def publish_reading(self) -> None:
         """
-        Publish what :func: 'read_sensor()' returns.
+        Publish what ``read_sensor()`` returns.
 
         :rtype: None
         """
@@ -149,6 +150,6 @@ class SensorBase(Node, ABC):
 
         This should be overridden for specific hardware implementation.
 
-        :return: an instance of the MsgType specified in self.msg_interface
+        :return: an instance of the MsgType specified in ``self.msg_interface``
         """
         pass

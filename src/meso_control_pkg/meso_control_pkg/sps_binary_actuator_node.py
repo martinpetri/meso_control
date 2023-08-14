@@ -10,7 +10,20 @@ from osbk_interfaces.msg import DiscreteActuatorState, OSBKStringValue
 
 
 class SpsBinaryActuator(ActuatorBase):
-    """Simple Actuator, that influences a shutoff-valve controlled by an SPS."""
+    """
+    A node for a binary actuator controlled by an SPS, connected via Modbus.
+
+    Uses the ``ModbusTcpNode``.
+
+    :param last_state: the last state received from the ``ModbusTcpNode``, either 0 or 1
+    :type last_state: int
+
+    :param modbus_subscription: the subscriber listening to the ``ModbusTcpNode``
+    :type modbus_subscription: Subscription
+
+    :param write_client: the client for writing to the SPS via the ``ModbusTcpNode``
+    :type write_client: Client
+    """
 
     def __init__(self) -> None:
         super().__init__("sps_valve", False, 1)
@@ -36,6 +49,15 @@ class SpsBinaryActuator(ActuatorBase):
     def set_actuator(self,
                      setpoint: DiscreteActuatorControl.Request
                      ) -> DiscreteActuatorControl.Response:
+        """
+        Send a new setpoint to the actuator.
+
+        :param setpoint: a service-request-object that contains the new setpoint
+        :type setpoint: DiscreteActuatorControl.Request
+
+        :return: a service-response-object to confirm the request
+        :rtype: DiscreteActuatorControl.Response
+        """
         modbus_request = Modbus.Request()
         modbus_request.key_name = self.get_parameter("write_key").value
         if setpoint.new_status > 0:
@@ -52,6 +74,12 @@ class SpsBinaryActuator(ActuatorBase):
         return response
 
     def poll_status(self) -> DiscreteActuatorState:
+        """
+        Return the last transmitted actuator-state by the SPS.
+
+        :return: a message object containing the actuator-state
+        :rtype: DiscreteActuatorState
+        """
         msg = DiscreteActuatorState()
         msg.topic_name = self.publish_topic
         msg.state = self.last_state

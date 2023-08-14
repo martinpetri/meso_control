@@ -15,7 +15,33 @@ MsgType = TypeVar('MsgType')
 
 
 class ActuatorEntry():
-    """A type that bundles the necessary information to control an actuator."""
+    """
+    A class that bundles the necessary information to control an actuator.
+    
+    :param name: a name to identify this actuator
+    :type name: str
+
+    :param service_name: name of the service the actuator-node provides
+    :type service_name: str
+
+    :param service_type: the ROS-service-type used
+    :type service_type: SrvType
+
+    :param topic_name: name of the topic on which the actuator-node publishes its status
+    :type topic_name: str
+
+    :param topic_type: the ROS-message definition used
+    :type topic_type: MsgType
+
+    :param current_state: stores the last published message on the actuator-nodes topic
+    :type current_state: SrvType
+
+    :param service: the service-client to command the actuator-node
+    :type service: Client
+
+    :param topic: the subscription to listen to the actuator-nodes topic
+    :type topic: Subscription
+    """
 
     def __init__(self,
                  name: str,
@@ -23,6 +49,9 @@ class ActuatorEntry():
                  service_type: SrvType,
                  topic_name: str,
                  topic_type: MsgType) -> None:
+        """
+        Constructs an ``ActuatorEntry``-object.
+        """
         self.name: str = name
 
         self.service_name: str = service_name
@@ -40,7 +69,35 @@ class ActuatorEntry():
 
 
 class ActuatorStateMachine(Node):
-    """A node that manages actuators following a finite statemachine."""
+    """
+    A node that manages multiple actuator-nodes according to a finite statemachine.
+    
+    The statemachine is defined by a list of ``State``- and ``Transition``-objects. The 
+    actuator-setpoints defined in each state are sent to the according actuator in ``actuators``.
+
+    :param states: the states making up a statemachine
+    :type states: List[State]
+
+    :param initial_state: the state to start statemachine-execution in
+    :type initial_state: State
+
+    :param current_state: the state that is currently active
+    :type current_state: State
+
+    :param transitions: a list of transitions that connect the states of a statemachine
+    :type transitions: List[Transition]
+
+    :param actuators: a list of ``ActuatorEntry``-objects to interact with the actuator-nodes
+        controlled by this statemachine
+    :type actuators: List[ActuatorEntry]
+
+    :param update_interval: the interval in seconds with which the current state is checked for possible
+        transitions and the actuators receive commands
+    :type update_interval: int
+
+    :param update_timer: the timer that triggers the update
+    :type update_timer: Timer
+    """
 
     def __init__(self,
                  name: str,
@@ -134,11 +191,13 @@ class ActuatorStateMachine(Node):
         self.update_timer.reset()
 
     def _stop_active_timers(self):
+        """Stop the timers of timed transitions."""
         for transition in self.transitions:
             if transition.timed and transition.time >= 0:
                 transition.timer.cancel()
 
     def _start_timers_of_current_state(self):
+        """Start the timers for timed transitions out of the current state."""
         for transition in self.current_state.possible_transitions:
             if transition.timed and transition.time >= 0:
                 transition.timer.reset()
@@ -156,6 +215,7 @@ class ActuatorStateMachine(Node):
         self.active = False
 
     def _timed_transition_callback(self, transition: Transition) -> None:
+        """Take a timed transition without checking its condition after its timer runs out."""
         if transition.active:
             self._change_state(transition.force_take())
         else:

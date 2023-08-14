@@ -13,6 +13,12 @@ from osbk_interfaces.srv import Modbus, Json
 from pymodbus.client.sync import ModbusTcpClient
 
 class ModbusTcpNode(Node):
+    """
+    A node that implements the modbus communication to the SPS.
+    
+    The feedback-registers are published as a JSON-formatted string.
+    The write-registers can be written individually via a service.
+    """
     def __init__(self):
         super().__init__("modbus_tcp_node")
         
