@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.5) (preloaded format=pdflatex 2023.7.18)  14 AUG 2023 02:20
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.5) (preloaded format=pdflatex 2023.7.18)  14 AUG 2023 03:25
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -140,15 +140,6 @@ Package: babel 2023/07/15 v3.92 The Babel package
 File: bblopts.cfg 2005/09/08 v0.1 add Arabic and Farsi to "declared" options of
  babel
 )
-(C:\Users\Tim\AppData\Local\Programs\MiKTeX\tex/latex/babel-english\english.ldf
-Language: english 2017/06/06 v3.3r English support from the babel system
-Package babel Info: Hyphen rules for 'canadian' set to \l@english
-(babel)             (\language0). Reported on input line 102.
-Package babel Info: Hyphen rules for 'australian' set to \l@ukenglish
-(babel)             (\language73). Reported on input line 105.
-Package babel Info: Hyphen rules for 'newzealand' set to \l@ukenglish
-(babel)             (\language73). Reported on input line 108.
-)
 (C:\Users\Tim\AppData\Local\Programs\MiKTeX\tex/latex/babel-german\ngerman.ldf
 Language: ngerman 2021/02/27 v2.13 German support for babel (post-1996 orthogra
 phy)
@@ -162,11 +153,6 @@ Package babel Info: Making " an active character on input line 122.
 german.tex
 Package babel Info: Importing font and identification data for ngerman
 (babel)             from babel-de.ini. Reported on input line 11.
-)
-(C:\Users\Tim\AppData\Local\Programs\MiKTeX\tex/generic/babel/locale/en\babel-e
-nglish.tex
-Package babel Info: Importing font and identification data for english
-(babel)             from babel-en.ini. Reported on input line 11.
 )
 (C:\Users\Tim\AppData\Local\Programs\MiKTeX\tex/latex/lm\lmodern.sty
 Package: lmodern 2015/05/01 v1.6.1 Latin Modern Fonts
@@ -576,23 +562,11 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 (C:\Users\Tim\AppData\Local\Programs\MiKTeX\tex/latex/oberdiek\hypcap.sty
 Package: hypcap 2016/05/16 v1.12 Adjusting the anchors of captions (HO)
 )
-(preamble.tex.txt
-
-Package fancyhdr Warning: \fancyhead's `E' option without twoside option is use
-less.
-(fancyhdr)                Please consider using the `twoside' option on input l
-ine 6.
-
-
-Package fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
-less.
-(fancyhdr)                Please consider using the `twoside' option on input l
-ine 7.
-
-)
+(preamble.tex.txt)
 LaTeX Font Info:    Trying to load font information for T1+lmr on input line 68
 .
- (C:\Users\Tim\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmr.fd
+
+(C:\Users\Tim\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmr.fd
 File: t1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 (C:\Users\Tim\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdfte
@@ -652,7 +626,7 @@ File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 * paper: a4paper
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
-* modes: 
+* modes: twoside 
 * h-part:(L,W,R)=(71.13188pt, 455.24411pt, 71.13188pt)
 * v-part:(T,H,B)=(88.2037pt, 673.19197pt, 83.65117pt)
 * \paperwidth=597.50787pt
@@ -674,8 +648,8 @@ File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 * \voffset=0.0pt
 * \mag=1000
 * \@twocolumnfalse
-* \@twosidefalse
-* \@mparswitchfalse
+* \@twosidetrue
+* \@mparswitchtrue
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
@@ -684,37 +658,17 @@ Package hyperref Info: Link coloring ON on input line 68.
 \@outlinefile=\write4
 \openout4 = `documentation.out'.
 
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 8
-3.
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 7
+9.
 
 (C:\Users\Tim\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <12> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 83.
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 79.
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 8
+6.
 
-Underfull \hbox (badness 10000) in paragraph at lines 83--83
-[]\T1/lmr/m/it/12 name: str\T1/lmr/m/n/12 , \T1/lmr/m/it/12 read_interval:
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 83--83
-\T1/lmr/m/it/12 float\T1/lmr/m/n/12 , \T1/lmr/m/it/12 msg_interface:
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 83--83
-\T1/lmr/m/it/12 Ms-gTy-pe = <class
- []
-
-
-Overfull \hbox (151.5083pt too wide) in paragraph at lines 83--83
-\T1/lmr/m/it/12 'osbk_interfaces.msg._osbk_float_value.OSBKFloatValue'>\T1/lmtt
-/m/n/12 ) 
- []
-
-LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 9
-0.
 (C:\Users\Tim\AppData\Local\Programs\MiKTeX\tex/latex/lm\ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
@@ -725,409 +679,107 @@ LaTeX Font Info:    Trying to load font information for TS1+lmtt on input line
 File: ts1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 1
-19.
+15.
 
 (C:\Users\Tim\AppData\Local\Programs\MiKTeX\tex/latex/lm\ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )<<ot1.cmap>>
 LaTeX Font Info:    Trying to load font information for OML+lmm on input line 1
-19.
+15.
 (C:\Users\Tim\AppData\Local\Programs\MiKTeX\tex/latex/lm\omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )<<oml.cmap>>
 LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
-119.
+115.
 (C:\Users\Tim\AppData\Local\Programs\MiKTeX\tex/latex/lm\omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )<<oms.cmap>>
 LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
-119.
+115.
  (C:\Users\Tim\AppData\Local\Programs\MiKTeX\tex/latex/lm\omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 119.
+(Font)              <12> on input line 115.
 <<omx.cmap>>
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 119.
+(Font)              <8> on input line 115.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 119.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 119
+(Font)              <6> on input line 115.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 115
 .
  (C:\Users\Tim\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 119
+LaTeX Font Info:    Trying to load font information for U+msb on input line 115
 .
 
 (C:\Users\Tim\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Underfull \hbox (badness 10000) in paragraph at lines 137--139
+Underfull \hbox (badness 10000) in paragraph at lines 133--135
 []\T1/lmr/m/n/12 an in-stan-ce of the Ms-gTy-pe spe-ci-fied in \T1/lmtt/m/n/12 
 self.
  []
 
+[12{C:/Users/Tim/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/Tim
+/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}
 
-Underfull \hbox (badness 10000) in paragraph at lines 150--150
-[]\T1/lmr/m/it/12 name: str\T1/lmr/m/n/12 , \T1/lmr/m/it/12 con-ti-nuous:
+{C:/Users/Tim/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ts1.enc}{C:/U
+sers/Tim/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathsy.enc}] [13
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 245--245
+[]\T1/lmr/m/it/12 name: str, states: List[State], in-iti-al_state:
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 150--150
-\T1/lmr/m/it/12 bool = True\T1/lmr/m/n/12 , \T1/lmr/m/it/12 sta-
+Underfull \hbox (badness 6608) in paragraph at lines 245--245
+\T1/lmr/m/it/12 State, tran-si-ti-ons: List[Transition], ac-tua-tors:
  []
 
+[14
 
-Underfull \hbox (badness 10000) in paragraph at lines 150--150
-\T1/lmr/m/it/12 tus_poll_interval: int
- []
+] [15] [16] [17
 
-LaTeX Font Info:    Trying to load font information for T1+lmss on input line 1
-55.
-(C:\Users\Tim\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmss.fd
-File: t1lmss.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-) [12
-
-{C:/Users/Tim/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/Tim/Ap
-pData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}{C:/Users/Tim/AppData/
-Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ts1.enc}{C:/Users/Tim/AppData/Local
-/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathsy.enc}]
-Underfull \hbox (badness 10000) in paragraph at lines 212--212
-[]\T1/lmr/m/it/12 name:
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 212--212
-\T1/lmr/m/it/12 str\T1/lmr/m/n/12 , \T1/lmr/m/it/12 ser-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 212--212
-\T1/lmr/m/it/12 vice_name:
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 212--212
-\T1/lmr/m/it/12 str\T1/lmr/m/n/12 , \T1/lmr/m/it/12 ser-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 212--212
-\T1/lmr/m/it/12 vice_type:
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 212--212
-\T1/lmr/m/it/12 Srv-Ty-pe\T1/lmr/m/n/12 ,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 212--212
-\T1/lmr/m/it/12 to-pic_name:
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 212--212
-\T1/lmr/m/it/12 str\T1/lmr/m/n/12 , \T1/lmr/m/it/12 to-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 212--212
-\T1/lmr/m/it/12 pic_type:
- []
-
-[13]
-Overfull \hbox (9.95535pt too wide) in paragraph at lines 249--249
-[]\T1/lmr/m/it/12 name:
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 249--249
-\T1/lmr/m/it/12 str,
- []
-
-
-Overfull \hbox (11.15536pt too wide) in paragraph at lines 249--249
-\T1/lmr/m/it/12 states:
- []
-
-
-Overfull \hbox (149.78816pt too wide) in paragraph at lines 249--249
-\T1/lmr/m/it/12 List[osbk_operation.utility.State],
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 249--249
-\T1/lmr/m/it/12 in-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 249--249
-\T1/lmr/m/it/12 iti-
- []
-
-
-Overfull \hbox (24.07736pt too wide) in paragraph at lines 249--249
-\T1/lmr/m/it/12 al_state:
- []
-
-
-Overfull \hbox (122.92722pt too wide) in paragraph at lines 249--249
-\T1/lmr/m/it/12 osbk_operation.utility.State,
- []
-
-
-Overfull \hbox (3.80533pt too wide) in paragraph at lines 249--249
-\T1/lmr/m/it/12 tran-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 249--249
-\T1/lmr/m/it/12 si-ti-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 249--249
-\T1/lmr/m/it/12 ons:
- []
-
-
-Overfull \hbox (176.93811pt too wide) in paragraph at lines 249--249
-\T1/lmr/m/it/12 List[osbk_operation.utility.Transition],
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 249--249
-\T1/lmr/m/it/12 ac-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 249--249
-\T1/lmr/m/it/12 tua-
- []
-
-
-Overfull \hbox (2.00536pt too wide) in paragraph at lines 249--249
-\T1/lmr/m/it/12 tors:
- []
-
-
-Overfull \hbox (294.16505pt too wide) in paragraph at lines 249--249
-\T1/lmr/m/it/12 List[osbk_operation.actuator_state_machine.ActuatorEntry],
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 249--249
-\T1/lmr/m/it/12 up-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 249--249
-\T1/lmr/m/it/12 da-
- []
-
-
-Overfull \hbox (39.22731pt too wide) in paragraph at lines 249--249
-\T1/lmr/m/it/12 te_interval:
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 249--249
-\T1/lmr/m/it/12 int
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 249--249
-\T1/lmr/m/it/12 =
- []
-
-[14]
-Underfull \hbox (badness 6428) in paragraph at lines 325--325
-\T1/lmr/m/it/12 end: osbk_operation.utility.State\T1/lmr/m/n/12 ,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 325--325
-\T1/lmr/m/it/12 <func-ti-on _default_condition>\T1/lmr/m/n/12 ,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 325--325
-\T1/lmr/m/it/12 ac-ti-on: Calla-ble[[]\T1/lmr/m/n/12 , \T1/lmr/m/it/12 No-ne] =
-
- []
-
-[15] [16]
-Overfull \hbox (164.72617pt too wide) in paragraph at lines 497--497
-[]\T1/lmr/m/it/12 request: osbk_interfaces.srv._discrete_actuator_control.Discr
-eteActuatorControl_Request\T1/lmr/m/n/12 ,
- []
-
-
-Overfull \hbox (183.65451pt too wide) in paragraph at lines 497--497
-\T1/lmr/m/it/12 re-spon-se: osbk_interfaces.srv._discrete_actuator_control.Disc
-reteActuatorControl_Response\T1/lmtt/m/n/12 )
- []
-
-
-Overfull \hbox (147.82803pt too wide) in paragraph at lines 497--497
-\OMS/lmsy/m/n/12 !$ \T1/lmr/m/n/12 osbk_interfaces.srv._discrete_actuator_contr
-ol.DiscreteActuatorControl_Response 
- []
-
-
-Overfull \hbox (164.72617pt too wide) in paragraph at lines 505--505
-[]\T1/lmr/m/it/12 request: osbk_interfaces.srv._discrete_actuator_control.Discr
-eteActuatorControl_Request\T1/lmr/m/n/12 ,
- []
-
-
-Overfull \hbox (183.65451pt too wide) in paragraph at lines 505--505
-\T1/lmr/m/it/12 re-spon-se: osbk_interfaces.srv._discrete_actuator_control.Disc
-reteActuatorControl_Response\T1/lmtt/m/n/12 )
- []
-
-
-Overfull \hbox (147.82803pt too wide) in paragraph at lines 505--505
-\OMS/lmsy/m/n/12 !$ \T1/lmr/m/n/12 osbk_interfaces.srv._discrete_actuator_contr
-ol.DiscreteActuatorControl_Response 
- []
-
-[17]
-Underfull \hbox (badness 5924) in paragraph at lines 531--532
+]
+Underfull \hbox (badness 5924) in paragraph at lines 527--528
 []\T1/lmtt/b/n/12 last_state \T1/lmr/m/n/12 (\T1/lmtt/m/it/12 int\T1/lmr/m/n/12
  ) ^^U the last state re-cei-ved from the
- []
-
-
-Overfull \hbox (57.10219pt too wide) in paragraph at lines 545--545
-[]\T1/lmtt/m/n/12 ) $\OMS/lmsy/m/n/12 !$ \T1/lmr/m/n/12 osbk_interfaces.msg._di
-screte_actuator_state.DiscreteActuatorState 
- []
-
-
-Overfull \hbox (154.20656pt too wide) in paragraph at lines 561--561
-[]\T1/lmr/m/it/12 setpoint: osbk_interfaces.srv._discrete_actuator_control.Disc
-reteActuatorControl_Request\T1/lmtt/m/n/12 )
- []
-
-
-Overfull \hbox (128.92807pt too wide) in paragraph at lines 561--561
-\OMS/lmsy/m/n/12 !$ \T1/lmr/m/n/12 osbk_interfaces.srv._discrete_actuator_contr
-ol.DiscreteActuatorControl_Response 
- []
-
-
-Underfull \hbox (badness 5924) in paragraph at lines 590--591
-[]\T1/lmtt/b/n/12 last_state \T1/lmr/m/n/12 (\T1/lmtt/m/it/12 int\T1/lmr/m/n/12
- ) ^^U the last state re-cei-ved from the
- []
-
-
-Overfull \hbox (57.10219pt too wide) in paragraph at lines 604--604
-[]\T1/lmtt/m/n/12 ) $\OMS/lmsy/m/n/12 !$ \T1/lmr/m/n/12 osbk_interfaces.msg._di
-screte_actuator_state.DiscreteActuatorState 
  []
 
 [18]
-Overfull \hbox (154.20656pt too wide) in paragraph at lines 620--620
-[]\T1/lmr/m/it/12 setpoint: osbk_interfaces.srv._discrete_actuator_control.Disc
-reteActuatorControl_Request\T1/lmtt/m/n/12 )
+Underfull \hbox (badness 5924) in paragraph at lines 586--587
+[]\T1/lmtt/b/n/12 last_state \T1/lmr/m/n/12 (\T1/lmtt/m/it/12 int\T1/lmr/m/n/12
+ ) ^^U the last state re-cei-ved from the
  []
 
-
-Overfull \hbox (128.92807pt too wide) in paragraph at lines 620--620
-\OMS/lmsy/m/n/12 !$ \T1/lmr/m/n/12 osbk_interfaces.srv._discrete_actuator_contr
-ol.DiscreteActuatorControl_Response 
- []
-
-
-Overfull \hbox (89.2558pt too wide) in paragraph at lines 663--663
-[]\T1/lmtt/m/n/12 ) $\OMS/lmsy/m/n/12 !$ \T1/lmr/m/n/12 osbk_interfaces.msg._co
-ntinuous_actuator_state.ContinuousActuatorState 
- []
-
-
-Overfull \hbox (187.04562pt too wide) in paragraph at lines 679--679
-[]\T1/lmr/m/it/12 setpoint: osbk_interfaces.srv._continuous_actuator_control.Co
-ntinuousActuatorControl_Request\T1/lmtt/m/n/12 )
- []
-
-
-Overfull \hbox (161.08168pt too wide) in paragraph at lines 679--679
-\OMS/lmsy/m/n/12 !$ \T1/lmr/m/n/12 osbk_interfaces.srv._continuous_actuator_con
-trol.ContinuousActuatorControl_Response 
- []
-
-[19]
-Overfull \hbox (26.59375pt too wide) in paragraph at lines 720--720
-[]\T1/lmr/m/it/12 msg: osbk_interfaces.msg._osbk_string_value.OSBKStringValue\T
-1/lmtt/m/n/12 ) 
- []
-
-[20]
-Underfull \hbox (badness 10000) in paragraph at lines 753--754
-[]\T1/lmtt/m/n/12 meso_control_pkg.meso_state_machine\T1/lmr/m/n/12 ,
- []
-
-
-Overfull \hbox (33.81706pt too wide) in paragraph at lines 755--756
-[]\T1/lmtt/m/n/12 meso_control_pkg.sps_binary_actuator_node\T1/lmr/m/n/12 ,
- []
-
-
-Overfull \hbox (58.51707pt too wide) in paragraph at lines 756--757
-[]\T1/lmtt/m/n/12 meso_control_pkg.sps_continuous_actuator_node\T1/lmr/m/n/12 ,
-
- []
-
-
-Overfull \hbox (46.16707pt too wide) in paragraph at lines 757--758
-[]\T1/lmtt/m/n/12 meso_control_pkg.sps_discrete_actuator_node\T1/lmr/m/n/12 ,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 759--760
-[]\T1/lmtt/m/n/12 meso_control_pkg.water_sensor_node\T1/lmr/m/n/12 ,
- []
-
-
-Overfull \hbox (9.11705pt too wide) in paragraph at lines 764--765
-[]\T1/lmtt/m/n/12 osbk_operation.actuator_state_machine\T1/lmr/m/n/12 ,
- []
-
-[21
-
-
-] (documentation.aux)
+[19] [20] (documentation.aux)
  ***********
 LaTeX2e <2023-06-01> patch level 1
 L3 programming layer <2023-06-30>
  ***********
 Package rerunfilecheck Info: File `documentation.out' has not changed.
-(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
+(rerunfilecheck)             Checksum: 0602268F8AD893287776E02980E9B0F4;268.
  ) 
 Here is how much of TeX's memory you used:
- 14603 strings out of 475550
- 234739 string characters out of 5763477
- 1930238 words of memory out of 5000000
- 35450 multiletter control sequences out of 15000+600000
- 597410 words of font info for 67 fonts, out of 8000000 for 9000
+ 14524 strings out of 475550
+ 232831 string characters out of 5763477
+ 1929238 words of memory out of 5000000
+ 35385 multiletter control sequences out of 15000+600000
+ 595296 words of font info for 66 fonts, out of 8000000 for 9000
  1142 hyphenation exceptions out of 8191
- 72i,11n,79p,660b,723s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 72i,11n,79p,571b,738s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/Tim/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx12.pfb>
 <C:/Users/Tim/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr12.pfb><C:
 /Users/Tim/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri12.pfb><C:/U
-sers/Tim/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmss17.pfb><C:/Use
-rs/Tim/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmssbx10.pfb><C:/Use
-rs/Tim/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Users
-/Tim/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtk10.pfb><C:/Users/T
-im/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt12.pfb><C:/Users/Tim
-/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtti10.pfb>
-Output written on documentation.pdf (10 pages, 221121 bytes).
+sers/Tim/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Use
+rs/Tim/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtk10.pfb><C:/Users
+/Tim/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt12.pfb><C:/Users/T
+im/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtti10.pfb>
+Output written on documentation.pdf (9 pages, 189741 bytes).
 PDF statistics:
- 173 PDF objects out of 1000 (max. 8388607)
- 53 named destinations out of 1000 (max. 500000)
- 21 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 158 PDF objects out of 1000 (max. 8388607)
+ 55 named destinations out of 1000 (max. 500000)
+ 29 words of extra memory for PDF output out of 10000 (max. 10000000)
 

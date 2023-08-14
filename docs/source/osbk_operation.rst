@@ -1,5 +1,5 @@
 OSBK-Operation
-============
+==============
 .. automodule:: osbk_operation.actuator_state_machine
     :members:
 

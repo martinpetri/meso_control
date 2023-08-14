@@ -69,6 +69,9 @@ exclude_patterns = []
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = None
 
+maximum_signature_line_length = 5
+
+add_module_names = False
 
 # -- Options for HTML output -------------------------------------------------
 
