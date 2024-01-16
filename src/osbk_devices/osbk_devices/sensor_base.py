@@ -22,19 +22,19 @@ class SensorBase(Node, ABC):
 
     :param read_interval: ROS parameter to change the poll-rate for sensor readings
     :type read_interval: ROS parameter
-    :param publish_topic: topic name, the sensors readings are published to,
-        defaults to ``'[node_name]/value'`` test
+    :param publish_topic: The topic name, the sensors readings are published to,
+        defaults to ``'[node_name]/value'``.
     :type publish_topic: str
-    :param publish_service_name: name of the service to publish sensor readings
+    :param publish_service_name: The name of the service to publish sensor readings.
     :type publish_service_name: str
-    :param msg_interface: the msg-interface this sensor uses to publish its
-        readings
+    :param msg_interface: The msg-interface this sensor uses to publish its
+        readings.
     :type msg_interface: MsgType
-    :param publisher: ROS publisher for sending the readings
+    :param publisher: ROS publisher for sending the readings.
     :type publisher: Publisher
-    :param publish_service: the service to request a publish of sensor readings
+    :param publish_service: The service to request a publish of sensor readings.
     :type publish_service: Service
-    :param publish_timer: ROS timer to schedule publishing of sensor-readings
+    :param publish_timer: ROS timer to schedule publishing of sensor-readings.
     :type publish_timer: Timer
     """
 
@@ -48,12 +48,12 @@ class SensorBase(Node, ABC):
         Initializing the nodes name and its attributes for publishing sensor
         values.
 
-        :param name: name of the node
+        :param name: Name for the node.
         :type name: str
-        :param read_interval: interval in seconds to publish sensor-readings
+        :param read_interval: The interval in seconds to publish sensor-readings.
         :type read_interval: float
-        :param msg_interface: ROS msg-interface to use for publishing,
-            defaults to ``'OSBKFloatValue'``
+        :param msg_interface: ROS msg-interface to use for publishing.
+            Defaults to ``'OSBKFloatValue'``.
         :type msg_interface: MsgType
         """
         # call the constructor of Node
@@ -95,9 +95,9 @@ class SensorBase(Node, ABC):
 
         Calls the publish_reading method.
 
-        :param request: service-request, should be empty
+        :param request: Service-request, should be empty.
         :type request: Trigger.Request
-        :param response: service-response, with a success flag and a message field
+        :param response: Service-response, with a success flag and a message field.
         :type response: Trigger.Response
         """
         # request is empty
@@ -118,7 +118,7 @@ class SensorBase(Node, ABC):
 
         Updates the publish_timer-interval when read_interval is set.
 
-        :param parameters: list of parameters that are being updated
+        :param parameters: The list of parameters that are being updated.
         :type parameters: List[Parameter]
         :rtype: SetParametersResult
         """
@@ -150,6 +150,6 @@ class SensorBase(Node, ABC):
 
         This should be overridden for specific hardware implementation.
 
-        :return: an instance of the MsgType specified in ``self.msg_interface``
+        :return: An instance of the MsgType specified in ``self.msg_interface``.
         """
         pass

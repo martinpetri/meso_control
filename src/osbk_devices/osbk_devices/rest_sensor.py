@@ -11,11 +11,11 @@ class RestSensor(SensorBase):
     Inherits from SensorBase and implements the 'read_sensor' function to get
     a single-value from a REST-server.
 
-    :param source_url: url to the REST-server
+    :param source_url: Url to the REST-server.
     :type source_url: ROS-param(String)
-    :param path_to_value: path to value, to extract from json response
+    :param path_to_value: The path to the value, to extract from the json response.
     :type path_to_value: ROS-param(String)
-    :param unit: unit of the sensor-values
+    :param unit: Unit of the sensor-values.
     :type unit: ROS-param(String)
     """
 
@@ -28,10 +28,10 @@ class RestSensor(SensorBase):
         Initializes name of node, the ROS-message-interface to use and its
         ROS-parameters.
 
-        :param name: name of this node, defaults to 'RESTSensor'
+        :param name: The name for this node. Defaults to 'RESTSensor'.
         :type name: str
-        :param read_interval: interval in seconds to publish sensor-readings,
-            defaults to 10
+        :param read_interval: Interval in seconds to publish sensor-readings.
+            Defaults to 10.
         :type read_interval: float
         """
         # call constructor of SensorBase
@@ -49,7 +49,9 @@ class RestSensor(SensorBase):
         Overwrites the abstract method in SensorBase.
         Retrieves a response from the REST-server specified in the 'source_url'
         parameter and extracts the float value from the response according to
-        the 'path_to_value' parameter
+        the 'path_to_value' parameter.
+
+        :return: The current value read from the sensor.
         """
         # create the message object
         msg = OSBKFloatValue()

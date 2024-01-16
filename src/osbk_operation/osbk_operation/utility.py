@@ -9,21 +9,21 @@ class Transition:
 class State:
     """
     Represents a system-state as collection of actuator states.
-    
+
     Designed to be used in an object of the ``ActuatorStateMachine``-class.
 
-    :param name: a name for the state
+    :param name: A name for the state.
     :type name: str
 
-    :param actuator_states: a dictionary to map the names of ``ActuatorEntry``-objects to the
-        setpoint for the actuator
+    :param actuator_states: A dictionary to map the names of ``ActuatorEntry``-objects to the
+        setpoint for the actuator.
     :type actuator_states: dict
 
-    :param final: wether this state should be a finite one in the statemachine
+    :param final: Wether this state should be a finite one in the statemachine.
     :type final: bool
 
-    :param possible_transitions: a list of ``Transition``-objects which have this state as starting
-        state
+    :param possible_transitions: A list of ``Transition``-objects which have this state as starting
+        state.
     :type possible_transitions: List[Transition]
     """
 
@@ -52,34 +52,34 @@ def _default_action() -> None:
 class Transition():
     """
     Represents a transition between two states.
-    
+
     Designed to be used in an ``ActuatorStateMachine``-object.
 
-    :param start: the starting state of this transition
+    :param start: The starting state of this transition.
     :type start: State
 
-    :param end: the state this transition leads to
+    :param end: The state this transition leads to.
     :type end: State
 
-    :param timed: wether this Transition should be taken after a given time
+    :param timed: Wether this Transition should be taken after a given time.
     :type timed: bool
 
-    :param time: if ``timed`` is true this controls the duration in seconds after which this
-        transition is triggered
+    :param time: If ``timed`` is true this controls the duration in seconds after which this
+        transition is triggered.
     :type time: int
 
-    :param timer: the timer to trigger this transition. it should be created by an 
-        ``ActuatorStateMachine``-node
+    :param timer: The timer to trigger this transition. It should be created by an
+        ``ActuatorStateMachine``-node.
     :type timer: Timer
 
-    :param condition: a ``Callable``-object which should return True when the transition can be
-        taken
+    :param condition: A ``Callable``-object which should return True when the transition can be
+        taken.
     :type condition: Callable[[], bool]
 
-    :param action: a ``Callable``-object which gets called when this transition gets taken
+    :param action: A ``Callable``-object which gets called when this transition gets taken.
     :type action: Callable[[], None]
 
-    :param active: a boolean to activate or deactivate this transition
+    :param active: A boolean to activate or deactivate this transition.
     :type active: bool
     """
 
@@ -107,7 +107,7 @@ class Transition():
 
         Executes the ``action`` and returns the end-state.
 
-        :return: the state this transition leads to
+        :return: The state this transition leads to.
         :rtype: State
         """
         self.action()
@@ -119,7 +119,7 @@ class Transition():
 
         Executes the ``action`` and returns the end-state if ``condition`` returns True.
 
-        :return: the state this transition leads to or None
+        :return: The state this transition leads to or None.
         :rtype: State
         """
         if(self.condition()):

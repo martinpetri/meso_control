@@ -19,7 +19,7 @@ sys.path.insert(0, os.path.abspath('..'))
 
 # -- Project information -----------------------------------------------------
 
-project = 'Dokumentation der entwickelten ROS-Software'
+project = 'OSBK ROS-Libraries'
 copyright = '2023, Soeren Kraegefsky, Martin Petri, Tim Galdiga'
 author = 'Soeren Kraegefsky, Martin Petri, Tim Galdiga'
 

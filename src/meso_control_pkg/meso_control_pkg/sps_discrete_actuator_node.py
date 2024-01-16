@@ -15,13 +15,13 @@ class SpsDiscreteActuator(ActuatorBase):
 
     Uses the ``ModbusTcpNode``.
 
-    :param last_state: the last state received from the ``ModbusTcpNode``
+    :param last_state: The last state received from the ``ModbusTcpNode``.
     :type last_state: int
 
-    :param modbus_subscription: the subscriber listening to the ``ModbusTcpNode``
+    :param modbus_subscription: The subscriber listening to the ``ModbusTcpNode``.
     :type modbus_subscription: Subscription
 
-    :param write_client: the client for writing to the SPS via the ``ModbusTcpNode``
+    :param write_client: The client for writing to the SPS via the ``ModbusTcpNode``.
     :type write_client: Client
     """
     def __init__(self) -> None:
@@ -51,10 +51,10 @@ class SpsDiscreteActuator(ActuatorBase):
         """
         Send a new setpoint to the actuator.
 
-        :param setpoint: a service-request-object that contains the new setpoint
+        :param setpoint: A service-request-object that contains the new setpoint.
         :type setpoint: DiscreteActuatorControl.Request
 
-        :return: a service-response-object to confirm the request
+        :return: A service-response-object to confirm the request.
         :rtype: DiscreteActuatorControl.Response
         """
         modbus_request = Modbus.Request()
@@ -78,7 +78,7 @@ class SpsDiscreteActuator(ActuatorBase):
         """
         Return the last transmitted actuator-state by the SPS.
 
-        :return: a message object containing the actuator-state
+        :return: A message object containing the actuator-state.
         :rtype: DiscreteActuatorState
         """
         msg = DiscreteActuatorState()

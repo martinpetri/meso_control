@@ -14,11 +14,11 @@ class WaterSensor(SensorBase):
     
     This node extends the ``SensorBase``-node nad uses the ``ModbusTcpNode``.
 
-    :param last_reading: last transmitted sensor-readings from the SPS.
+    :param last_reading: Last transmitted sensor-readings from the SPS.
     :type last_reading: List[float]
 
-    :param modbus_subscriber: subscribes to the topic where the content of the SPS-feedback-values
-        are published
+    :param modbus_subscriber: Subscribes to the topic where the content of the SPS-feedback-values
+        are published.
     :type modbus_subscriber: Subscription
     """
 

@@ -17,29 +17,29 @@ MsgType = TypeVar('MsgType')
 class ActuatorEntry():
     """
     A class that bundles the necessary information to control an actuator.
-    
-    :param name: a name to identify this actuator
+
+    :param name: A name to identify this actuator.
     :type name: str
 
-    :param service_name: name of the service the actuator-node provides
+    :param service_name: The name of the service the actuator-node provides.
     :type service_name: str
 
-    :param service_type: the ROS-service-type used
+    :param service_type: The ROS-service-type used.
     :type service_type: SrvType
 
-    :param topic_name: name of the topic on which the actuator-node publishes its status
+    :param topic_name: The name of the topic on which the actuator-node publishes its status.
     :type topic_name: str
 
-    :param topic_type: the ROS-message definition used
+    :param topic_type: The ROS-message definition used.
     :type topic_type: MsgType
 
-    :param current_state: stores the last published message on the actuator-nodes topic
+    :param current_state: Stores the last published message on the actuator-nodes topic.
     :type current_state: SrvType
 
-    :param service: the service-client to command the actuator-node
+    :param service: The service-client to command the actuator-node.
     :type service: Client
 
-    :param topic: the subscription to listen to the actuator-nodes topic
+    :param topic: The subscription to listen to the actuator-nodes topic.
     :type topic: Subscription
     """
 
@@ -49,9 +49,7 @@ class ActuatorEntry():
                  service_type: SrvType,
                  topic_name: str,
                  topic_type: MsgType) -> None:
-        """
-        Constructs an ``ActuatorEntry``-object.
-        """
+        """Construct an ``ActuatorEntry``-object."""
         self.name: str = name
 
         self.service_name: str = service_name
@@ -71,31 +69,31 @@ class ActuatorEntry():
 class ActuatorStateMachine(Node):
     """
     A node that manages multiple actuator-nodes according to a finite statemachine.
-    
-    The statemachine is defined by a list of ``State``- and ``Transition``-objects. The 
+
+    The statemachine is defined by a list of ``State``- and ``Transition``-objects. The
     actuator-setpoints defined in each state are sent to the according actuator in ``actuators``.
 
-    :param states: the states making up a statemachine
+    :param states: The states making up a statemachine.
     :type states: List[State]
 
-    :param initial_state: the state to start statemachine-execution in
+    :param initial_state: The state to start statemachine-execution in.
     :type initial_state: State
 
-    :param current_state: the state that is currently active
+    :param current_state: The state that is currently active.
     :type current_state: State
 
-    :param transitions: a list of transitions that connect the states of a statemachine
+    :param transitions: A list of transitions that connect the states of a statemachine.
     :type transitions: List[Transition]
 
-    :param actuators: a list of ``ActuatorEntry``-objects to interact with the actuator-nodes
-        controlled by this statemachine
+    :param actuators: A list of ``ActuatorEntry``-objects to interact with the actuator-nodes
+        controlled by this statemachine.
     :type actuators: List[ActuatorEntry]
 
-    :param update_interval: the interval in seconds with which the current state is checked for possible
-        transitions and the actuators receive commands
+    :param update_interval: The interval in seconds, with which the current state is checked for
+        possible transitions and the actuators receive commands.
     :type update_interval: int
 
-    :param update_timer: the timer that triggers the update
+    :param update_timer: The timer that triggers the update.
     :type update_timer: Timer
     """
 

@@ -20,15 +20,15 @@ class ActuatorBase(Node, ABC):
     Nodes that implement a specific actuator should inherit from this base class and overwrite the
     ``set_actuator()`` and ``poll_status()`` function. This class also inherits from Node.
 
-    :param service_name: name of the service this actuator can be
-        controlled with
+    :param service_name: The name of the service this actuator can be
+        controlled with.
     :type service_name: str
-    :param srv: the service registered with ROS, its callback function calls
-        set_actuator()
+    :param srv: The service registered with ROS. Its callback function calls
+        ``set_actuator()``.
     :type srv: Service
-    :param poll_timer: the timer to trigger publishing of current status
+    :param poll_timer: The timer to trigger publishing of the current status.
     :type poll_timer: Timer
-    :param publisher: a publisher to publish current actuator status periodically
+    :param publisher: A publisher to publish current actuator status periodically.
     :type publisher: Publisher
     """
 
@@ -42,14 +42,13 @@ class ActuatorBase(Node, ABC):
         Initializes a service to receive commands and a publisher to publish the
         actuators current status.
 
-        :param name: name for the node
+        :param name: The name for the node.
         :type name: str
-        :param continuous: wether this actuator should use float (True) or integer (False) values 
-            for status representation. defaults to True
+        :param continuous: Wether this actuator should use float (True) or integer (False) values
+            for status representation. Defaults to True.
         :type continuous: bool
-        :param status_poll_interval: the interval to publish the actuators status in seconds
+        :param status_poll_interval: The interval to publish the actuators status in seconds.
         :type status_poll_interval: int
-
         """
         # call constructor for Node
         super().__init__(name)
@@ -98,9 +97,9 @@ class ActuatorBase(Node, ABC):
 
         This method should be overridden by specific hardware implementation.
 
-        :param setpoint: the Request sent to self.srv
+        :param setpoint: The Request sent to ``self.srv``.
         :type setpoint: SrvTypeRequest
-        :return: confirmation of the setpoint
+        :return: Confirmation of the setpoint.
         :rtype: SrvTypeResponse
         """
         pass
@@ -115,5 +114,5 @@ class ActuatorBase(Node, ABC):
 
     @abstractmethod
     def poll_status(self) -> MsgType:
-        """Abstract method that should retrieves the current actuator status."""
+        """Abstract method that should retrieve the current actuator status."""
         pass

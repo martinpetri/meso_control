@@ -100,6 +100,7 @@ def create_state_machine():
 
 
 def main():
+    """Start a simple state machine with 4 states."""
     rclpy.init()
 
     state_machine_node = create_state_machine()

@@ -22,36 +22,36 @@ class TideSim(Node):
     This node uses pegelonline.wsv.de to retrieve current tide levels at List (Sylt)
     and sends a proportional height to the stepper-motor-control on the SPS.
 
-    :param tide_a_client: interacts with the node controlling the tide-platform in tank A
+    :param tide_a_client: Interacts with the node controlling the tide-platform in tank A.
     :type tide_a_client: Client
 
-    :param tide_b_client: interacts with the node controlling the tide-platform in tank B
+    :param tide_b_client: Interacts with the node controlling the tide-platform in tank B.
     :type tide_b_client: Client
 
-    :param mode_publisher_a: publishes the currently active mode for tide control in
+    :param mode_publisher_a: Publishes the currently active mode for tide control in.
         tank A (automatic or manual)
     :type mode_publisher_a: Publisher
 
     :param mode_service_a: can be used to set the mode for tide control in tank A
     :type mode_service_a: Service
 
-    :param auto_tide_setting_a: wether tide level in tank A is controlled automatically
+    :param auto_tide_setting_a: Wether tide level in tank A is controlled automatically.
     :type auto_tide_setting_a: bool
 
-    :param mode_publisher_b: publishes the currently active mode for tide control in
+    :param mode_publisher_b: Publishes the currently active mode for tide control in.
         tank B
     :type mode_publisher_b: Publisher
 
-    :param mode_service_b: can be used to set the mode for tide control in tank B
+    :param mode_service_b: Can be used to set the mode for tide control in tank B.
     :type mode_service_b: Service
 
-    :param auto_tide_setting_b: wether tide level in tank B is controlled automatically
+    :param auto_tide_setting_b: Wether tide level in tank B is controlled automatically.
     :type auto_tide_setting_b: bool
 
-    :param update_timer: triggers the update of the automatic tide control
+    :param update_timer: Triggers the update of the automatic tide control.
     :type update_timer: Timer
 
-    :param mode_publish_timer: triggers the publishing of the currently active modes
+    :param mode_publish_timer: Triggers the publishing of the currently active modes.
     :type mode_publish_timer: Timer
     """
 

@@ -8,6 +8,7 @@ from osbk_interfaces.srv import Modbus
 
 
 class MinimalPublisher(Node):
+    """A node that simulates connection to the SPS when replacing the ``ModbusTcpNode``."""
 
     def __init__(self):
         super().__init__('mock_publisher')

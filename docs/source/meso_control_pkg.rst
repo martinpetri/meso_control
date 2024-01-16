@@ -20,3 +20,6 @@ Meso-Control-Package
 
 .. automodule:: meso_control_pkg.modbus_tcp_node
     :members:
+
+.. automodule:: meso_control_pkg.mock_publisher
+    :members:
